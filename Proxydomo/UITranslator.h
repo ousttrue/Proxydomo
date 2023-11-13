@@ -42,7 +42,7 @@ namespace UITranslator {
 		ATLASSERT(ctrlItem.IsWindow());
 		if (ctrlItem.IsWindow() == FALSE)
 			return;
-		ctrlItem.SetWindowTextW(GetTranslateMessage(ctrlID).c_str());
+		ctrlItem.SetWindowText(GetTranslateMessage(ctrlID).c_str());
 
 		CFontHandle font = getFont();
 		if (font)

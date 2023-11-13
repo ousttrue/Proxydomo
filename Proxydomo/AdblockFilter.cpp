@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "AdblockFilter.h"
+#include <unicode\unistr.h>
 #include <boost/algorithm/string.hpp> 
 #include <boost/utility/string_ref.hpp>
 #include <boost/optional.hpp>
@@ -545,8 +546,8 @@ bool	CAdblockFilter::AddPattern(const std::wstring& text, int listLine)
 		pattern.erase(pattern.begin());
 	}
 
-	UnicodeString pat(pattern.c_str(), (int32_t)pattern.length());
-	StringCharacterIterator patternIt(pat);
+  icu::UnicodeString pat(pattern.c_str(), (int32_t)pattern.length());
+  icu::StringCharacterIterator patternIt(pat);
 	const UChar firstChar = patternIt.current();
 	const UChar secondChar = patternIt.next();
 	patternIt.previous();

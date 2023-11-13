@@ -14,16 +14,17 @@
 #include <boost\algorithm\string.hpp>
 
 #include <wincrypt.h>
-#pragma comment (lib, "crypt32.lib")
+// #pragma comment (lib, "crypt32.lib")
 
 // openSSL
 #include <openssl/ssl.h>
 #include <openssl/err.h>
 #include <openssl/crypto.h>
 #include <openssl/pem.h>
+#include <openssl/x509v3.h>
 
-#pragma comment(lib, "libcrypto.lib")
-#pragma comment(lib, "libssl.lib")
+// #pragma comment(lib, "libcrypto.lib")
+// #pragma comment(lib, "libssl.lib")
 
 #include <atlbase.h>
 #include <atlsync.h>
@@ -441,7 +442,7 @@ std::unique_ptr<CertAndKey>	CreateServerCert(const std::string& host)
 	X509_set_pubkey(x509.get(), pkey.get());
 
 	/* We want to copy the subject name to the issuer name. */
-	X509_NAME* name = X509_get_subject_name(x509.get());
+	auto name = X509_get_subject_name(x509.get());
 
 	/* Set the country code and common name. */
 	X509_NAME_add_entry_by_txt(name, "O", MBSTRING_ASC, (unsigned char*)"Proxydomo TLS Server", -1, -1, 0);
@@ -604,7 +605,7 @@ void	GenerateCACertificate()
 	X509_set_pubkey(x509.get(), pkey.get());
 
 	/* We want to copy the subject name to the issuer name. */
-	X509_NAME* name = X509_get_subject_name(x509.get());
+	auto name = X509_get_subject_name(x509.get());
 
 	/* Set the country code and common name. */
 	X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC, (const unsigned char*)"Proxydomo CA2", -1, -1, 0);

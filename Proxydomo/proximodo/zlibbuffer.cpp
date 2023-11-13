@@ -30,7 +30,7 @@
 
 #define ZLIB_BLOCK 4096
 
-#pragma comment(lib, "zlib.lib")
+// #pragma comment(lib, "zlib.lib")
 
 using namespace std;
 

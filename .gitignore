@@ -47,3 +47,9 @@ Proxydomo/Test/
 
 openssl-*/
 wolfssl-*/
+
+/subprojects/*
+!/subprojects/icu.wrap
+!/subprojects/openssl.wrap
+!/subprojects/zlib.wrap
+

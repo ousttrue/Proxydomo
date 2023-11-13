@@ -22,6 +22,8 @@
 */
 #include "stdafx.h"
 #include "Settings.h"
+#include <unicode\unistr.h>
+#include <unicode\schriter.h>
 #include <fstream>
 #include <codecvt>
 #include <random>
@@ -682,8 +684,8 @@ bool CSettings::_CreatePattern(std::wstring& pattern, HashedListCollection& list
 		if (Proxydomo::CMatcher::CreateMatcher(pattern) == nullptr)
 			return false;
 
-		UnicodeString pat(pattern.c_str(), (int32_t)pattern.length());
-		StringCharacterIterator patternIt(pat);
+    icu::UnicodeString pat(pattern.c_str(), (int32_t)pattern.length());
+    icu::StringCharacterIterator patternIt(pat);
 		for (; patternIt.current() != patternIt.DONE && patternIt.getIndex() < kMaxPreHashWordLength; patternIt.next()) {
 			auto& pmapChildHashWord = (*pmapPreHashWord)[towlower(patternIt.current())];
 			if (pmapChildHashWord == nullptr) {
@@ -843,10 +845,10 @@ bool CSettings::_CreatePattern(std::wstring& pattern, HashedListCollection& list
 						pURLHash.reset(new HashedListCollection::URLHash);
 
 					if (std::next(it) == deqDomain.rend()) {
-						UnicodeString patfirst(firstWildcard.c_str(), (int32_t)firstWildcard.length());
-						StringCharacterIterator patternfirstIt(patfirst);
-						UnicodeString patlast(lastWildcard.c_str(), (int32_t)lastWildcard.length());
-						StringCharacterIterator patternlastIt(patlast);
+            icu::UnicodeString patfirst(firstWildcard.c_str(), (int32_t)firstWildcard.length());
+            icu::StringCharacterIterator patternfirstIt(patfirst);
+            icu::UnicodeString patlast(lastWildcard.c_str(), (int32_t)lastWildcard.length());
+            icu::StringCharacterIterator patternlastIt(patlast);
 						pURLHash->vecpairNode.emplace_back(
 							std::shared_ptr<Proxydomo::CNode>(Proxydomo::CMatcher::expr(patternfirstIt)),
 							std::shared_ptr<Proxydomo::CNode>(Proxydomo::CMatcher::expr(patternlastIt)),
@@ -864,8 +866,8 @@ bool CSettings::_CreatePattern(std::wstring& pattern, HashedListCollection& list
 
     // parse the pattern
 	try {
-		UnicodeString pat(pattern.c_str(), (int32_t)pattern.length());
-		StringCharacterIterator patternIt(pat);
+    icu::UnicodeString pat(pattern.c_str(), (int32_t)pattern.length());
+    icu::StringCharacterIterator patternIt(pat);
 		listCollection.deqNormalNode.emplace_back(std::shared_ptr<Proxydomo::CNode>(Proxydomo::CMatcher::expr(patternIt)), listLine);
 	} catch (...) {
 		return false;
