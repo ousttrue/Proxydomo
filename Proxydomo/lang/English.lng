@@ -1,0 +1,208 @@
+﻿1=OK
+2=Cancel
+40000=New Folder
+40001=Confirm
+40002=new filter
+40003=Web page
+40004=Outgoing header
+40005=Incoming header
+40006=Error
+40007=Success
+40008=Failure
+
+# Main Window
+1006=Filter manager
+1002=Log
+1059=Option
+57664=About
+1075=Active filter
+1031=Web page filter
+1032=Outgoing header filter
+1033=Incoming header filter
+1034=Use Remote Proxy
+1074=Bypass
+1093=Abort
+1049=Active requests: %02d
+
+51127=There are still requests in connection. \r\nAre you sure you want to terminate?
+
+# Task tray menu
+50000=Open &Proxydomo
+50001=&Web page filter
+50002=&Outgoing header filter
+50003=&Incoming header filter
+50004=&Bypass
+50005=&Use Remote Proxy
+50006=E&xit
+50100=(None)
+50101=&Edit Block Lists
+
+# Filter Manager Window
+131=Filter Manager
+
+1005=Create a new blank filter
+1025=Delete the current filter
+1050=Create a new folder
+1024=Import from  clipboard 
+1051=Export to clipboard
+
+51100=All filters in the folder will be deleted. \n Are you sure?
+51101=All filters in the folder will be copied to the clipboard. \n Are you sure? (folder structure will not be copied)
+
+# Filter Manager Window menu
+51001=Edit the filter
+51002=Add a new blank filter
+51003=Create a new folder at selected position
+51004=Delete the current filter
+51005=Delete the current folder
+51006=Import from clipboard
+51007=Export to clipboard
+
+# Filter Edit Window
+132=Edit Filter
+
+1076=Title
+1077=Author
+1034=Version
+1078=Comment
+1079=Filter Type
+1080=Header Name
+1036=Bounds
+1081=URL Pattern
+1014=Allow Multiple Matches
+1082=Bounds Pattern
+1035=Size Limit
+1083=Match Pattern
+1037=Replacement Text
+1019=Test
+1048=Test
+
+# Filter Test Window
+133=Test Filter
+
+51102=URL Pattern Test
+51103=Match Pattern Test
+1022=Analyze
+1001=Clear
+1104=Setting
+
+51104=Test string: %1%
+51105=Matched!
+51106=It did not match ...
+51107=(No match found)
+51108=Analysis results ...\r\n Sample text: %d bytes\r\n Successful matches: %d\r\n Average time: %d miliseconds\r\n Throughput: %.2lf KB/s
+
+# FilterDescriptor::TestValidity
+51128=The name of the filter is empty
+51129=Match pattern is empty
+51130=Size Limit is invalid
+51131=Header Name is empty
+
+# Log Window
+130= Log - requests[ %02d ]
+
+1039=Stop log
+1053=Recent URL
+1047=View HTTP Events
+1040=Browser → Proxy(this)
+1041=Proxy(this) → Site
+1042=Proxy(this) ← Site
+1043=Browser ← Proxy(this)
+1044=Proxy Events
+1045=Filter Events
+1046=Web Filter Debug
+1098=post data
+1097=Connection Monitor
+
+51109=>>> port %d : 
+51110=New request received\n
+51111=Request ended\n
+51112=>>> port %d #%d : 
+51113=Request received from browser
+51114=Request sent to website
+51115=Response received from website
+51116=Response sent to browser
+51117=HeaderMatch
+51118=HeaderReplace
+51119=TextMatch
+51120=TextReplace
+51121=Jump To: %1%\n
+51122=Redirect To: %1%\n
+51123=List has been reloaded [%1%] %2% lines\n
+51124=There is a problem with the list of matching rules: [%s] line %d\n
+51125=#%d : Match the list [%s] line %s\n
+51126=All of the log
+
+# Option
+135=Option
+
+1084=Proxy port
+1085=Restart to take effect
+1086=SSL/TLS filtering
+1058=Generate CA certificate
+1087=Remote HTTP Proxy
+1067=Add
+1068=Remove
+1069=Connection test
+1071=Test result
+1090=Language
+1092=Restart to take effect
+1094=Close to tasktray
+1095=Allow connections only from this PC.
+1100=Save the usage statistics of the block list.
+1101=Restart to take effect
+
+51132=Create a CA certificate to be used for SSL filtering.
+51133=I failed to create a CA certificate :
+51134=I was successful in creating a CA certificate!\SSL filtering is enabled after Proxydomo restart.\nIf you want to disable the SSL filtering, please delete the [ca-key.pem] and [ca.pem.crt] files.
+51135=Please set the Proxy to test.
+51136=I will start the Proxy of test ...
+51137=Successful! : %lld ms
+51138=Failed...
+51152=(YES) Generate ECC256bit private key\n(NO) Generate RSA1024bit private key
+
+# certificate error dialog
+136=Security Warning
+
+1088=The ID or safety of this connection of this Web site cannot be verified.
+1065=Host: %1%
+1060=Detail: %1%
+1089=Do you want to continue the connection?
+1061=Deny all the site of connection
+1062=Allow all of the site of connection
+1063=Temporarily deny
+1064=Temporarily allow
+1099=Try to get the root certificate from the OS.
+51158=Succeeded to get the root!\nPlease try to reload the web page.
+51159=Failed to get the root certificate...
+
+51160=Added the host to the allowed list. Please reload the page.
+51161=Added the host to the denial list. Please close the page.
+51162=Added the host to the temporary permission list. Please reload the page.
+51163=Added the host to the temporary denial list. Please close the page.
+
+# Pattern Parsing Errors
+51151=%1%\nposition: %2%\n
+
+51139=Expecting a number at position 
+51140=The pattern cannot be processed to the end
+51141=Missing closing curly brace at position
+51142=Escape code at end of pattern
+51143=Missing closing bracket at position
+51144=Missing comma at position
+51145=Missing colon at position
+51146=Only true or false allowed at position
+51147=Some text is needed at position
+51148=Unknown command name at position
+51149=Missing closing parenthesis at position
+51150=There is no equal sign in content
+51153=Forbit variable nest
+
+51154=Failed to read "settings.ini".
+51155=Failed to open "filter.xml".
+51156=Failed to read "filter.xml".
+51157=Failed to write "filter.xml" \n: %1%
+
+
+
+
