@@ -1,6 +1,6 @@
-/**
+﻿/**
  *	@file	Misc.h
- *	@biref	���Ɣėp�I�ȎG���ȃ��[�`���Q
+ *	@biref	わりと汎用的な雑多なルーチン群
  */
 /**
 	this file is part of Proxydomo
@@ -106,49 +106,49 @@ bool ForEachFileFolder(const CString &strDirectoryPath, _Function __f)
 
 namespace Misc {
 
-/// �N���b�v�{�[�h�ɂ���e�L�X�g���擾����
+/// クリップボードにあるテキストを取得する
 CString GetClipboardText(bool bUseOLE = false);
 bool	SetClipboardText(const CString& str);
 
 // ==========================================================================
 
-//+++ �t�@�C���p�X�����A�t�@�C�������擾
+//+++ ファイルパス名より、ファイル名を取得
 const CString	GetFileBaseName(const CString& strFileName);
 
-//+++ �t�@�C���p�X�����A�f�B���N�g�������擾. �Ō��'\\'�͊܂܂Ȃ�.
+//+++ ファイルパス名より、ディレクトリ名を取得. 最後の'\\'は含まない.
 const CString	GetDirName(const CString& strFileName);
 
-///+++ �t�@�C�����̊g���q�̎擾. �� ���ʂ̕�����ɂ�'.'�͊܂܂�Ȃ�.
+///+++ ファイル名の拡張子の取得. ※ 結果の文字列には'.'は含まれない.
 const CString	GetFileExt(const CString& strFileName);
 
-///+++ �t�H���_���g���q�����̃t�@�C�����̎擾. �� ���ʂ̕�����ɂ�'.'�͊܂܂�Ȃ�.
+///+++ フォルダ＆拡張子無しのファイル名の取得. ※ 結果の文字列には'.'は含まれない.
 const CString	GetFileBaseNoExt(const CString& strFileName);
 
-///+++ �g���q�����̃t�@�C�����̎擾. �� ���ʂ̕�����ɂ�'.'�͊܂܂�Ȃ�.
+///+++ 拡張子無しのファイル名の取得. ※ 結果の文字列には'.'は含まれない.
 const CString	GetFileNameNoExt(const CString& strFileName);
 
-//+++ ttp://��h�𑫂�����A���[�̋󔒂��폜�����肷��(SearchBar.h�̊֐����番��������������)
+//+++ ttp://にhを足したり、両端の空白を削除したりする(SearchBar.hの関数から分離改造したもの)
 void	StrToNormalUrl(CString& strUrl);
 
-/// ���Ȃ��t�@�C���p�X�ɂ��ĕԂ�
+/// 被らないファイルパスにして返す
 int	GetUniqueFilePath(CString& filepath, int nStart = 1);
 
-//	strFile�� .bak �������t�@�C���ɃR�s�[. �Â� .bak ������΂���͍폜.
+//	strFileを .bak をつけたファイルにコピー. 古い .bak があればそれは削除.
 void	CopyToBackupFile(const CString& strFileName);
 
 
 // ==========================================================================
 
-///+++ undonut.exe�̃t���p�X����Ԃ�.  (MtlGetModuleFileName�ƈꏏ������...)
+///+++ undonut.exeのフルパス名を返す.  (MtlGetModuleFileNameと一緒だった...)
 const CString 	GetExeFileName();
 
-///+++ exe(dll)�̂���t�H���_��Ԃ�. �Ō��'\\'���t��
+///+++ exe(dll)のあるフォルダを返す. 最後に'\\'が付く
 const CString 	GetExeDirectory();
 
-///+++ exe(dll)�̂���t�H���_��Ԃ�. �Ō��'\\'���t���Ȃ�
+///+++ exe(dll)のあるフォルダを返す. 最後に'\\'が付かない
 const CString 	GetExeDirName();
 
-///+++ �蔲���ȃt���p�X��. �f�B���N�g���̎w�肪�Ȃ���΁Aundonut�t�H���_���ƂȂ�.
+///+++ 手抜きなフルパス化. ディレクトリの指定がなければ、undonutフォルダ下となる.
 const CString GetFullPath_ForExe(const CString& strFileName);
 
 //------------------------------------------------------

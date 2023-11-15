@@ -1,4 +1,4 @@
-
+ï»¿
 #include "stdafx.h"
 #include "DomainJudge.h"
 #include "Misc.h"
@@ -80,19 +80,19 @@ std::wstring ParseOriginHostName(const std::wstring& host)
 		if (itfound == pmapChildDomainSuffixList->end()) {
 			originHostName.insert(0, *it);
 
-			// * ‚ª‚ ‚ê‚Î‚³‚ç‚É‘O‚ÌƒhƒƒCƒ“‚ğ’Ç‰Á‚·‚é
+			// * ãŒã‚ã‚Œã°ã•ã‚‰ã«å‰ã®ãƒ‰ãƒ¡ã‚¤ãƒ³ã‚’è¿½åŠ ã™ã‚‹
 			auto itfoundastarisk = pmapChildDomainSuffixList->find(std::wstring(L"*"));
 			if (itfoundastarisk != pmapChildDomainSuffixList->end()) {
 				if (std::next(it) != deqDomain.rend()) {
 					originHostName.insert(0, L".");
 					originHostName.insert(0, *std::next(it));
 				} else {
-					ATLASSERT(FALSE);	// *.ck ‚Å test.ck ‚È‚Ç‚ª—^‚¦‚ç‚ê‚½‚Æ‚«
+					ATLASSERT(FALSE);	// *.ck ã§ test.ck ãªã©ãŒä¸ãˆã‚‰ã‚ŒãŸã¨ã
 				}
 			}
 			break;
 		}
-		if (std::next(it) == deqDomain.rend()) {	// tokyo.jp ‚É tokyo.jp ‚ğ—^‚¦‚½‚Æ‚«‚Æ‚©
+		if (std::next(it) == deqDomain.rend()) {	// tokyo.jp ã« tokyo.jp ã‚’ä¸ãˆãŸã¨ãã¨ã‹
 			originHostName.insert(0, *it);
 			break;
 		}

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include <list>
@@ -6,7 +6,7 @@
 #include <atlsync.h>
 #include "proximodo\url.h"
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 struct sqlite3;
 class SocketIF;
 

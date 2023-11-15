@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	Proxy.cpp
-*	@breif	ƒvƒƒNƒVƒNƒ‰ƒX
+*	@breif	ãƒ—ãƒ­ã‚¯ã‚·ã‚¯ãƒ©ã‚¹
 */
 /**
 	this file is part of Proxydomo
@@ -120,8 +120,8 @@ void CProxy::_ServerThread()
 		if (pSock) {
 			auto manager = new CRequestManager(std::move(pSock));
 #if 0
-			// Å‘åÚ‘±”‚ð’´‚¦‚½
-			// Å‘åÚ‘±”ˆÈ‰º‚É‚È‚é‚Ü‚Å‚±‚ÌƒXƒŒƒbƒh‚ÍƒƒbƒN‚µ‚¿‚á‚Á‚Ä‚à‚æ‚¢
+			// æœ€å¤§æŽ¥ç¶šæ•°ã‚’è¶…ãˆãŸ
+			// æœ€å¤§æŽ¥ç¶šæ•°ä»¥ä¸‹ã«ãªã‚‹ã¾ã§ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã¯ãƒ­ãƒƒã‚¯ã—ã¡ã‚ƒã£ã¦ã‚‚ã‚ˆã„
 			if (CLog::GetActiveRequestCount() > kMaxActiveRequestThread) {
 				do {
 					::Sleep(50);

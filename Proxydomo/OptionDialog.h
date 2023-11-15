@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	OptionDialog.h
-*	@brief	ƒIƒvƒVƒ‡ƒ“
+*	@brief	ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 */
 
 #pragma once

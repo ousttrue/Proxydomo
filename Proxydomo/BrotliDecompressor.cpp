@@ -1,4 +1,4 @@
-
+Ôªø
 #include "stdafx.h"
 #include "brotliDecompressor.h"
 #include <memory>
@@ -44,7 +44,7 @@ void CBrotliDecompressor::feed(const std::string& data)
 			throw std::runtime_error("CBrotliDecompressor::feed : BROTLI_DECODER_RESULT_ERROR");
 		}
 	}
-	// ó]ÇËÇï€ë∂
+	// ‰Ωô„Çä„Çí‰øùÂ≠ò
 	m_buffer = m_buffer.substr(m_buffer.size() - remaining);
 }
 

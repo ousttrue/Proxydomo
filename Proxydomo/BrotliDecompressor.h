@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Decompressor.h"
 #include <brotli\decode.h>

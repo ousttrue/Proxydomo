@@ -1,5 +1,5 @@
-// VersionControl.h
-// iniƒtƒ@ƒCƒ‹‚ÌŒİŠ·«‚ğ•Û‚¿‚Ü‚·
+ï»¿// VersionControl.h
+// iniãƒ•ã‚¡ã‚¤ãƒ«ã®äº’æ›æ€§ã‚’ä¿ã¡ã¾ã™
 
 #pragma once
 

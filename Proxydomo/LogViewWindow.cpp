@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	LogViewWindow.cpp
-*	@brief	ƒƒO•\¦ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX
+*	@brief	ãƒ­ã‚°è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹
 */
 /**
 	this file is part of Proxydomo
@@ -454,7 +454,7 @@ BOOL CLogViewWindow::OnInitDialog(CWindow wndFocus, LPARAM lInitParam)
 
 	m_connectionMonitor.Create(GetParent());
 
-    // ƒ_ƒCƒAƒƒOƒŠƒTƒCƒY‰Šú‰»
+    // ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒªã‚µã‚¤ã‚ºåˆæœŸåŒ–
     DlgResize_Init(true, true, WS_THICKFRAME | WS_MAXIMIZEBOX);
 
 	using namespace boost::property_tree;
@@ -467,7 +467,7 @@ BOOL CLogViewWindow::OnInitDialog(CWindow wndFocus, LPARAM lInitParam)
 			read_ini(fs, pt);
 		}
 		catch (...) {
-			ERROR_LOG << L"CLogViewWindow::OnInitDialog : settings.ini‚Ì“Ç‚İ‚İ‚É¸”s";
+			ERROR_LOG << L"CLogViewWindow::OnInitDialog : settings.iniã®èª­ã¿è¾¼ã¿ã«å¤±æ•—";
 			pt.clear();
 		}
 		CRect rcWindow;
@@ -570,7 +570,7 @@ void CLogViewWindow::OnDestroy()
 	try {
 		read_ini(settingsPath, pt);
 	} catch (...) {
-		ERROR_LOG << L"CLogViewWindow::OnDestroy : settings.ini‚Ì“Ç‚İ‚İ‚É¸”s";
+		ERROR_LOG << L"CLogViewWindow::OnDestroy : settings.iniã®èª­ã¿è¾¼ã¿ã«å¤±æ•—";
 		pt.clear();
 	}
 
@@ -617,7 +617,7 @@ void CLogViewWindow::OnDestroy()
 	PostQuitMessage(0);
 }
 
-// ShowWindow‚Æ‘Î‚É‚È‚éŠÖ”
+// ShowWindowã¨å¯¾ã«ãªã‚‹é–¢æ•°
 void CLogViewWindow::OnCancel(UINT uNotifyCode, int nID, CWindow wndCtl)
 {
 	if (m_bStopLog == false) {
@@ -696,7 +696,7 @@ void CLogViewWindow::OnComboRequestSelChange(UINT uNotifyCode, int nID, CWindow 
 }
 
 
-/// URL‚ğƒNƒŠƒbƒvƒ{[ƒh‚ÉƒRƒs[
+/// URLã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚³ãƒ”ãƒ¼
 LRESULT CLogViewWindow::OnRecentURLListRClick(LPNMHDR pnmh)
 {
 	auto lpnmitem = (LPNMITEMACTIVATE) pnmh;
@@ -707,7 +707,7 @@ LRESULT CLogViewWindow::OnRecentURLListRClick(LPNMHDR pnmh)
 	return 0;
 }
 
-// Recent URL ‚ÌƒZƒ‹ ‚ğ ‰Eƒ_ƒuƒ‹ƒNƒŠƒbƒN
+// Recent URL ã®ã‚»ãƒ« ã‚’ å³ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯
 LRESULT CLogViewWindow::OnRecentURLListRDblClick(LPNMHDR pnmh)
 {
 	auto lpnmitem = (LPNMITEMACTIVATE)pnmh;
@@ -741,7 +741,7 @@ LRESULT CLogViewWindow::OnRecentURLListRDblClick(LPNMHDR pnmh)
 	return 0;
 }
 
-/// URL‚ğŠJ‚­
+/// URLã‚’é–‹ã
 LRESULT CLogViewWindow::OnRecentURLListDblClick(LPNMHDR pnmh)
 {
 	auto lpnmitem = (LPNMITEMACTIVATE) pnmh;

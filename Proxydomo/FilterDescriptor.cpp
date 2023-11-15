@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	FilterDescriptor.cpp
-*	@brief	ƒtƒBƒ‹ƒ^[ ˆê‚Â‚ğ•\‚·
+*	@brief	ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ ä¸€ã¤ã‚’è¡¨ã™
 */
 /**
 	this file is part of Proxydomo
@@ -39,7 +39,7 @@ CFilterDescriptor::CFilterDescriptor()
 
 
 
-/// Šeí Matcher ‚ğì¬‚·‚é
+/// å„ç¨® Matcher ã‚’ä½œæˆã™ã‚‹
 bool	CFilterDescriptor::CreateMatcher()
 {
 	errorMsg.clear();
@@ -74,7 +74,7 @@ void	CFilterDescriptor::Clear()
 
 
 // Check if all data is valid
-// –³Œø‚È‚çerrorMsg‚ÉƒGƒ‰[‚ª“ü‚é
+// ç„¡åŠ¹ãªã‚‰errorMsgã«ã‚¨ãƒ©ãƒ¼ãŒå…¥ã‚‹
 void	CFilterDescriptor::TestValidity()
 {
     errorMsg.clear();
@@ -88,7 +88,7 @@ void	CFilterDescriptor::TestValidity()
         } else {
 			CreateMatcher();
         }
-    } else {	// ‘—óMƒwƒbƒ_
+    } else {	// é€å—ä¿¡ãƒ˜ãƒƒãƒ€
         if (headerName.empty()) {
 			errorMsg = GetTranslateMessage(ID_INVALID_FILTER_HEADEREMPTY);
         } else {

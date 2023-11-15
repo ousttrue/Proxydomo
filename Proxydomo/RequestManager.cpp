@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	RequestManager.cpp
-*	@brief	ƒuƒ‰ƒEƒUÌƒvƒƒNƒVÌƒT[ƒo[ŠÔ‚Ìˆ—‚ğó‚¯‚Â
+*	@brief	ãƒ–ãƒ©ã‚¦ã‚¶â‡”ãƒ—ãƒ­ã‚¯ã‚·â‡”ã‚µãƒ¼ãƒãƒ¼é–“ã®å‡¦ç†ã‚’å—ã‘æŒã¤
 */
 /**
 	this file is part of Proxydomo
@@ -97,12 +97,12 @@ bool	GetHeaders(std::string& buf, HeadPairList& headers, std::string& log)
 		// Look for end of line
 		size_t pos, len;
 		if (CUtil::endOfLine(buf, 0, pos, len) == false)
-			return false;	// ‰üs‚ª‚È‚¢‚Ì‚Å‹A‚é
+			return false;	// æ”¹è¡ŒãŒãªã„ã®ã§å¸°ã‚‹
 
 		// Check if we reached the empty line
 		if (pos == 0) {
 			buf.erase(0, len);
-			return true;	// I—¹
+			return true;	// çµ‚äº†
 		}
 
 		// Find the header end
@@ -183,36 +183,36 @@ void CRequestManager::Manage()
 
 	m_psockWebsite.reset(new CSocket);
 
-	_AddTraceLog(L"Manage start : ƒ|[ƒg %d", m_ipFromAddress.GetPortNumber());
+	_AddTraceLog(L"Manage start : ãƒãƒ¼ãƒˆ %d", m_ipFromAddress.GetPortNumber());
 	try {
 	// Main loop, continues as long as the browser is connected
 	while (m_psockBrowser->IsConnected()) {
 
 		// Process only outgoin data
 		bool bRest = true;
-		if (_ReceiveOut()) {	// ƒuƒ‰ƒEƒU‚©‚ç‚ÌƒŠƒNƒGƒXƒg‚ğóM
+		if (_ReceiveOut()) {	// ãƒ–ãƒ©ã‚¦ã‚¶ã‹ã‚‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å—ä¿¡
 			bRest = false;
-			_ProcessOut();		// ƒuƒ‰ƒEƒU‚©‚ç‚ÌƒŠƒNƒGƒXƒg‚ğˆ— (ƒTƒCƒg‚ÉÚ‘±)
+			_ProcessOut();		// ãƒ–ãƒ©ã‚¦ã‚¶ã‹ã‚‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡¦ç† (ã‚µã‚¤ãƒˆã«æ¥ç¶š)
 		}
-		if (_SendIn())			// ƒuƒ‰ƒEƒU‚ÖƒŒƒXƒ|ƒ“ƒX‚ğ‘—M
+		if (_SendIn())			// ãƒ–ãƒ©ã‚¦ã‚¶ã¸ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’é€ä¿¡
 			bRest = false;
 
 		if (m_psockWebsite->IsConnected()) {
-			_AddTraceLog(L"ƒTƒCƒg‚Æ‚Â‚È‚ª‚è‚Ü‚µ‚½I[%s]", m_filterOwner.contactHost.c_str());
+			_AddTraceLog(L"ã‚µã‚¤ãƒˆã¨ã¤ãªãŒã‚Šã¾ã—ãŸï¼[%s]", m_filterOwner.contactHost.c_str());
 			do {
 				// Full processing
 				bool bRest = true;
-				if (_SendOut())		// ƒTƒCƒg‚Öƒf[ƒ^‚ğ‘—M
+				if (_SendOut())		// ã‚µã‚¤ãƒˆã¸ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡
 					bRest = false;
 
-				if (_ReceiveIn()) {	// ƒTƒCƒg‚©‚ç‚Ìƒf[ƒ^‚ğóM
+				if (_ReceiveIn()) {	// ã‚µã‚¤ãƒˆã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡
 					bRest = false;
-					_ProcessIn();	// ƒTƒCƒg‚©‚ç‚Ìƒf[ƒ^‚ğˆ—
+					_ProcessIn();	// ã‚µã‚¤ãƒˆã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å‡¦ç†
 				}
 
-				if (_SendIn())		// ƒuƒ‰ƒEƒU‚ÖƒTƒCƒg‚©‚ç‚Ìƒf[ƒ^‚ğ‘—M
+				if (_SendIn())		// ãƒ–ãƒ©ã‚¦ã‚¶ã¸ã‚µã‚¤ãƒˆã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡
 					bRest = false;
-				if (_ReceiveOut()) { // ƒuƒ‰ƒEƒU‚©‚ç‚Ìƒf[ƒ^‚ğóM
+				if (_ReceiveOut()) { // ãƒ–ãƒ©ã‚¦ã‚¶ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡
 					bRest = false;
 					_ProcessOut();
 				}
@@ -220,11 +220,11 @@ void CRequestManager::Manage()
 				if (bRest) {
 					_JudgeManageContinue();
 
-					::Sleep(10);	// ‘‚â‚·‚ÈI
+					::Sleep(10);	// å¢—ã‚„ã™ãªï¼
 				}
 			} while (m_psockWebsite->IsConnected() && m_psockBrowser->IsConnected());
 
-			_AddTraceLog(L"process loop end : outStep[%s] inStep[%s] whileEndAsitecon(%d) brocon(%d)",
+			_AddTraceLog(L"process loop end : outStep[%s] inStep[%s] whileEndã€sitecon(%d) brocon(%d)",
 							STEPtoString(m_outStep), STEPtoString(m_inStep), m_psockWebsite->IsConnected(), m_psockBrowser->IsConnected());
 
 			// Terminate feeding browser
@@ -255,10 +255,10 @@ void CRequestManager::Manage()
 		}
 	}	// while
 	} catch (std::exception& e) {
-		_AddTraceLog(L"—áŠO‚ª”­¶‚µ‚Ü‚µ‚½I : ƒ|[ƒg %d —áŠO:%s", m_ipFromAddress.GetPortNumber(), UTF16fromUTF8(e.what()).c_str());
+		_AddTraceLog(L"ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸï¼ : ãƒãƒ¼ãƒˆ %d ä¾‹å¤–:%s", m_ipFromAddress.GetPortNumber(), UTF16fromUTF8(e.what()).c_str());
 		e;
 	} catch (...) {
-		_AddTraceLog(L"—áŠO‚ª”­¶‚µ‚Ü‚µ‚½I : ƒ|[ƒg %d", m_ipFromAddress.GetPortNumber());
+		_AddTraceLog(L"ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸï¼ : ãƒãƒ¼ãƒˆ %d", m_ipFromAddress.GetPortNumber());
 	}
 	_AddTraceLog(_T("Manage finish"));
 }
@@ -296,7 +296,7 @@ void	CRequestManager::_ReloadHeaderFilters()
 
 void	CRequestManager::_JudgeManageContinue()
 {
-	if (m_valid == false) {	// Ú‘±‚ğ‹­§I—¹‚³‚¹‚é
+	if (m_valid == false) {	// æ¥ç¶šã‚’å¼·åˆ¶çµ‚äº†ã•ã›ã‚‹
 		m_psockWebsite->Close();
 		m_psockBrowser->Close();
 		return;
@@ -308,12 +308,12 @@ void	CRequestManager::_JudgeManageContinue()
 		bool serverConnected = m_psockWebsite->IsConnected();
 		if (browserConnected == false || serverConnected == false) {
 			INFO_LOG << L"#" << m_ipFromAddress.GetPortNumber()
-				<< L" SSL ‚·‚×‚Ä‚Ì STEP ‚ª START ‚È‚Ì‚ÅÚ‘±‚ğØ‚è‚Ü‚·B"
+				<< L" SSL ã™ã¹ã¦ã® STEP ãŒ START ãªã®ã§æ¥ç¶šã‚’åˆ‡ã‚Šã¾ã™ã€‚"
 				<< L" proxy<->server  Connection:" << m_psockWebsite->IsConnected()
 				<< L" browser<->proxy Connection:" << browserConnected;
 			m_psockBrowser->Close();
 			m_psockWebsite->Close();
-			_AddTraceLog(L"_JudgeManageContinue[SSL]: ‚·‚×‚Ä‚Ì STEP ‚ª START ‚©‚Â ƒuƒ‰ƒEƒU‚©AƒEƒFƒuƒTƒCƒg‚Æ‚ÌÚ‘±‚ªØ‚ê‚Ä‚¢‚½‚Ì‚ÅØ’f‚µ‚Ü‚·B");
+			_AddTraceLog(L"_JudgeManageContinue[SSL]: ã™ã¹ã¦ã® STEP ãŒ START ã‹ã¤ ãƒ–ãƒ©ã‚¦ã‚¶ã‹ã€ã‚¦ã‚§ãƒ–ã‚µã‚¤ãƒˆã¨ã®æ¥ç¶šãŒåˆ‡ã‚Œã¦ã„ãŸã®ã§åˆ‡æ–­ã—ã¾ã™ã€‚");
 			return;
 		}
 	}
@@ -322,22 +322,22 @@ void	CRequestManager::_JudgeManageContinue()
 		if (m_psockBrowser->IsConnected() == false || m_psockWebsite->IsConnected() == false) {
 			m_psockBrowser->Close();
 			m_psockWebsite->Close();
-			_AddTraceLog(L"_JudgeManageContinue[STEP_TUNNELING]: ƒuƒ‰ƒEƒU‚©AƒEƒFƒuƒTƒCƒg‚Æ‚ÌÚ‘±‚ªØ‚ê‚Ä‚¢‚½‚Ì‚ÅØ’f‚µ‚Ü‚·B");
+			_AddTraceLog(L"_JudgeManageContinue[STEP_TUNNELING]: ãƒ–ãƒ©ã‚¦ã‚¶ã‹ã€ã‚¦ã‚§ãƒ–ã‚µã‚¤ãƒˆã¨ã®æ¥ç¶šãŒåˆ‡ã‚Œã¦ã„ãŸã®ã§åˆ‡æ–­ã—ã¾ã™ã€‚");
 		}
 		return;
 	}
 
-	// ‚È‚º‚±‚ÌğŒ•¶‚ğ“ü‚ê‚½‚©–Y‚ê‚½...
+	// ãªãœã“ã®æ¡ä»¶æ–‡ã‚’å…¥ã‚ŒãŸã‹å¿˜ã‚ŒãŸ...
 	if (m_psockBrowser->IsSecureSocket() && m_filterOwner.responseLine.code != "101")
 		return;
 
 	using std::chrono::steady_clock;
 	typedef steady_clock::time_point time_point;
 
-	// ‹K’è•b(10•b)ˆ—‚ÌŠJn‘Ò‚¿ŠÔ‚ªŒo‰ß‚·‚é‚ÆØ’f‚·‚é
+	// è¦å®šç§’(10ç§’)å‡¦ç†ã®é–‹å§‹å¾…ã¡æ™‚é–“ãŒçµŒéã™ã‚‹ã¨åˆ‡æ–­ã™ã‚‹
 	if (m_outStep != STEP::STEP_START) {
 		if (m_processIdleTime != time_point())
-			m_processIdleTime = time_point();		// ˆ—‚ªs‚í‚ê‚Ä‚é‚Ì‚ÅŠÔ‚ğƒŠƒZƒbƒg‚·‚é
+			m_processIdleTime = time_point();		// å‡¦ç†ãŒè¡Œã‚ã‚Œã¦ã‚‹ã®ã§æ™‚é–“ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 
 	} else {	// m_outStep == STEP_START
 		if (m_processIdleTime == time_point()) {
@@ -459,7 +459,7 @@ void CRequestManager::_ProcessOutHeaderFilter()
 }
 
 /// Process outgoing data (from browser to website)
-/// ƒuƒ‰ƒEƒU Ë Proxy(this) Ë ƒTƒCƒg
+/// ãƒ–ãƒ©ã‚¦ã‚¶ â‡’ Proxy(this) â‡’ ã‚µã‚¤ãƒˆ
 void CRequestManager::_ProcessOut()
 {
 	// We will exxet from a step that has not enough data to complete
@@ -469,7 +469,7 @@ void CRequestManager::_ProcessOut()
 		case STEP::STEP_START:
 			{
 				if (m_recvOutBuf.empty())
-					return ;			// ˆ—‚·‚é‚Ì‚É\•ª‚Èƒf[ƒ^‚ª‚È‚¢‚Ì‚Å‹A‚é
+					return ;			// å‡¦ç†ã™ã‚‹ã®ã«ååˆ†ãªãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§å¸°ã‚‹
 
 				_ReloadHeaderFilters();
 			
@@ -503,7 +503,7 @@ void CRequestManager::_ProcessOut()
 				// Do we have the full first line yet?
 				size_t pos, len;
 				if (CUtil::endOfLine(m_recvOutBuf, 0, pos, len) == false)
-					return;				// Å‰‚Ì‰üs‚Ü‚Å—ˆ‚Ä‚È‚¢‚Ì‚Å‹A‚é
+					return;				// æœ€åˆã®æ”¹è¡Œã¾ã§æ¥ã¦ãªã„ã®ã§å¸°ã‚‹
 
 				// Get it and record it
 				size_t p1 = m_recvOutBuf.find_first_of(" ");
@@ -606,12 +606,12 @@ void CRequestManager::_ProcessOut()
 				// Filter outgoing headers
 				_ProcessOutHeaderFilter();
 
-				// CONNECTƒŠƒNƒGƒXƒg‚Å$FILTER(false)‚³‚ê‚½ê‡‚ÍƒoƒCƒpƒXˆµ‚¢‚·‚é
+				// CONNECTãƒªã‚¯ã‚¨ã‚¹ãƒˆã§$FILTER(false)ã•ã‚ŒãŸå ´åˆã¯ãƒã‚¤ãƒ‘ã‚¹æ‰±ã„ã™ã‚‹
 				if (m_requestLine.method == "CONNECT" && m_filterOwner.bypassBody) {
 					m_bypass = true;
 				}
 
-				// CONNECTƒŠƒNƒGƒXƒg‚ÍƒŠƒ_ƒCƒŒƒNƒg‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+				// CONNECTãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã—ãªã„ã‚ˆã†ã«ã™ã‚‹
 				if (m_requestLine.method == "CONNECT" && m_filterOwner.killed == false && m_filterOwner.rdirToHost.size() > 0) {
 					WARN_LOG << L"CONNECT redirect clear, src : " << m_filterOwner.url.getHost() 
 							<< L" rdirToHost : " << m_filterOwner.rdirToHost 
@@ -629,7 +629,7 @@ void CRequestManager::_ProcessOut()
 					m_inStep = STEP::STEP_START;
 					m_connectionData->SetInStep(m_inStep);
 
-					// $SETPROXY‚³‚ê‚½ê‡ACONNECTƒŠƒNƒGƒXƒg‚µ‚È‚¨‚³‚È‚¢‚Æ‚¢‚¯‚È‚¢ê‡‚ª‚ ‚é
+					// $SETPROXYã•ã‚ŒãŸå ´åˆã€CONNECTãƒªã‚¯ã‚¨ã‚¹ãƒˆã—ãªãŠã•ãªã„ã¨ã„ã‘ãªã„å ´åˆãŒã‚ã‚‹
 					if (m_previousHost != m_filterOwner.contactHost || m_filterOwner.rdirToHost.length() > 0) {
 						_ConnectWebsite();
 					}
@@ -642,7 +642,7 @@ void CRequestManager::_ProcessOut()
 				if (m_inStep == STEP::STEP_START) {
 
 					// Update URL within request
-					// ‚¨‚»‚ç‚­‘—Mƒwƒbƒ_ƒtƒBƒ‹ƒ^[‚ÅAURL:‚ğg—p‚µ‚ÄURL‚ª‘‚«Š·‚¦‚ç‚ê‚½‚ÉHost‚à•ÏX‚·‚é‚æ‚¤‚É‚µ‚Ä‚¢‚é‚ñ‚¾‚ë‚¤
+					// ãŠãã‚‰ãé€ä¿¡ãƒ˜ãƒƒãƒ€ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã§ã€URL:ã‚’ä½¿ç”¨ã—ã¦URLãŒæ›¸ãæ›ãˆã‚‰ã‚ŒãŸæ™‚ã«Hostã‚‚å¤‰æ›´ã™ã‚‹ã‚ˆã†ã«ã—ã¦ã„ã‚‹ã‚“ã ã‚ã†
 					CFilterOwner::SetHeader(m_filterOwner.outHeadersFiltered, L"Host", m_filterOwner.url.getHost());
 
 					if (CUtil::noCaseContains(L"Keep-Alive", CFilterOwner::GetHeader(m_filterOwner.outHeadersFiltered, L"Proxy-Connection"))) {
@@ -661,7 +661,7 @@ void CRequestManager::_ProcessOut()
 					// Now we can put everything in the filtered buffer
 					m_sendOutBuf = m_requestLine.method + " " + m_requestLine.url + " " + m_requestLine.ver + CRLF;
 					
-					// ƒfƒoƒbƒO—LŒøA"304 Not Modified"‚ª‹A‚Á‚Ä‚±‚È‚¢‚æ‚¤‚É‚·‚é
+					// ãƒ‡ãƒãƒƒã‚°æœ‰åŠ¹æ™‚ã€"304 Not Modified"ãŒå¸°ã£ã¦ã“ãªã„ã‚ˆã†ã«ã™ã‚‹
 					if (m_filterOwner.url.getDebug()) {
 						CFilterOwner::RemoveHeader(m_filterOwner.outHeadersFiltered, L"If-Modified-Since");
 						CFilterOwner::RemoveHeader(m_filterOwner.outHeadersFiltered, L"If-None-Match");
@@ -806,8 +806,8 @@ void CRequestManager::_ProcessOut()
 		// We'll wait for response completion
 		case STEP::STEP_FINISH:
 			{
-				// ƒTƒCƒg‚©‚ç‚Ìƒf[ƒ^‚ğˆ—’†‚È‚ç‚±‚±‚Å‚ÍI—¹ˆ—‚ğs‚í‚È‚¢
-				// _ProcessIn ‚ÅI—¹ˆ—‚ªs‚í‚ê‚é
+				// ã‚µã‚¤ãƒˆã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å‡¦ç†ä¸­ãªã‚‰ã“ã“ã§ã¯çµ‚äº†å‡¦ç†ã‚’è¡Œã‚ãªã„
+				// _ProcessIn ã§çµ‚äº†å‡¦ç†ãŒè¡Œã‚ã‚Œã‚‹
 				if (m_inStep != STEP::STEP_FINISH)
 					return ;
 
@@ -843,7 +843,7 @@ void CRequestManager::_ProcessOut()
 void CRequestManager::_ConnectWebsite()
 {
 	// If download was on, disconnect (to avoid downloading genuine document)
-	// óMƒwƒbƒ_ƒtƒBƒ‹ƒ^[‚ÅƒŠƒ_ƒCƒŒƒNƒg‚ğw¦‚³‚ê‚½ê‡
+	// å—ä¿¡ãƒ˜ãƒƒãƒ€ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã§ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚’æŒ‡ç¤ºã•ã‚ŒãŸå ´åˆ
 	if (m_inStep == STEP::STEP_DECODE) {
 		m_psockWebsite->Close();
 
@@ -923,7 +923,7 @@ void CRequestManager::_ConnectWebsite()
 			m_connectionData->SetInStep(m_inStep);
 			_SendIn();
 
-			// CONNECTƒŠƒNƒGƒXƒg‚Ì‚â‚è’¼‚µ—p‚É•Û‘¶‚µ‚Ä‚¨‚­
+			// CONNECTãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ã‚„ã‚Šç›´ã—ç”¨ã«ä¿å­˜ã—ã¦ãŠã
 			m_previousConnectRequest = m_logRequest + CRLF;
 		}
 
@@ -946,10 +946,10 @@ void CRequestManager::_ConnectWebsite()
 							_AddTraceLog(L"SSL Proxy<->Browser connection failed...");
 						}
 					} else {
-						// ƒŠƒ_ƒCƒŒƒNƒg or URLƒRƒ}ƒ“ƒh[https.]
+						// ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆ or URLã‚³ãƒãƒ³ãƒ‰[https.]
 						ATLASSERT(m_psockWebsite || m_filterOwner.url.getHttps());
 					}
-					// ƒuƒ‰ƒEƒU‚Æ‚ÌTLSÚ‘±‚ªŠm—§‚Å‚«‚È‚¯‚ê‚ÎAƒŠƒNƒGƒXƒg‚ğI—¹‚³‚¹‚é
+					// ãƒ–ãƒ©ã‚¦ã‚¶ã¨ã®TLSæ¥ç¶šãŒç¢ºç«‹ã§ããªã‘ã‚Œã°ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’çµ‚äº†ã•ã›ã‚‹
 					if (m_psockWebsite == nullptr && m_filterOwner.url.getHttps() == false) {
 						//m_psockBrowser.reset();
 						throw GeneralException("CSSLSession::InitServerSession(m_psockBrowser.get()) failed");
@@ -986,7 +986,7 @@ void CRequestManager::_ConnectWebsite()
 
 bool	CRequestManager::_HandleLocalPtron()
 {
-	// $JUMP( local.ptron/... )‚Í–³‹‚·‚é
+	// $JUMP( local.ptron/... )ã¯ç„¡è¦–ã™ã‚‹
 	if (m_filterOwner.rdirMode == CFilterOwner::RedirectMode::kJump && 
 		CUtil::noCaseBeginsWith(L"http://local.ptron", m_filterOwner.rdirToHost)) {
 		return false;
@@ -1003,7 +1003,7 @@ bool	CRequestManager::_HandleLocalPtron()
 		m_filterOwner.rdirToHost = L"http://file//./html" + CUrl(m_filterOwner.rdirToHost).getPath();
 	}
 
-	// https://local.ptron/ ‚Ö‚ÌÚ‘±
+	// https://local.ptron/ ã¸ã®æ¥ç¶š
 	if (CSettings::s_SSLFilter && CUtil::noCaseBeginsWith(L"https://local.ptron", m_filterOwner.rdirToHost)) {
 		wstring subpath;
 		if (m_requestLine.method == "CONNECT") {
@@ -1017,12 +1017,12 @@ bool	CRequestManager::_HandleLocalPtron()
 				throw GeneralException("LocalSSLServer handshake failed");
 			}
 
-			// ƒuƒ‰ƒEƒU‚©‚çƒŠƒNƒGƒXƒgURL‚ğæ“¾‚·‚é
+			// ãƒ–ãƒ©ã‚¦ã‚¶ã‹ã‚‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆURLã‚’å–å¾—ã™ã‚‹
 			auto findGetRequestLineURL = [this]() -> bool {
 				// Do we have the full first line yet?
 				size_t pos, len;
 				if (CUtil::endOfLine(m_recvOutBuf, 0, pos, len) == false)
-					return false;				// Å‰‚Ì‰üs‚Ü‚Å—ˆ‚Ä‚È‚¢‚Ì‚Å‹A‚é
+					return false;				// æœ€åˆã®æ”¹è¡Œã¾ã§æ¥ã¦ãªã„ã®ã§å¸°ã‚‹
 
 												// Get it and record it
 				size_t p1 = m_recvOutBuf.find_first_of(" ");
@@ -1048,7 +1048,7 @@ bool	CRequestManager::_HandleLocalPtron()
 			subpath = L"./html" + CUrl(UTF16fromUTF8(m_requestLine.url)).getPath();
 
 		} else {
-			// ƒŠƒ_ƒCƒŒƒNƒg
+			// ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆ
 			ATLASSERT(m_psockWebsite);
 			if (m_psockWebsite->IsSecureSocket() == false) {
 				throw GeneralException("LocalSSLServer handshake failed");
@@ -1075,7 +1075,7 @@ bool	CRequestManager::_HandleLocalPtron()
 				_FakeResponse("404 Not Found");
 			}
 		}
-		while (_SendIn());	// ÅŒã‚Ü‚Å‘—M‚µ‚Ä‚µ‚Ü‚¤
+		while (_SendIn());	// æœ€å¾Œã¾ã§é€ä¿¡ã—ã¦ã—ã¾ã†
 
 		m_filterOwner.rdirToHost.clear();
 		return true;
@@ -1088,7 +1088,7 @@ bool	CRequestManager::_HandleLocalPtron()
 		path filepath = CUtil::makePath(m_filterOwner.rdirToHost.substr(13));
 		path fullpath = (LPCWSTR)Misc::GetFullPath_ForExe(filepath.native().c_str());
 		if (is_directory(fullpath)) {
-			// ƒtƒHƒ‹ƒ_‚ª‘¶İ‚·‚é‚©‚Â URL‚Ì––”ö‚ª '/' ‚ÅI‚í‚Á‚Ä‚¢‚È‚¯‚ê‚Î ƒtƒHƒ‹ƒ_–¼ + L'/' ‚ÖƒŠƒ_ƒCƒŒƒNƒg‚³‚¹‚é
+			// ãƒ•ã‚©ãƒ«ãƒ€ãŒå­˜åœ¨ã™ã‚‹ã‹ã¤ URLã®æœ«å°¾ãŒ '/' ã§çµ‚ã‚ã£ã¦ã„ãªã‘ã‚Œã° ãƒ•ã‚©ãƒ«ãƒ€å + L'/' ã¸ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã•ã›ã‚‹
 			if (filepath.native().back() != L'\\') {				
 				m_filterOwner.rdirToHost = L"http://local.ptron/" + filepath.native().substr(7) + L'/';
 				m_filterOwner.rdirMode = CFilterOwner::RedirectMode::kJump;
@@ -1118,7 +1118,7 @@ bool	CRequestManager::_HandleLocalPtron()
 				_FakeResponse("404 Not Found");
 			}
 		}
-		while (_SendIn());	// ÅŒã‚Ü‚Å‘—M‚µ‚Ä‚µ‚Ü‚¤
+		while (_SendIn());	// æœ€å¾Œã¾ã§é€ä¿¡ã—ã¦ã—ã¾ã†
 
 		m_filterOwner.rdirToHost.clear();
 		return true;
@@ -1171,21 +1171,21 @@ void	CRequestManager::_SendConnectRequestToRemoteProxy(std::string& name)
 {
 	//ATLASSERT(m_requestLine.method == "CONNECT");
 	if (m_filterOwner.contactHost == m_filterOwner.url.getHostPort())
-		return ;	// proxyÚ‘±‚Å‚Í‚È‚¢
+		return ;	// proxyæ¥ç¶šã§ã¯ãªã„
 
-	// name‚ğÀÛ‚ÌÚ‘±ƒzƒXƒg–¼‚Ö•ÏX	
+	// nameã‚’å®Ÿéš›ã®æ¥ç¶šãƒ›ã‚¹ãƒˆåã¸å¤‰æ›´	
 	name = UTF8fromUTF16(m_filterOwner.url.getHost());
 	size_t colon = name.find(':');
 	if (colon != std::string::npos) {    // (this should always happen)
 		name = name.substr(0, colon);
 	}
 
-	// Proxy‚Ö CONNECTƒŠƒNƒGƒXƒg‚ğ‘—M
+	// Proxyã¸ CONNECTãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’é€ä¿¡
 	if (m_requestLine.method == "CONNECT") {
 		m_sendOutBuf = m_logRequest + CRLF;
 	} else {
 		if (m_previousConnectRequest.empty())
-			return;		// ‚±‚ÌÚ‘±‚ÍCONNECTƒŠƒNƒGƒXƒg‚©‚çn‚Ü‚ç‚È‚©‚Á‚½
+			return;		// ã“ã®æ¥ç¶šã¯CONNECTãƒªã‚¯ã‚¨ã‚¹ãƒˆã‹ã‚‰å§‹ã¾ã‚‰ãªã‹ã£ãŸ
 		m_sendOutBuf = m_previousConnectRequest;
 	}
 	_SendOut();
@@ -1194,7 +1194,7 @@ void	CRequestManager::_SendConnectRequestToRemoteProxy(std::string& name)
 		// Do we have the full first line yet?
 		size_t pos, len;
 		if (CUtil::endOfLine(m_recvInBuf, 0, pos, len) == false)
-			return false;				// Å‰‚Ì‰üs‚Ü‚Å—ˆ‚Ä‚È‚¢‚Ì‚Å‹A‚é
+			return false;				// æœ€åˆã®æ”¹è¡Œã¾ã§æ¥ã¦ãªã„ã®ã§å¸°ã‚‹
 
 		// Parse it
 		size_t p1 = m_recvInBuf.find_first_of(" ");
@@ -1301,7 +1301,7 @@ bool CRequestManager::_SendIn()
 }
 
 /// Process incoming data (from website to browser) 
-/// ƒTƒCƒg Ë Proxy(this) Ë ƒuƒ‰ƒEƒU
+/// ã‚µã‚¤ãƒˆ â‡’ Proxy(this) â‡’ ãƒ–ãƒ©ã‚¦ã‚¶
 void	CRequestManager::_ProcessIn()
 {
 	// We will exit from a step that has not enough data to complete
@@ -1314,7 +1314,7 @@ void	CRequestManager::_ProcessIn()
 			{
 				// We need something in the buffer
 				if (m_recvInBuf.empty())
-					return ;	// ˆ—‚·‚éƒoƒbƒtƒ@‚ª–³‚¢‚Ì‚Å‹A‚é
+					return ;	// å‡¦ç†ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ãŒç„¡ã„ã®ã§å¸°ã‚‹
 
 				m_inStep = STEP::STEP_FIRSTLINE;
 				m_connectionData->SetInStep(m_inStep);
@@ -1332,7 +1332,7 @@ void	CRequestManager::_ProcessIn()
 				// Do we have the full first line yet?
 				if (m_recvInBuf.size() < 4)
 					return ;
-				// ƒSƒ~ƒf[ƒ^‚ª‹l‚Ü‚Á‚Ä‚é‚Ì‚ÅI‚í‚é
+				// ã‚´ãƒŸãƒ‡ãƒ¼ã‚¿ãŒè©°ã¾ã£ã¦ã‚‹ã®ã§çµ‚ã‚ã‚‹
 				if (::strncmp(m_recvInBuf.c_str(), "HTTP", 4) != 0) {
 					m_recvInBuf.clear();
 					m_inStep = STEP::STEP_FINISH;
@@ -1342,7 +1342,7 @@ void	CRequestManager::_ProcessIn()
 
 				size_t pos, len;
 				if (CUtil::endOfLine(m_recvInBuf, 0, pos, len) == false)
-					return ;		// ‚Ü‚¾‰üs‚Ü‚Å“Ç‚İ‚ñ‚Å‚È‚¢‚Ì‚Å‹A‚é
+					return ;		// ã¾ã æ”¹è¡Œã¾ã§èª­ã¿è¾¼ã‚“ã§ãªã„ã®ã§å¸°ã‚‹
 
 				// Parse it
 				size_t p1 = m_recvInBuf.find_first_of(" ");
@@ -1435,11 +1435,11 @@ void	CRequestManager::_ProcessIn()
 					if (_VerifyContentType(contentType) == false && m_filterOwner.bypassBodyForced == false)
 						m_filterOwner.bypassBody = true;
 				} else {
-					// Content-Type‚ª‚È‚¯‚ê‚ÎƒoƒCƒpƒX‚·‚é
+					// Content-TypeãŒãªã‘ã‚Œã°ãƒã‚¤ãƒ‘ã‚¹ã™ã‚‹
 					m_filterOwner.bypassBody = true;
 				}
 
-				// óMƒwƒbƒ_‚ÅƒŠƒ_ƒCƒŒƒNƒg‚ğw¦‚³‚ê‚½‚çƒŠƒ_ƒCƒŒƒNƒg‚·‚é
+				// å—ä¿¡ãƒ˜ãƒƒãƒ€ã§ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚’æŒ‡ç¤ºã•ã‚ŒãŸã‚‰ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã™ã‚‹
 				// (limited to 3, to prevent infinite loop)
 				if (m_filterOwner.rdirToHost.size() > 0 && m_redirectedIn < 3) {
 					// (This function will also take care of incoming variables)
@@ -1476,10 +1476,10 @@ void	CRequestManager::_ProcessIn()
 						m_decompressor.reset(new CBrotliDecompressor());
 						CFilterOwner::RemoveHeader(m_filterOwner.inHeadersFiltered, L"Content-Encoding");
 
-					} else if (CUtil::noCaseContains(L"identity", contentEncoding)) {	// –³ˆ³k						
+					} else if (CUtil::noCaseContains(L"identity", contentEncoding)) {	// ç„¡åœ§ç¸®						
 						m_recvContentCoding = ContentEncoding::kNone;
 
-					} else if (contentEncoding.length() > 0) {	// ‰ğß‚Å‚«‚È‚¢ˆ³kŒ`®
+					} else if (contentEncoding.length() > 0) {	// è§£é‡ˆã§ããªã„åœ§ç¸®å½¢å¼
 						m_useChain = false;
 						m_filterOwner.bypassBody = true;
 					}
@@ -1493,7 +1493,7 @@ void	CRequestManager::_ProcessIn()
 					// Our output will always be chunked: filtering can
 					// change body size. So let's force this header.
 					CFilterOwner::SetHeader(m_filterOwner.inHeadersFiltered, L"Transfer-Encoding", L"chunked");
-					// Content-Length‚ğÁ‚³‚È‚¢‚Æ‚¨‚©‚µ‚¢
+					// Content-Lengthã‚’æ¶ˆã•ãªã„ã¨ãŠã‹ã—ã„
 					CFilterOwner::RemoveHeader(m_filterOwner.inHeadersFiltered, L"Content-Length");
 				}
 
@@ -1530,7 +1530,7 @@ void	CRequestManager::_ProcessIn()
 					}
 
 					// File type will be reevaluated using first block of data
-					//m_filterOwner.fileType.clear();	// ‚±‚±‚Å‚ÍÁ‚³‚È‚¢
+					//m_filterOwner.fileType.clear();	// ã“ã“ã§ã¯æ¶ˆã•ãªã„
 				}
 
 				CLog::AddNewRequest(m_filterOwner.requestNumber, m_filterOwner.responseLine.code, contentType, 
@@ -1590,7 +1590,7 @@ void	CRequestManager::_ProcessIn()
 				if (copySize > m_inSize)
 					copySize = (int)m_inSize;
 				if (copySize == 0 && m_inSize) 
-					return ;	// ˆ—‚·‚éƒf[ƒ^‚ª‚È‚­‚È‚Á‚½‚Ì‚Å
+					return ;	// å‡¦ç†ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒãªããªã£ãŸã®ã§
 
 				std::string data;
 				if (copySize == m_recvInBuf.size()) {
@@ -1609,7 +1609,7 @@ void	CRequestManager::_ProcessIn()
 					data = m_decompressor->read();
 				}
 
-				/// ƒtƒBƒ‹ƒ^[‚ÉH‚í‚¹‚é
+				/// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã«é£Ÿã‚ã›ã‚‹
 				if (m_useChain) {
 					// provide filter chain with raw unfiltered data
 					m_textFilterChain.DataFeed(data);
@@ -1653,8 +1653,8 @@ void	CRequestManager::_ProcessIn()
 			// A few things have to be done before we go back to start state...
 		case STEP::STEP_FINISH:
 			{
-				// ƒuƒ‰ƒEƒU‚©‚ç‚Ìƒf[ƒ^‚ğˆ—’†‚È‚ç‚±‚±‚Å‚ÍI—¹ˆ—‚ğ‚µ‚È‚¢
-				// I—¹ˆ—‚Í _ProcessOut ‚Ås‚í‚ê‚é
+				// ãƒ–ãƒ©ã‚¦ã‚¶ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å‡¦ç†ä¸­ãªã‚‰ã“ã“ã§ã¯çµ‚äº†å‡¦ç†ã‚’ã—ãªã„
+				// çµ‚äº†å‡¦ç†ã¯ _ProcessOut ã§è¡Œã‚ã‚Œã‚‹
 				if (m_outStep != STEP::STEP_START && m_outStep != STEP::STEP_FINISH)
 					return ;
 

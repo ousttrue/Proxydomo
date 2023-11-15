@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	FilterManageWindow.h
-*	@brief	ƒtƒBƒ‹ƒ^[ŠÇ—ƒEƒBƒ“ƒhƒE
+*	@brief	ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç®¡ç†ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 */
 /**
 	this file is part of Proxydomo

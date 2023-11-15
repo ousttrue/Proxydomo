@@ -1,10 +1,10 @@
-#pragma once
+ï»¿#pragma once
 
 #include "stdafx.h"
 #include <string>
 
 /*
-	Content-Encoding gzip deflate br ‰ð“€—p‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX
+	Content-Encoding gzip deflate br è§£å‡ç”¨ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 	usage: feed -> read or dump -> read
 */
 

@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	Socket.cpp
-*	@brief	ƒ\ƒPƒbƒgƒNƒ‰ƒX
+*	@brief	ã‚½ã‚±ãƒƒãƒˆã‚¯ãƒ©ã‚¹
 */
 /**
 	this file is part of Proxydomo
@@ -182,10 +182,10 @@ bool	IPAddress::Set(const std::string& IPorHostName, const std::string& protocol
 		ATLASSERT(service.length());
 		addrinfo* result = nullptr;
 		addrinfo hints = {};
-		hints.ai_family = AF_UNSPEC;     // IPv4/IPv6—¼‘Î‰
+		hints.ai_family = AF_UNSPEC;     // IPv4/IPv6ä¸¡å¯¾å¿œ
 		hints.ai_socktype = SOCK_STREAM;
 		hints.ai_protocol = IPPROTO_TCP;
-		hints.ai_flags = AI_NUMERICSERV;	// service‚Íƒ|[ƒg”Ô†
+		hints.ai_flags = AI_NUMERICSERV;	// serviceã¯ãƒãƒ¼ãƒˆç•ªå·
 		for (int tryCount = 0;; ++tryCount) {
 			int ret = ::getaddrinfo(IPorHostName.c_str(), service.c_str(), &hints, &result);
 			if (ret == 0) {
@@ -248,7 +248,7 @@ IPv4Address CSocket::GetFromAddress() const
 	return m_addrFrom;
 }
 
-// ƒ|[ƒg‚Æƒ\ƒPƒbƒg‚ğŠÖ˜A•t‚¯‚é
+// ãƒãƒ¼ãƒˆã¨ã‚½ã‚±ãƒƒãƒˆã‚’é–¢é€£ä»˜ã‘ã‚‹
 void	CSocket::Bind(uint16_t port)
 {
 	m_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -273,7 +273,7 @@ void	CSocket::Bind(uint16_t port)
 		throw SocketException("Can`t listen",WSAGetLastError());
 }
 
-// ƒ|[ƒg‚©‚ç‚Ì‰“š‚ğ‘Ò‚Â
+// ãƒãƒ¼ãƒˆã‹ã‚‰ã®å¿œç­”ã‚’å¾…ã¤
 std::unique_ptr<CSocket>	CSocket::Accept()
 {
 	fd_set readfds;
@@ -296,7 +296,7 @@ std::unique_ptr<CSocket>	CSocket::Accept()
 	if (conSock ==  INVALID_SOCKET)
 		return nullptr;
 
-	// Ú‘±‚ª‚ ‚Á‚½
+	// æ¥ç¶šãŒã‚ã£ãŸ
     CSocket*	pSocket = new CSocket;
 	pSocket->m_sock = conSock;
 	pSocket->m_addrFrom = from;

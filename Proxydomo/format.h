@@ -1,4 +1,4 @@
-#ifndef SHAND_FORMAT_INCLUDE
+﻿#ifndef SHAND_FORMAT_INCLUDE
 #define SHAND_FORMAT_INCLUDE
 
 #include <boost/format.hpp>

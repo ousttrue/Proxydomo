@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	CodeConvert.cpp
-*	@brief	icu‚ğg‚Á‚½ƒR[ƒh•ÏŠ·
+*	@brief	icuã‚’ä½¿ã£ãŸã‚³ãƒ¼ãƒ‰å¤‰æ›
 */
 
 #include "stdafx.h"

@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	Proxy.h
-*	@breif	ƒvƒƒNƒVƒNƒ‰ƒX
+*	@breif	ãƒ—ãƒ­ã‚¯ã‚·ã‚¯ãƒ©ã‚¹
 */
 /**
 	this file is part of Proxydomo

@@ -1,4 +1,4 @@
-/**
+ï»¿/**
 *	@file	Matcher.h
 *	@brief	
 */
@@ -58,7 +58,7 @@ public:
 	CMatcher(const std::wstring& pattern);	// for CNode_Command
 	~CMatcher();
 
-	/// pattern ‚©‚ç CMatcher‚ğì¬‚·‚é
+	/// pattern ã‹ã‚‰ CMatcherã‚’ä½œæˆã™ã‚‹
 	static std::shared_ptr<CMatcher>	CreateMatcher(const std::wstring& pattern);
 	static std::shared_ptr<CMatcher>	CreateMatcher(const std::wstring& pattern, std::wstring& errmsg);
 

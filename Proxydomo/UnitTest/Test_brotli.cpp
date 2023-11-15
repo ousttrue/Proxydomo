@@ -1,4 +1,4 @@
-
+﻿
 #include "stdafx.h"
 
 #ifdef UNIT_TEST

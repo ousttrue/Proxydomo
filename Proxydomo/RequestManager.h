@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	RequestManager.h
-*	@brief	ƒuƒ‰ƒEƒUÌƒvƒƒNƒVÌƒT[ƒo[ŠÔ‚Ìˆ—‚ğó‚¯‚Â
+*	@brief	ãƒ–ãƒ©ã‚¦ã‚¶â‡”ãƒ—ãƒ­ã‚¯ã‚·â‡”ã‚µãƒ¼ãƒãƒ¼é–“ã®å‡¦ç†ã‚’å—ã‘æŒã¤
 */
 /**
 	this file is part of Proxydomo
@@ -38,7 +38,7 @@
 #include "Decompressor.h"
 
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 namespace Proxydomo { class CMatcher; }
 struct ConnectionData;
 
@@ -70,13 +70,13 @@ public:
 private:
 	void	_ReloadHeaderFilters();
 
-	// ƒuƒ‰ƒEƒU Ë Proxy(this) Ë ƒTƒCƒg
+	// ãƒ–ãƒ©ã‚¦ã‚¶ â‡’ Proxy(this) â‡’ ã‚µã‚¤ãƒˆ
 	bool	_ReceiveOut();
 	std::string	m_recvOutBuf;
 
-	// ƒuƒ‰ƒEƒU Ë Proxy(this) Ë ƒTƒCƒg
+	// ãƒ–ãƒ©ã‚¦ã‚¶ â‡’ Proxy(this) â‡’ ã‚µã‚¤ãƒˆ
 	void	_ProcessOut();
-	std::string m_sendOutBuf;	/// ƒTƒCƒg‚É‘—‚éƒf[ƒ^
+	std::string m_sendOutBuf;	/// ã‚µã‚¤ãƒˆã«é€ã‚‹ãƒ‡ãƒ¼ã‚¿
 	bool	_SendOut();			/// Send outgoing data to website
 
 	
@@ -89,11 +89,11 @@ private:
 	bool	_HandleRedirectToHost();
 	void	_SendConnectRequestToRemoteProxy(std::string& name);
 
-	// ƒTƒCƒg‚©‚ç‚Ìƒf[ƒ^‚ğóM
+	// ã‚µã‚¤ãƒˆã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡
 	bool	_ReceiveIn();
 	std::string m_recvInBuf;
 
-	// ƒTƒCƒg Ë Proxy(this) Ë ƒuƒ‰ƒEƒU
+	// ã‚µã‚¤ãƒˆ â‡’ Proxy(this) â‡’ ãƒ–ãƒ©ã‚¦ã‚¶
 	void	_ProcessIn();
 	bool	_SendIn();
 	std::string m_sendInBuf;
@@ -135,7 +135,7 @@ private:
 	std::wstring	m_previousHost;
 	std::string		m_previousConnectRequest;	// for SSL & $SETPROXY
 
-	// ˆ—‚ÌŠJn‘Ò‚¿ŠÔ
+	// å‡¦ç†ã®é–‹å§‹å¾…ã¡æ™‚é–“
 	std::chrono::steady_clock::time_point	m_processIdleTime;	
 
 	std::atomic_bool	m_valid;
@@ -164,7 +164,7 @@ private:
 	std::unique_ptr<IDecompressor>	m_decompressor;
 
     // Variables and functions for outgoing processing
-    STEP	m_outStep;	// ƒuƒ‰ƒEƒU Ë Proxy(this) Ë ƒTƒCƒg ŠÔ‚Ìˆ—‚Ìó‘Ô‚ğ¦‚·
+    STEP	m_outStep;	// ãƒ–ãƒ©ã‚¦ã‚¶ â‡’ Proxy(this) â‡’ ã‚µã‚¤ãƒˆ é–“ã®å‡¦ç†ã®çŠ¶æ…‹ã‚’ç¤ºã™
 	int64_t	m_outSize;
 	bool	m_outChunked;
 	struct { 
@@ -172,14 +172,14 @@ private:
 	} m_requestLine;
 
 	// Variables and functions for incoming processing
-	STEP	m_inStep;	// ƒTƒCƒg Ë Proxy(this) Ë ƒuƒ‰ƒEƒU ŠÔ‚Ìˆ—‚Ìó‘Ô‚ğ¦‚·
+	STEP	m_inStep;	// ã‚µã‚¤ãƒˆ â‡’ Proxy(this) â‡’ ãƒ–ãƒ©ã‚¦ã‚¶ é–“ã®å‡¦ç†ã®çŠ¶æ…‹ã‚’ç¤ºã™
 	int64_t	m_inSize;
 	bool	m_inChunked;
 
 	CFilterOwner	m_filterOwner;
 
 	// for Debug
-	int		m_RequestCountFromBrowser;	// ƒuƒ‰ƒEƒU‚©‚ç‚ÌƒŠƒNƒGƒXƒg”(GET,HEAD‚È‚Ç‚Ì—v‹”)
+	int		m_RequestCountFromBrowser;	// ãƒ–ãƒ©ã‚¦ã‚¶ã‹ã‚‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ•°(GET,HEADãªã©ã®è¦æ±‚æ•°)
 	ConnectionData*	m_connectionData;
 	std::string	m_requestManagerLog;
 };

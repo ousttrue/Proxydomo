@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	FilterDescriptor.h
-*	@brief	ƒtƒBƒ‹ƒ^[ ˆê‚Â‚ğ•\‚·
+*	@brief	ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ ä¸€ã¤ã‚’è¡¨ã™
 */
 /**
 	this file is part of Proxydomo
@@ -33,16 +33,16 @@ public:
 
 	CFilterDescriptor();
 
-	/// Šeí Matcher ‚ğì¬‚·‚é
+	/// å„ç¨® Matcher ã‚’ä½œæˆã™ã‚‹
 	bool	CreateMatcher();
 
 	/// Clear all content
 	void	Clear();
 
-	// –³Œø‚È‚çerrorMsg‚ÉƒGƒ‰[‚ª“ü‚é
+	// ç„¡åŠ¹ãªã‚‰errorMsgã«ã‚¨ãƒ©ãƒ¼ãŒå…¥ã‚‹
     void	TestValidity();
 
-	/// ƒtƒBƒ‹ƒ^[‚ª—LŒø‚Å‚ ‚é
+	/// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ãŒæœ‰åŠ¹ã§ã‚ã‚‹
 	bool	Active;
 
     // The following data is used for organizing/editing filters

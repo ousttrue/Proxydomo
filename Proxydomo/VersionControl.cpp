@@ -1,4 +1,4 @@
-// VersionControl.cpp
+ï»¿// VersionControl.cpp
 
 #include "stdafx.h"
 #include "VersionControl.h"
@@ -21,7 +21,7 @@ void	CVersionControl::Run()
 	CString settingPath = Misc::GetExeDirectory() + _T("settings.ini");
 	std::ifstream fs(settingPath);
 	ptree pt;
-	if (fs) {	// ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¯‚ê‚ÎŠeƒNƒ‰ƒX‚É”C‚¹‚é
+	if (fs) {	// ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã‘ã‚Œã°å„ã‚¯ãƒ©ã‚¹ã«ä»»ã›ã‚‹
 		read_ini(fs, pt);
 		fs.close();
 
@@ -36,7 +36,7 @@ void	CVersionControl::Run()
 		
 	}
 	
-	// ÅVƒo[ƒWƒ‡ƒ“‚ğ‘‚«‚Ş
+	// æœ€æ–°ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’æ›¸ãè¾¼ã‚€
 	pt.put("Setting.iniVersion", LATESTVERSION);
 	std::ofstream ofs(settingPath);
 	write_ini(ofs, pt);
@@ -51,7 +51,7 @@ void	CVersionControl::_0to1()
 
 	std::wifstream	fs(jsonfilterPath);
 	if (!fs) {
-		MessageBox(NULL, _T("filter.json‚ÌƒI[ƒvƒ“‚É¸”s"), NULL, MB_ICONERROR);
+		MessageBox(NULL, _T("filter.jsonã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—"), NULL, MB_ICONERROR);
 		return ;
 	}
 	fs.imbue(std::locale(std::locale(), new std::codecvt_utf8_utf16<wchar_t>));
@@ -64,7 +64,7 @@ void	CVersionControl::_0to1()
 		CString filterPath = Misc::GetExeDirectory() + _T("filter.xml");
 		std::wofstream	fs(filterPath);
 		if (!fs) {
-			MessageBox(NULL, _T("filter.xml‚ÌƒI[ƒvƒ“‚É¸”s"), NULL, MB_ICONERROR);
+			MessageBox(NULL, _T("filter.xmlã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—"), NULL, MB_ICONERROR);
 			return ;
 		}
 		fs.imbue(std::locale(std::locale(), new std::codecvt_utf8_utf16<wchar_t>));

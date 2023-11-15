@@ -1,4 +1,4 @@
-/**
+ï»¿/**
 *	@file	Matcher.cpp
 *	@brief	
 */
@@ -165,7 +165,7 @@ int decodeCommand(StringCharacterIterator& patternIt,
 		content += code;
     }
     // Did we reach end of string before closing all parentheses?
-	// '(' ')'‚ª•Â‚¶‚Ä‚¢‚È‚¢
+	// '(' ')'ãŒé–‰ã˜ã¦ã„ãªã„
     if (level > 0) 
 		return -1;
 	content.erase(content.end() - 1);
@@ -182,7 +182,7 @@ int decodeCommand(StringCharacterIterator& patternIt,
  * a search tree. An exception is returned if the pattern is
  * malformed.
  */
-/// pattern ‚ğŒŸõ–Ø‚É•ÏŠ·‚µ‚Ü‚·B pattern‚ª–³Œø‚È‚ç—áŠO‚ª”ò‚Ñ‚Ü‚·B
+/// pattern ã‚’æ¤œç´¢æœ¨ã«å¤‰æ›ã—ã¾ã™ã€‚ patternãŒç„¡åŠ¹ãªã‚‰ä¾‹å¤–ãŒé£›ã³ã¾ã™ã€‚
 CMatcher::CMatcher(const std::wstring& pattern)
 {
 	UnicodeString pat(pattern.c_str(), (int32_t)pattern.length());
@@ -205,7 +205,7 @@ void	CMatcher::_CreatePattern(const UnicodeString& pattern)
 
     // another reason to throw : the pattern was not completely
     // consumed, i.e there was an unpaired )
-	/// ƒpƒ^[ƒ“‚ªŠ®‘S‚ÉÁ”ï‚³‚ê‚Ä‚¢‚È‚¢B¦—á: ()‚ªƒyƒA‚É‚È‚Á‚Ä‚¢‚È‚¢
+	/// ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒå®Œå…¨ã«æ¶ˆè²»ã•ã‚Œã¦ã„ãªã„ã€‚â€»ä¾‹: ()ãŒãƒšã‚¢ã«ãªã£ã¦ã„ãªã„
 	if (patternIt.hasNext()) {
 		throw parsing_exception(ID_PARSINGERROR_PARSING_INCOMPLETE, patternIt.getIndex());
     }
@@ -534,7 +534,7 @@ CNode* CMatcher::run(StringCharacterIterator& patternIt)
 CNode* CMatcher::code(StringCharacterIterator& patternIt)
 {
     // CR and LF are only for user convenience, they have no meaning whatsoever
-	// CR ‚â LF ‚Íƒ†[ƒU[‚É‚Æ‚Á‚Ä•Ö—˜‚È‚¾‚¯‚ÅA\•¶“I‚É‚Í‰½‚ÌˆÓ–¡‚à‚½‚È‚¢‚Ì‚Å”ò‚Î‚·
+	// CR ã‚„ LF ã¯ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«ã¨ã£ã¦ä¾¿åˆ©ãªã ã‘ã§ã€æ§‹æ–‡çš„ã«ã¯ä½•ã®æ„å‘³ã‚‚æŒãŸãªã„ã®ã§é£›ã°ã™
 	while ((patternIt.current() != patternIt.DONE) && 
 		(patternIt.current() == L'\r' || patternIt.current() == L'\n')) patternIt.next();
 
@@ -550,7 +550,7 @@ CNode* CMatcher::code(StringCharacterIterator& patternIt)
 
 		token = patternIt.next();
         // it should not be at the end of the pattern
-		// '\'‚Åƒpƒ^[ƒ“‚ªI‚í‚Á‚Ä‚¢‚ê‚Î‚¨‚©‚µ‚¢‚Ì‚Å—áŠO‚ğ”ò‚Î‚·
+		// '\'ã§ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒçµ‚ã‚ã£ã¦ã„ã‚Œã°ãŠã‹ã—ã„ã®ã§ä¾‹å¤–ã‚’é£›ã°ã™
 		if (token == patternIt.DONE) 
 			throw parsing_exception(ID_PARSINGERROR_ESCAPE_AT_END, patternIt.getIndex());
 
@@ -574,7 +574,7 @@ CNode* CMatcher::code(StringCharacterIterator& patternIt)
 				{
 					bool bIterate = true;
 					if ((nextToken != patternIt.DONE) && (nextToken == L')' || nextToken == L'|' || nextToken == L'&'))
-						bIterate = false;	// Œã‚ë‚ğŒ©‚È‚¢ŒŸõ‚ğ‚·‚é
+						bIterate = false;	// å¾Œã‚ã‚’è¦‹ãªã„æ¤œç´¢ã‚’ã™ã‚‹
 					return new CNode_Repeat(new CNode_Chars(L" \t\r\n>", false), 0, BIG_NUMBER, bIterate);
 				}
             case L'#':
@@ -719,7 +719,7 @@ CNode* CMatcher::code(StringCharacterIterator& patternIt)
             }
 
             // Check if the [] is closed
-			// ']'‚ª—ˆ‚é‘O‚Éƒpƒ^[ƒ“‚ªI‚í‚Á‚½‚Ì‚Å—áŠO‚ğ”ò‚Î‚·
+			// ']'ãŒæ¥ã‚‹å‰ã«ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒçµ‚ã‚ã£ãŸã®ã§ä¾‹å¤–ã‚’é£›ã°ã™
 			if (patternIt.getIndex() == patternIt.endIndex()) {
                 delete node;
 				throw parsing_exception(ID_PARSINGERROR_MISSING_BRACKET, patternIt.getIndex());
@@ -837,7 +837,7 @@ CNode* CMatcher::code(StringCharacterIterator& patternIt)
                     return new CNode_Command(CMD_TSTDIGIT, name, value);	// $TST(\0-\9=Matching expression)
 
                 } else if (name[0] == L'(' && name[name.size()-1] == L')') {	// $TST((expand text)=Matching expression)
-					// ƒJƒbƒR“à‚ª“WŠJ‚³‚ê‚½Œã‚ÉA•]‰¿‚³‚ê‚é (modo‚¾‚¯‚Ì“Æ©Šg’£H)
+					// ã‚«ãƒƒã‚³å†…ãŒå±•é–‹ã•ã‚ŒãŸå¾Œã«ã€è©•ä¾¡ã•ã‚Œã‚‹ (modoã ã‘ã®ç‹¬è‡ªæ‹¡å¼µï¼Ÿ)
                     name = name.substr(1, name.size()-2);
                     return new CNode_Command(CMD_TSTEXPAND, name, value);
 
@@ -1116,7 +1116,7 @@ CNode* CMatcher::code(StringCharacterIterator& patternIt)
         CNode *node = expr(patternIt);
         
         // It must be followed by the closing )
-		// ')'‚ª‚±‚È‚¢A‚à‚µ‚­‚Í Ÿ‚Ìƒg[ƒNƒ“‚É')'‚ª—ˆ‚È‚¢‚Æ—áŠO‚ğ”ò‚Î‚·
+		// ')'ãŒã“ãªã„ã€ã‚‚ã—ãã¯ æ¬¡ã®ãƒˆãƒ¼ã‚¯ãƒ³ã«')'ãŒæ¥ãªã„ã¨ä¾‹å¤–ã‚’é£›ã°ã™
 		if (patternIt.hasNext() == false || patternIt.current() != L')') {
             delete node;
 			throw parsing_exception(ID_PARSINGERROR_MISSING_PARENTHESIS, patternIt.getIndex());

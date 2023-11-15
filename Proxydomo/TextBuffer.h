@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	TextBuffer.h
-*	@brief	ƒf[ƒ^‚ğó‚¯æ‚Á‚ÄƒeƒLƒXƒgƒtƒBƒ‹ƒ^[‚Åˆ—‚µ‚ÄRequestManager‚É•Ô‚·ƒNƒ‰ƒX
+*	@brief	ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã£ã¦ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã§å‡¦ç†ã—ã¦RequestManagerã«è¿”ã™ã‚¯ãƒ©ã‚¹
 */
 /**
 	this file is part of Proxydomo
@@ -72,7 +72,7 @@ private:
 
 	void _firstDebugOutput(const std::string& charaCode);
 
-	// EUC-JP, Shift-JIS, UTF-8, JIS ‚Ì––”ö‚ğ’²‚×‚é
+	// EUC-JP, Shift-JIS, UTF-8, JIS ã®æœ«å°¾ã‚’èª¿ã¹ã‚‹
 	int	_findEndPoint(const char* start, const char*& end);
 
 	void _decideCharset();

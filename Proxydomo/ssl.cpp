@@ -1,4 +1,4 @@
-/**
+ï»¿/**
 *	@file	ssl.cpp
 *	@brief	ssl misc
 */
@@ -76,10 +76,10 @@ using BIO_ptr = std::unique_ptr<BIO, BIO_Deleter>;
 
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-// Proxydomo <=> Website —p‚Ì SSL_CTX
+// Proxydomo <=> Website ç”¨ã® SSL_CTX
 SSL_CTX*		g_openssl_client_ctx = nullptr;
 
-// Ø–¾‘‚Æ”é–§Œ®‚Ì‘g‚İ‡‚í‚¹
+// è¨¼æ˜æ›¸ã¨ç§˜å¯†éµã®çµ„ã¿åˆã‚ã›
 struct CertAndKey {
 	X509_ptr	 cert;
 	EVP_PKEY_ptr privateKey;
@@ -88,17 +88,17 @@ struct CertAndKey {
 // ProxydomoCA certification and private key
 CertAndKey		g_CA_cert_key;
 
-// Ú‘±‹–‰Â/”Û’èƒzƒXƒg
+// æ¥ç¶šè¨±å¯/å¦å®šãƒ›ã‚¹ãƒˆ
 std::unordered_map<std::string, bool>	g_mapHostAllowOrDeny;
 
-// ˆêÚ‘±‹–‰Â/”Û’èƒzƒXƒg
+// ä¸€æ™‚æ¥ç¶šè¨±å¯/å¦å®šãƒ›ã‚¹ãƒˆ
 std::unordered_map<std::string, std::pair<std::chrono::steady_clock::time_point, bool>>	g_mapHostTempAllowOrDeny;
 
 CCriticalSection	g_csmapHost;
 int				g_loadCACount = 0;
-std::string		g_lastnoCAHost;		// ? ‚È‚É‚±‚ê
+std::string		g_lastnoCAHost;		// ? ãªã«ã“ã‚Œ
 
-// ƒzƒXƒg—p‚É¶¬‚µ‚½ƒT[ƒo[Ø–¾‘
+// ãƒ›ã‚¹ãƒˆç”¨ã«ç”Ÿæˆã—ãŸã‚µãƒ¼ãƒãƒ¼è¨¼æ˜æ›¸
 std::unordered_map<std::string, std::unique_ptr<CertAndKey>>	g_mapHostServerCert;
 CCriticalSection	g_csmapHostServerCert;
 
@@ -118,7 +118,7 @@ struct SSLCallbackContext
 
 int g_sslCallbackContextIndex = 0;
 
-// ŠO•”‚©‚ç‘€ì‚³‚ê‚È‚¢‚½‚ß‚Ì”FØƒg[ƒNƒ“
+// å¤–éƒ¨ã‹ã‚‰æ“ä½œã•ã‚Œãªã„ãŸã‚ã®èªè¨¼ãƒˆãƒ¼ã‚¯ãƒ³
 std::string	g_authentication;
 
 bool	LoadSystemTrustCA();
@@ -218,7 +218,7 @@ bool	ManageCatificateErrorPage(std::shared_ptr<SocketIF> sockBrowser, const std:
 	std::string contentType = "text/html";
 	std::string content = CUtil::getFile(filename);
 	if (content.empty())
-		return false;	// ‹ŒdialogŒ`®‚Ö
+		return false;	// æ—§dialogå½¢å¼ã¸
 
 	content = CUtil::replaceAll(content, "%%title%%", CodeConvert::UTF8fromUTF16(GetTranslateMessage(IDD_CERTIFICATEERROR)));
 	content = CUtil::replaceAll(content, "%%static-waring%%", CodeConvert::UTF8fromUTF16(GetTranslateMessage(IDC_STATIC_WARNING)));
@@ -273,7 +273,7 @@ std::wstring SSL_ErrorString()
 int myVerify(int preverify_ok, X509_STORE_CTX* x509_ctx)
 {
 	if (preverify_ok) {
-		return preverify_ok;	// Ø–¾‘‚ÌŒŸØOKI
+		return preverify_ok;	// è¨¼æ˜æ›¸ã®æ¤œè¨¼OKï¼
 	}
 
 	int err = X509_STORE_CTX_get_error(x509_ctx);
@@ -291,7 +291,7 @@ int myVerify(int preverify_ok, X509_STORE_CTX* x509_ctx)
 		std::string host = pcontext->host;
 		ATLASSERT(pcontext->sockBrowser);
 		if (!pcontext->sockBrowser) {
-			return 0;	// ƒkƒ‹ƒ|‚È‚Ì‚Í‚¨‚©‚µ‚¢
+			return 0;	// ãƒŒãƒ«ãƒãªã®ã¯ãŠã‹ã—ã„
 		}
 		if (host == g_lastnoCAHost) {
 			return 0;
@@ -311,7 +311,7 @@ int myVerify(int preverify_ok, X509_STORE_CTX* x509_ctx)
 
 		auto ittempfound = g_mapHostTempAllowOrDeny.find(host);
 		if (ittempfound != g_mapHostTempAllowOrDeny.end()) {
-			// 5•ª’´‚¦‚Ä‚¢‚ê‚ÎÁ‚·
+			// 5åˆ†è¶…ãˆã¦ã„ã‚Œã°æ¶ˆã™
 			if ((std::chrono::steady_clock::now() - ittempfound->second.first) > std::chrono::minutes(5)) {
 				g_mapHostTempAllowOrDeny.erase(ittempfound);
 			} else {
@@ -406,7 +406,7 @@ bool	LoadSystemTrustCA()
 }
 
 
-// ƒT[ƒo[Ø–¾‘‚Ìì¬
+// ã‚µãƒ¼ãƒãƒ¼è¨¼æ˜æ›¸ã®ä½œæˆ
 std::unique_ptr<CertAndKey>	CreateServerCert(const std::string& host)
 {
 	int ret = 0;
@@ -434,7 +434,7 @@ std::unique_ptr<CertAndKey>	CreateServerCert(const std::string& host)
 	ASN1_INTEGER_set(X509_get_serialNumber(x509.get()), dist(random_engine));
 
 	/* This certificate is valid from now until exactly one year from now. */
-	const long valid_secs = 365 * 60 * 60 * 24;   // 1”N
+	const long valid_secs = 365 * 60 * 60 * 24;   // 1å¹´
 	X509_gmtime_adj(X509_get_notBefore(x509.get()), 0);
 	X509_gmtime_adj(X509_get_notAfter(x509.get()), valid_secs);
 
@@ -471,7 +471,7 @@ std::unique_ptr<CertAndKey>	CreateServerCert(const std::string& host)
 	char test[5120] = "";
 	ret = BIO_read(mem3, test, 5120);
 #endif
-	// ƒT[ƒo[Ø–¾‘¶¬Š®—¹I
+	// ã‚µãƒ¼ãƒãƒ¼è¨¼æ˜æ›¸ç”Ÿæˆå®Œäº†ï¼
 	auto certAndKey = std::make_unique<CertAndKey>();
 	certAndKey->cert.swap(x509);
 	certAndKey->privateKey.swap(pkey);
@@ -489,7 +489,7 @@ bool	InitSSL()
 	CString ecccaKeyfile = Misc::GetExeDirectory() + kCAEccKeyFileName;
 	if ( ::PathFileExists(cafile) == FALSE || 
 		(::PathFileExists(rsacaKeyfile) == FALSE && ::PathFileExists(ecccaKeyfile) == FALSE)) {
-		INFO_LOG << L"CAØ–¾‘‚ª‚È‚¢‚Ì‚ÅSSL‚ÍƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚Å‚«‚Ü‚¹‚ñB";
+		INFO_LOG << L"CAè¨¼æ˜æ›¸ãŒãªã„ã®ã§SSLã¯ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã§ãã¾ã›ã‚“ã€‚";
 		return false;
 	}
 
@@ -509,7 +509,7 @@ bool	InitSSL()
 				pemCAkey = CUtil::LoadBinaryFile((LPCWSTR)ecccaKeyfile);
 			}
 
-			// CAØ–¾‘ ‚Æ privateKey ‚Ì“Ç‚İ‚İ
+			// CAè¨¼æ˜æ›¸ ã¨ privateKey ã®èª­ã¿è¾¼ã¿
 			BIO_ptr pmemCA(BIO_new_mem_buf((const void*)pemCA.data(), (int)pemCA.size()));
 			g_CA_cert_key.cert.reset(PEM_read_bio_X509(pmemCA.get(), nullptr, nullptr, nullptr));
 
@@ -523,7 +523,7 @@ bool	InitSSL()
 				throw std::runtime_error("SSL_CTX_new failed");
 			}
 
-			/* Ø–¾‘‚ÌŒŸØİ’è */
+			/* è¨¼æ˜æ›¸ã®æ¤œè¨¼è¨­å®š */
 			SSL_CTX_set_verify(g_openssl_client_ctx, SSL_VERIFY_PEER, myVerify);
 
 			g_sslCallbackContextIndex = SSL_get_ex_new_index(0, "SSLCallbackContext", NULL, NULL, NULL);
@@ -534,7 +534,7 @@ bool	InitSSL()
 		}
 		g_pAllowSSLServerHostMatcher = Proxydomo::CMatcher::CreateMatcher(L"$LST(AllowSSLServerHostList)");
 
-		// ”FØƒg[ƒNƒ“¶¬
+		// èªè¨¼ãƒˆãƒ¼ã‚¯ãƒ³ç”Ÿæˆ
 		enum { kMaxAuthLength = 8 };
 		std::string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
 		std::random_device rd;
@@ -573,7 +573,7 @@ void	LogErrorAndThrowRuntimeExecption(const std::wstring& errorMessage)
 	throw std::runtime_error(u8msg);
 }
 
-// CAØ–¾‘‚ğ¶¬‚·‚é
+// CAè¨¼æ˜æ›¸ã‚’ç”Ÿæˆã™ã‚‹
 void	GenerateCACertificate()
 {
 	/* Allocate memory for the X509 structure. */
@@ -597,7 +597,7 @@ void	GenerateCACertificate()
 	ASN1_INTEGER_set(X509_get_serialNumber(x509.get()), dist(random_engine));
 
 	/* This certificate is valid from now until exactly one year from now. */
-	const long valid_secs = 365 * 60 * 60 * 24;   // 1”N
+	const long valid_secs = 365 * 60 * 60 * 24;   // 1å¹´
 	X509_gmtime_adj(X509_get_notBefore(x509.get()), 0);
 	X509_gmtime_adj(X509_get_notAfter(x509.get()), valid_secs);
 
@@ -758,7 +758,7 @@ static int NonBlockingSSL_Connect(SSL* ssl, std::atomic_bool& valid, bool isServ
 
 		case SSL_ERROR_SYSCALL:
 		default:
-			// ƒGƒ‰[ˆ—
+			// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 			return FALSE;
 		}
 		break;
@@ -795,7 +795,7 @@ std::shared_ptr<SocketIF>	CSSLSession::InitClientSession(std::shared_ptr<SocketI
 
 	SSL_set_fd(session->m_ssl, (int)sockWebsite->GetSocket());
 
-	// ƒzƒXƒg–¼‚ÌŒŸØ‚ğs‚¤
+	// ãƒ›ã‚¹ãƒˆåã®æ¤œè¨¼ã‚’è¡Œã†
 	SSL_set_hostflags(session->m_ssl, X509_CHECK_FLAG_NO_PARTIAL_WILDCARDS);
 	SSL_set1_host(session->m_ssl, host.c_str());
 
@@ -837,15 +837,15 @@ std::shared_ptr<SocketIF> CSSLSession::InitServerSession(std::shared_ptr<SocketI
 	auto session = std::make_shared<CSSLSession>();
 	int ret = 0;
 
-	// Ø–¾‘¶¬ (ƒLƒƒƒbƒVƒ…‚ª‚ ‚ê‚Î‚»‚Á‚¿‚©‚ç‚Á‚Ä‚­‚é)
+	// è¨¼æ˜æ›¸ç”Ÿæˆ (ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒã‚ã‚Œã°ãã£ã¡ã‹ã‚‰æŒã£ã¦ãã‚‹)
 	CertAndKey* certAndKey = nullptr;
 	{
 		CCritSecLock lock(g_csmapHostServerCert);
 		auto itfound = g_mapHostServerCert.find(host);
 		if (itfound != g_mapHostServerCert.end()) {
-			certAndKey = itfound->second.get();		// ƒLƒƒƒbƒVƒ…‚©‚ç
+			certAndKey = itfound->second.get();		// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‹ã‚‰
 		} else {
-			auto serverCertAndKey = CreateServerCert(host);	// ¶¬
+			auto serverCertAndKey = CreateServerCert(host);	// ç”Ÿæˆ
 			certAndKey = serverCertAndKey.get();
 			g_mapHostServerCert[host] = std::move(serverCertAndKey);
 		}

@@ -1,4 +1,4 @@
-
+ï»¿
 #include "stdafx.h"
 #include "BlockListDatabase.h"
 #include <mutex>
@@ -40,7 +40,7 @@ namespace {
 			sqlite3_finalize(m_stmt);
 		}
 
-		// Bindxxx ‚Ì placePos ‚Í 1 ‚©‚çw’è‚·‚é
+		// Bindxxx ã® placePos ã¯ 1 ã‹ã‚‰æŒ‡å®šã™ã‚‹
 		void	BindText(int placePos, const std::string& text)
 		{
 			int err = sqlite3_bind_text(m_stmt, placePos, text.c_str(), static_cast<int>(text.length()), SQLITE_TRANSIENT);
@@ -79,7 +79,7 @@ namespace {
 			return err;
 		}
 
-		// Columnxxx ‚Ì iCol ‚Í 0 ‚©‚çw’è‚·‚é
+		// Columnxxx ã® iCol ã¯ 0 ã‹ã‚‰æŒ‡å®šã™ã‚‹
 		std::string		ColumnText(int iCol)
 		{
 			std::string text = (const char*)sqlite3_column_text(m_stmt, iCol);
@@ -225,7 +225,7 @@ void	CBlockListDatabase::AddList(const std::string& listName)
 		stmt.BindText(1, listName);
 		int err = stmt.Step();
 		if (err == SQLITE_ROW && stmt.ColumnInt(0) == 1) {
-			return;	// table‚ÍŠù‚É‘¶İ‚·‚é
+			return;	// tableã¯æ—¢ã«å­˜åœ¨ã™ã‚‹
 		}
 	}
 
@@ -266,7 +266,7 @@ void CBlockListDatabase::AddPatternToList(const std::string & listName, const st
 	stmt.BindText(1, u8pattern);
 	int err = stmt.Step();
 	int count = stmt.ColumnInt(0);
-	if (count == 0) {	// ‘¶İ‚µ‚È‚¢A’Ç‰Á‚·‚é
+	if (count == 0) {	// å­˜åœ¨ã—ãªã„ã€è¿½åŠ ã™ã‚‹
 		CSQLiteStatement stmt2(m_db, str(format("INSERT INTO '%1%' (pattern, line, updateTime) VALUES(?, ?, ?);") % listName));
 		stmt2.BindText(1, u8pattern);
 		stmt2.BindInt(2, line);

@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	AppConst.h
-*	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŒÅ—L‚Ìİ’è‚È‚Ç
+*	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å›ºæœ‰ã®è¨­å®šãªã©
 */
 /**
 	this file is part of Proxydomo
@@ -23,7 +23,7 @@
 
 #pragma once
 
-/// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì–¼‘O
+/// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®åå‰
 #ifndef _DEBUG
 	#ifndef _WIN64
 	#define	APP_NAME	_T("Proxydomo")
@@ -38,7 +38,7 @@
 	#endif
 #endif
 
-/// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ìƒo[ƒWƒ‡ƒ“
+/// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 #define APP_VERSION	_T("2.2")
 
 

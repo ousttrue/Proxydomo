@@ -1,4 +1,4 @@
-// Proxydomo.cpp : main source file for Proxydomo.exe
+ï»¿// Proxydomo.cpp : main source file for Proxydomo.exe
 //
 /**
 	this file is part of Proxydomo
@@ -42,7 +42,7 @@
 #include <gtest\gtest.h>
 #endif
 
-// ƒOƒ[ƒoƒ‹•Ï”
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 CAppModule _Module;
 
 
@@ -76,8 +76,8 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 {
 #ifdef UNIT_TEST
 	::AllocConsole();
-	freopen("CONOUT$", "w", stdout); //•W€o—Í‚ğƒRƒ“ƒ\[ƒ‹‚É‚·‚é
-	freopen("CONIN$", "r", stdin);   //•W€“ü—Í‚ğƒRƒ“ƒ\[ƒ‹‚É‚·‚é
+	freopen("CONOUT$", "w", stdout); //æ¨™æº–å‡ºåŠ›ã‚’ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã«ã™ã‚‹
+	freopen("CONIN$", "r", stdin);   //æ¨™æº–å…¥åŠ›ã‚’ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã«ã™ã‚‹
 
 	wchar_t exeFilePath[MAX_PATH];
 	::GetModuleFileName(NULL, exeFilePath, MAX_PATH);
@@ -85,7 +85,7 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 	wchar_t* argv[] = { exeFilePath };
 	testing::InitGoogleTest(&argc, argv);
 
-	/* ƒeƒXƒg‘O‚Ì‰Šú‰»E‰Šúİ’è */
+	/* ãƒ†ã‚¹ãƒˆå‰ã®åˆæœŸåŒ–ãƒ»åˆæœŸè¨­å®š */
 	CSettings::LoadSettings();
 	Load_public_suffix_list();
 
@@ -103,7 +103,7 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 	ATLASSERT(SUCCEEDED(hRes));
 
 #ifdef _DEBUG
-	// ATLTRACE‚Å“ú–{Œê‚ğg‚¤‚½‚ß‚É•K—v
+	// ATLTRACEã§æ—¥æœ¬èªã‚’ä½¿ã†ãŸã‚ã«å¿…è¦
 	_tsetlocale( LC_ALL, _T("japanese") );
 #endif
 
@@ -112,11 +112,11 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 
 	AtlInitCommonControls(ICC_BAR_CLASSES);	// add flags to support other controls
 
-    // ƒŠƒbƒ`ƒGƒfƒBƒbƒgƒRƒ“ƒgƒ[ƒ‹‰Šú‰»
+    // ãƒªãƒƒãƒã‚¨ãƒ‡ã‚£ãƒƒãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åˆæœŸåŒ–
     HINSTANCE hRich = LoadLibrary(CRichEditCtrl::GetLibraryName());
     if(hRich == NULL){
-        AtlMessageBox(NULL, _T("ƒŠƒbƒ`ƒGƒfƒBƒbƒgƒRƒ“ƒgƒ[ƒ‹‰Šú‰»¸”s"),
-            _T("ƒGƒ‰["), MB_OK | MB_ICONERROR);
+        AtlMessageBox(NULL, _T("ãƒªãƒƒãƒã‚¨ãƒ‡ã‚£ãƒƒãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åˆæœŸåŒ–å¤±æ•—"),
+            _T("ã‚¨ãƒ©ãƒ¼"), MB_OK | MB_ICONERROR);
         return 0;
     }
 

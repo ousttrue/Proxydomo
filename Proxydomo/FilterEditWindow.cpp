@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	FilterEditWindow.cpp
-*	@brief	ƒtƒBƒ‹ƒ^[•ÒWƒEƒBƒ“ƒhƒE
+*	@brief	ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç·¨é›†ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 */
 /**
 	this file is part of Proxydomo
@@ -136,7 +136,7 @@ public:
 		m_wndTest.SubclassWindow(m_editTest);
 		m_wndResult.SubclassWindow(m_editResult);
 
-		// ƒ_ƒCƒAƒƒOƒŠƒTƒCƒY‰Šú‰»
+		// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒªã‚µã‚¤ã‚ºåˆæœŸåŒ–
 		DlgResize_Init(true, true, WS_THICKFRAME | WS_CLIPCHILDREN | WS_MAXIMIZEBOX);
 
 		std::string settingsPath = CT2A(Misc::GetExeDirectory() + _T("settings.ini"));
@@ -330,7 +330,7 @@ public:
                     matched = matcher.match(index, stop, end, &matchData);
                     filter.unlock();
 					if (matched == false && matchData.reached == stop) {
-						// ƒ}ƒbƒ`‚ğ‘S•”Á”ï‚µ‚È‚©‚Á‚½
+						// ãƒãƒƒãƒã‚’å…¨éƒ¨æ¶ˆè²»ã—ãªã‹ã£ãŸ
 						int a = 0;
 					}
 
@@ -514,7 +514,7 @@ BOOL CFilterEditWindow::OnInitDialog(CWindow wndFocus, LPARAM lInitParam)
 	DoDataExchange(DDX_LOAD);
 	PostMessage(WM_DELAYINIT);
 
-    // ƒ_ƒCƒAƒƒOƒŠƒTƒCƒY‰Šú‰»
+    // ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒªã‚µã‚¤ã‚ºåˆæœŸåŒ–
     DlgResize_Init(true, true, WS_CLIPCHILDREN | WS_THICKFRAME | WS_MAXIMIZEBOX);
 
 	std::string settingsPath = CT2A(Misc::GetExeDirectory() + _T("settings.ini"));
@@ -733,7 +733,7 @@ void CFilterEditWindow::OnOK(UINT uNotifyCode, int nID, CWindow wndCtl)
 		return ;
 	}
 
-	// ”O‚Ì‚½‚ß
+	// å¿µã®ãŸã‚
 	CCritSecLock	lock(CSettings::s_csFilters);
 	*m_pFilter = *m_pTempFilter;
 
@@ -769,7 +769,7 @@ void CFilterEditWindow::OnDataExchangeError(UINT nCtrlID, BOOL bSave)
 
 	} else {
 		CString strMsg;
-		strMsg.Format(_T("ƒRƒ“ƒgƒ[ƒ‹iID:%uj‚Æ‚Ìƒf[ƒ^ŒğŠ·‚É¸”sB"), nCtrlID);
+		strMsg.Format(_T("ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ï¼ˆID:%uï¼‰ã¨ã®ãƒ‡ãƒ¼ã‚¿äº¤æ›ã«å¤±æ•—ã€‚"), nCtrlID);
 		MessageBox(strMsg, _T("DataExchangeError"), MB_ICONWARNING);
 
 		::SetFocus(GetDlgItem(nCtrlID));
@@ -779,7 +779,7 @@ void CFilterEditWindow::OnDataExchangeError(UINT nCtrlID, BOOL bSave)
 void CFilterEditWindow::OnDataValidateError(UINT nCtrlID, BOOL bSave, _XData& data)
 {
 	CString strMsg;
-	strMsg.Format(_T("%d ‚©‚ç %d ‚Ü‚Å‚Ì’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B"),
+	strMsg.Format(_T("%d ã‹ã‚‰ %d ã¾ã§ã®å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"),
 		data.intData.nMin, data.intData.nMax);
 	MessageBox(strMsg, _T("DataValidateError"), MB_ICONEXCLAMATION);
 

@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	MainDlg.cpp
-*	@brief	ƒƒCƒ“ƒtƒŒ[ƒ€
+*	@brief	ãƒ¡ã‚¤ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ 
 */
 /**
 	this file is part of Proxydomo
@@ -58,7 +58,7 @@ void CMainDlg::FilterEvent(LogFilterEvent Event, int RequestNumber, const std::s
 	}
 }
 
-// ƒgƒŒƒCƒAƒCƒRƒ“‚ğì¬
+// ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä½œæˆ
 void	CMainDlg::_CreateTasktrayIcon()
 {	
 	HICON hIconSmall = AtlLoadIconImage(IDR_MAINFRAME, LR_DEFAULTCOLOR, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON));
@@ -187,7 +187,7 @@ LRESULT CMainDlg::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/,
 	if (m_filterManagerWindow.IsWindow())
 		m_filterManagerWindow.DestroyWindow();
 
-	{	// ƒgƒŒƒCƒAƒCƒRƒ“‚ğíœ
+	{	// ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³ã‚’å‰Šé™¤
 		NOTIFYICONDATA	nid = { sizeof(NOTIFYICONDATA) };
 		nid.hWnd	= m_hWnd;
 		nid.uID		= kTrayIconId;
@@ -209,7 +209,7 @@ void	CMainDlg::_SaveMainDlgWindowPos()
 	try {
 		read_ini(settingsPath, pt);
 	} catch (...) {
-		ERROR_LOG << L"CMainDlg::_SaveMainDlgWindowPos : settings.ini‚Ì“Ç‚İ‚İ‚É¸”s";
+		ERROR_LOG << L"CMainDlg::_SaveMainDlgWindowPos : settings.iniã®èª­ã¿è¾¼ã¿ã«å¤±æ•—";
 		pt.clear();
 	}
 
@@ -232,7 +232,7 @@ void	CMainDlg::OnEndSession(BOOL bEnding, UINT uLogOff)
 	}
 }
 
-// ƒ^ƒXƒNƒgƒŒƒCƒAƒCƒRƒ“‚ğÄì¬‚·‚é
+// ã‚¿ã‚¹ã‚¯ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³ã‚’å†ä½œæˆã™ã‚‹
 LRESULT CMainDlg::OnTaskbarCreated(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
 	_CreateTasktrayIcon();

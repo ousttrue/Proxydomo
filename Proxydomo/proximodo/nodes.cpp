@@ -1,4 +1,4 @@
-//------------------------------------------------------------------
+ï»¿//------------------------------------------------------------------
 //
 //this file is part of Proximodo
 //Copyright (C) 2004-2005 Antony BOUCHER ( kuruden@users.sourceforge.net )
@@ -697,12 +697,12 @@ CNode_Memory::~CNode_Memory() {
 
 const char* CNode_Memory::match(const char* start, const char* stop) {
 
-    if (memorizer) {	// eMemory‚Ì‚É’Ê‚éBqMemory(memorizer)‚ÉŒ»İ‚ÌˆÊ’u‚ğ‹L‰¯‚µ‚Ä‚¨‚­
+    if (memorizer) {	// è¦ªMemoryã®æ™‚ã«é€šã‚‹ã€‚å­Memory(memorizer)ã«ç¾åœ¨ã®ä½ç½®ã‚’è¨˜æ†¶ã—ã¦ãŠã
         memorizer->recordPos = start;
         const char* ret = node->match(start, stop);
         consumed = node->consumed;
         return ret;
-    } else {	// setNextNode‚ÅŸ‚Ìƒ}ƒbƒ`‚Ì‘O‚Émemorizer‚ª‚æ‚Î‚ê‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚é
+    } else {	// setNextNodeã§æ¬¡ã®ãƒãƒƒãƒã®å‰ã«memorizerãŒã‚ˆã°ã‚Œã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã‚‹
         // Backup memory and replace by a new one, or push new one on stack
         if (memory) {
             backup = *memory;

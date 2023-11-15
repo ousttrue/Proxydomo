@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <istream>
 #include <memory>
@@ -46,14 +46,14 @@ private:
 		bool			OptionMatch(Proxydomo::MatchData* pMatch);
 	};
 
-	// ŒÅ’èƒvƒŒƒtƒBƒbƒNƒXƒŠƒXƒg
+	// å›ºå®šãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆ
 	struct PreHashWord {
 		std::unordered_map<wchar_t, std::unique_ptr<PreHashWord>>	mapChildPreHashWord;
 		std::vector<NodeOption>	vecNode;
 	};
 	std::unordered_map<wchar_t, std::unique_ptr<PreHashWord>>	PreHashWordList;
 
-	// URLƒnƒbƒVƒ…ƒŠƒXƒg
+	// URLãƒãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆ
 	struct URLHash {
 		std::unordered_map<std::wstring, std::unique_ptr<URLHash>>	mapChildURLHash;
 		std::vector<NodeOption>	vecNode;
@@ -66,11 +66,11 @@ private:
 	// $ only
 	std::deque<NodeOption>	NodeOptionList;
 
-	// * “ü‚è
+	// * å…¥ã‚Š
 	std::deque<std::pair<std::wstring, NodeOption>>	URLHashSpecialCharacterList;
 
 	// element hiding list
-	std::vector<std::wstring>	ElementHidingAllDomainList;	// ‚·‚×‚Ä‚ÌƒhƒƒCƒ“‚Å—LŒø ##css_selector
+	std::vector<std::wstring>	ElementHidingAllDomainList;	// ã™ã¹ã¦ã®ãƒ‰ãƒ¡ã‚¤ãƒ³ã§æœ‰åŠ¹ ##css_selector
 
 	struct DomainCssSelector {
 		std::vector<std::wstring>	vecWhiteDomains;

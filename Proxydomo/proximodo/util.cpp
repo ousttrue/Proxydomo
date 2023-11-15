@@ -1,4 +1,4 @@
-//------------------------------------------------------------------
+ï»¿//------------------------------------------------------------------
 //
 //this file is part of Proximodo
 //Copyright (C) 2004-2005 Antony BOUCHER ( kuruden@users.sourceforge.net )
@@ -457,7 +457,7 @@ wstring CUtil::UESC(const wstring& str) {
 				return false;
 			};
 
-			// 16i”‚ð”’l‚É•ÏŠ·‚·‚é
+			// 16é€²æ•°ã‚’æ•°å€¤ã«å¤‰æ›ã™ã‚‹
 			auto funcHexToNumber = [](const wchar_t c) -> BYTE {
 				if (L'0' <= c && c <= L'9') {
 					return c - L'0';
@@ -472,7 +472,7 @@ wstring CUtil::UESC(const wstring& str) {
 
 			auto c1 = funcCharOpt(c, 1);
 			
-			// %uXXXX Œ`Ž®
+			// %uXXXX å½¢å¼
 			if (c1 && *c1 == L'u') {
 				auto c2 = funcCharOpt(c, 2);
 				if (!c2 || !funcIsHex(*c2))
@@ -492,7 +492,7 @@ wstring CUtil::UESC(const wstring& str) {
 				c += 5;
 				continue;
 			
-			} else {	// %XX Œ`Ž®
+			} else {	// %XX å½¢å¼
 				if (!c1 || !funcIsHex(*c1))
 					goto OUTPUT;
 

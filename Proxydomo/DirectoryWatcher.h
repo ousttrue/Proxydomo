@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	DirectoryWatcher.h
-*	@brief	ƒtƒHƒ‹ƒ_“à‚Ìƒtƒ@ƒCƒ‹‚Ì’Ç‰Á‚ğŠÄ‹‚µ‚Ü‚·
+*	@brief	ãƒ•ã‚©ãƒ«ãƒ€å†…ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®è¿½åŠ ã‚’ç›£è¦–ã—ã¾ã™
 */
 /**
 	this file is part of Proxydomo
@@ -30,8 +30,8 @@
 
 ////////////////////////////////////////////////////////////////////
 /// CDirectoryWatcher : 
-/// ƒtƒHƒ‹ƒ_“à‚Ìƒtƒ@ƒCƒ‹‚Ì•ÏX‚ğŠÄ‹‚·‚é
-/// w’è‚Å‚«‚éƒtƒBƒ‹ƒ^‚Í‰º‹L‚ÌURL‚ğQÆ
+/// ãƒ•ã‚©ãƒ«ãƒ€å†…ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®å¤‰æ›´ã‚’ç›£è¦–ã™ã‚‹
+/// æŒ‡å®šã§ãã‚‹ãƒ•ã‚£ãƒ«ã‚¿ã¯ä¸‹è¨˜ã®URLã‚’å‚ç…§
 /// http://msdn.microsoft.com/ja-jp/library/cc429676.aspx
 
 class CDirectoryWatcher
@@ -49,13 +49,13 @@ public:
 		StopWatchDirectory();
 	}
 
-	/// ŠÄ‹‚ªŠJn‚³‚ê‚Ä‚¢‚ê‚Î true ‚ğ•Ô‚·
+	/// ç›£è¦–ãŒé–‹å§‹ã•ã‚Œã¦ã„ã‚Œã° true ã‚’è¿”ã™
 	bool	IsWatching() const { return m_hDir != INVALID_HANDLE_VALUE; }
 
-	/// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^‚·‚é  (ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Í•ÊƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚é‚±‚Æ‚É’ˆÓI)
+	/// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹  (ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã¯åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã“ã¨ã«æ³¨æ„ï¼)
 	void	SetCallbackFunction(std::function<void (const CString&)> func) { m_funcCallback = func; }
 
-	/// ŠÄ‹‚ğŠJn‚·‚é
+	/// ç›£è¦–ã‚’é–‹å§‹ã™ã‚‹
 	bool	WatchDirectory(const CString& DirPath)
 	{
 		if (m_DirectoryWatchThread.joinable())
@@ -64,13 +64,13 @@ public:
 		ATLASSERT( m_funcCallback );
 
 		m_hDir = CreateFile(
-								DirPath,                            // ƒtƒ@ƒCƒ‹–¼‚Ö‚Ìƒ|ƒCƒ“ƒ^
-								FILE_LIST_DIRECTORY,                // ƒAƒNƒZƒXi “Ç‚İ‘‚«jƒ‚[ƒh
-								FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,  // ‹¤—Lƒ‚[ƒh
-								NULL,                               // ƒZƒLƒ…ƒŠƒeƒB‹Lqq
-								OPEN_EXISTING,                      // ì¬•û–@
-								FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED,         // ƒtƒ@ƒCƒ‹‘®«
-								NULL                                // ƒRƒs[‚·‚éƒtƒ@ƒCƒ‹‚Æ‘®«
+								DirPath,                            // ãƒ•ã‚¡ã‚¤ãƒ«åã¸ã®ãƒã‚¤ãƒ³ã‚¿
+								FILE_LIST_DIRECTORY,                // ã‚¢ã‚¯ã‚»ã‚¹ï¼ˆ èª­ã¿æ›¸ãï¼‰ãƒ¢ãƒ¼ãƒ‰
+								FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,  // å…±æœ‰ãƒ¢ãƒ¼ãƒ‰
+								NULL,                               // ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£è¨˜è¿°å­
+								OPEN_EXISTING,                      // ä½œæˆæ–¹æ³•
+								FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED,         // ãƒ•ã‚¡ã‚¤ãƒ«å±æ€§
+								NULL                                // ã‚³ãƒ”ãƒ¼ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¨å±æ€§
 								);
 		if (m_hDir == INVALID_HANDLE_VALUE )
 			return false;
@@ -86,7 +86,7 @@ public:
 		return true;
 	}
 
-	/// ŠÄ‹‚ğI‚í‚ç‚¹‚é
+	/// ç›£è¦–ã‚’çµ‚ã‚ã‚‰ã›ã‚‹
 	void	StopWatchDirectory()
 	{
 		if (m_DirectoryWatchThread.joinable() == false)
@@ -122,13 +122,13 @@ private:
 				m_dwNotifyFilter, nullptr, &overLapped, nullptr))
 				return ;
 
-			// ’Ê’m‘Ò‚¿
+			// é€šçŸ¥å¾…ã¡
 			HANDLE handles[] = { m_hExitEvent, hEvent };
 			DWORD dwResult = ::WaitForMultipleObjects(_countof(handles), handles, FALSE, INFINITE);
 			if (dwResult == WAIT_OBJECT_0) {
 				CancelIo(m_hDir);
 				WaitForSingleObject(hEvent, INFINITE);
-				return ;	// I—¹
+				return ;	// çµ‚äº†
 
 			} else if (dwResult == WAIT_OBJECT_0 + 1) {
 				DWORD dwRetSize = 0;
@@ -137,7 +137,7 @@ private:
 					break;
 				}
 					
-				if (dwRetSize == 0) {	// ƒoƒbƒtƒ@ƒI[ƒo[
+				if (dwRetSize == 0) {	// ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ¼ãƒãƒ¼
 					ATLASSERT( FALSE );
 
 				} else {
@@ -152,7 +152,7 @@ private:
 
 								CString filepath = m_DirPath + filename.data();
 
-								// ƒtƒ@ƒCƒ‹‚Ì’Ç‰Á‚ğ’Ê’m‚·‚é
+								// ãƒ•ã‚¡ã‚¤ãƒ«ã®è¿½åŠ ã‚’é€šçŸ¥ã™ã‚‹
 								m_funcCallback(filepath);
 							}
 						//}
@@ -165,7 +165,7 @@ private:
 			}
 		}
 
-		// Œã•Ğ•t‚¯
+		// å¾Œç‰‡ä»˜ã‘
 		CloseHandle(hEvent);
 	}
 

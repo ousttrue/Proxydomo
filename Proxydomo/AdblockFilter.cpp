@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "AdblockFilter.h"
 #include <unicode\unistr.h>
 #include <boost/algorithm/string.hpp> 
@@ -159,7 +159,7 @@ const UChar*	CAdblockFilter::NodeOption::TailCmp(const UChar* start, const UChar
 
 	while (start < max && *ptr == towlower(*start)) { ptr++; start++; }
 
-	// ‘S•”Á”ï‚³‚ê‚È‚©‚Á‚½
+	// å…¨éƒ¨æ¶ˆè²»ã•ã‚Œãªã‹ã£ãŸ
 	if (ptr < tail.c_str() + tail.length()) {
 		return nullptr;
 	}
@@ -185,7 +185,7 @@ const UChar* CAdblockFilter::match(const UChar* start, const UChar* stop, Proxyd
 	CNode_Star nodeStar;
 	nodeStar.setNextNode(nextNode);
 
-	// URLƒnƒbƒVƒ…
+	// URLãƒãƒƒã‚·ãƒ¥
 	const UChar* slashPos = stop;
 	const UChar* urlStart = start;
 	boost::wstring_ref content(start, stop - start);
@@ -250,7 +250,7 @@ const UChar* CAdblockFilter::match(const UChar* start, const UChar* stop, Proxyd
 
 	// *
 	bool bAllowSearch = true;
-	// . ‹æØ‚è‚²‚Æ‚ÉŒŸõ‚µ‚Ä‚¢‚­A / ‚ªo‚½‚çI‚í‚è
+	// . åŒºåˆ‡ã‚Šã”ã¨ã«æ¤œç´¢ã—ã¦ã„ãã€ / ãŒå‡ºãŸã‚‰çµ‚ã‚ã‚Š
 	for (const UChar* hostBegin = urlStart; hostBegin != stop; ++hostBegin) {
 		if (bAllowSearch) {
 			if (auto value = funcListMatcher(hostBegin, URLHashSpecialCharacterList)) {
@@ -277,7 +277,7 @@ const UChar* CAdblockFilter::match(const UChar* start, const UChar* stop, Proxyd
 
 	enum { kMaxPreWildcardRange = 256 };
 	for (int i = 0; (start < stop && i < kMaxPreWildcardRange); ++start, ++i) {
-		// ŒÅ’èƒvƒŒƒtƒBƒbƒNƒX
+		// å›ºå®šãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹
 		auto pmapPreHashWord = &PreHashWordList;
 		const UChar* first = start;
 		while (first < stop) {
@@ -555,7 +555,7 @@ bool	CAdblockFilter::AddPattern(const std::wstring& text, int listLine)
 	if (firstChar == L'|') {
 		// ||
 		if (secondChar == L'|') {
-			// URLƒnƒbƒVƒ…
+			// URLãƒãƒƒã‚·ãƒ¥
 			auto slashPos = pattern.find_first_of(L"^/", 2);
 			if (slashPos == std::wstring::npos) {
 				slashPos = pattern.length();
@@ -596,7 +596,7 @@ bool	CAdblockFilter::AddPattern(const std::wstring& text, int listLine)
 		}
 	}
 
-	// ŒÅ’èƒvƒŒƒtƒBƒbƒNƒX
+	// å›ºå®šãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹
 	enum { kMaxPreHashWordLength = 7 };
 	auto pmapPreHashWord = &PreHashWordList;
 	for (; patternIt.hasNext() && patternIt.getIndex() < kMaxPreHashWordLength; ) {
@@ -674,7 +674,7 @@ struct ThirdPartyOption : public IOptionType
 		if (referer.empty()) {
 			return false;
 		}
-		// ’¼ÚƒNƒŠƒbƒN‚µ‚½‚à‚Ì‚Í–³Ž‹‚·‚é
+		// ç›´æŽ¥ã‚¯ãƒªãƒƒã‚¯ã—ãŸã‚‚ã®ã¯ç„¡è¦–ã™ã‚‹
 		if (pMatch->pFilter->owner.fileType == "htm") {
 			return false;
 		}
@@ -785,7 +785,7 @@ std::vector<std::unique_ptr<IOptionType>>
 		}else if (boost::starts_with(strOption, L"domain")) {
 			vecOptionType.emplace_back(new DomainOption(strOption.substr(7)));
 		} else {
-			// –¢ŽÀ‘•
+			// æœªå®Ÿè£…
 		}
 	}
 	return vecOptionType;

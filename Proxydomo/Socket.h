@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	Socket.h
-*	@brief	ƒ\ƒPƒbƒgƒNƒ‰ƒX
+*	@brief	ã‚½ã‚±ãƒƒãƒˆã‚¯ãƒ©ã‚¹
 */
 /**
 	this file is part of Proxydomo
@@ -108,7 +108,7 @@ class CSocket : public SocketIF
 public:
 	CSocket();
 
-	// ƒvƒƒOƒ‰ƒ€‚ÌŠJn‚ÆI—¹‘O‚É•K‚¸ŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢
+	// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®é–‹å§‹ã¨çµ‚äº†å‰ã«å¿…ãšå‘¼ã³å‡ºã—ã¦ãã ã•ã„
 	static bool Init();
 	static void Term();
 

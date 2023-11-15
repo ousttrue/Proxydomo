@@ -1,4 +1,4 @@
-#ifndef __logviewer__
+﻿#ifndef __logviewer__
 #define __logviewer__
 
 #include <wx/event.h>

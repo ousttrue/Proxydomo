@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	FilterManageWindow.cpp
-*	@brief	ƒtƒBƒ‹ƒ^[ŠÇ—ƒEƒBƒ“ƒhƒE
+*	@brief	ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç®¡ç†ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 */
 /**
 	this file is part of Proxydomo
@@ -52,12 +52,12 @@ std::vector<std::unique_ptr<CFilterDescriptor>> GetFilterDescriptorFromClipboard
 	// and multiline values will have \r for inner newlines. The text will end
 	// by a [] line so that we don't have to process anything after the loop.
 	std::wstring str = text + L"\n\n";
-	// ˆ—Œn‚É‚æ‚Á‚Ä‰üsƒR[ƒh‚ª•Ï‚í‚é‚Ì‚Å \n ‚Ö“ˆê‚·‚é
+	// å‡¦ç†ç³»ã«ã‚ˆã£ã¦æ”¹è¡Œã‚³ãƒ¼ãƒ‰ãŒå¤‰ã‚ã‚‹ã®ã§ \n ã¸çµ±ä¸€ã™ã‚‹
 	str = CUtil::replaceAll(str, L"\r\n", L"\n");
 	str = CUtil::replaceAll(str, L"\r", L"\n");
 
-	// (ÅŒã‚Ì)" ‰üs(\n) (Å‰‚Ì)" ‚ğ \r ‚Ö’uŠ·‚·‚é
-	// ¦‰üs–ˆ‚Ìˆ—‚É¬‚´‚ç‚È‚¢‚æ‚¤‚É“à•”‚Ì‰üs(\n)‚ğ \r ‚Ö•ÏŠ·‚µ‚Ä‚¢‚é (Œã‚Å–ß‚·)
+	// (æœ€å¾Œã®)" æ”¹è¡Œ(\n) (æœ€åˆã®)" ã‚’ \r ã¸ç½®æ›ã™ã‚‹
+	// â€»æ”¹è¡Œæ¯ã®å‡¦ç†ã«æ··ã–ã‚‰ãªã„ã‚ˆã†ã«å†…éƒ¨ã®æ”¹è¡Œ(\n)ã‚’ \r ã¸å¤‰æ›ã—ã¦ã„ã‚‹ (å¾Œã§æˆ»ã™)
 	str = std::regex_replace(str, std::wregex(L"\"[[:blank:]]*\n[[:blank:]]*\""), L"\r");
 
 	CFilterDescriptor d;
@@ -74,7 +74,7 @@ std::vector<std::unique_ptr<CFilterDescriptor>> GetFilterDescriptorFromClipboard
 			d.TestValidity();
 			if (!d.title.empty()) {
 				d.Active = isActive;
-				// ƒtƒBƒ‹ƒ^[‚ğ’Ç‰Á
+				// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’è¿½åŠ 
 				vecFilterDescriptor.emplace_back(std::make_unique<CFilterDescriptor>(d));
 
 				count++;
@@ -277,7 +277,7 @@ BOOL CFilterManageWindow::OnInitDialog(CWindow wndFocus, LPARAM lInitParam)
 	m_listFilter.AddColumn(L"Name", 0);
 	m_listFilter.SetColumnWidth(0, 500);
 
-	// ‚±‚ê‚ª‚È‚¢‚Æ‰‰ñ‚Ìƒ`ƒFƒbƒN‚ª“ü‚ç‚È‚¢c
+	// ã“ã‚ŒãŒãªã„ã¨åˆå›æ™‚ã®ãƒã‚§ãƒƒã‚¯ãŒå…¥ã‚‰ãªã„â€¦
 	m_treeFilter.ModifyStyle(TVS_CHECKBOXES, 0);
 	m_treeFilter.ModifyStyle(0, TVS_CHECKBOXES);
 
@@ -314,15 +314,15 @@ BOOL CFilterManageWindow::OnInitDialog(CWindow wndFocus, LPARAM lInitParam)
 	//imagelist.Create(16, 16, ILC_COLOR32 | ILC_MASK, 2, 1);
 	//m_treeFilter.SetImageList(imagelist);
 
-	// ƒ_ƒCƒAƒƒOƒŠƒTƒCƒY‰Šú‰»
+	// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒªã‚µã‚¤ã‚ºåˆæœŸåŒ–
 	DlgResize_Init(true, true, WS_THICKFRAME | WS_MAXIMIZEBOX | WS_CLIPCHILDREN);
 
-	// ƒtƒHƒ“ƒg‚ğİ’è
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚’è¨­å®š
 	CLogFont	lf;
 	lf.SetMenuFont();
 	m_treeFilter.SetFont(lf.CreateFontIndirect());
 
-	// ƒAƒCƒRƒ“‚ğİ’è
+	// ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¨­å®š
 	CImageList	tvImageList;
 	tvImageList.Create(16, 16, ILC_MASK | ILC_COLOR32, 3, 1);
 
@@ -349,7 +349,7 @@ BOOL CFilterManageWindow::OnInitDialog(CWindow wndFocus, LPARAM lInitParam)
 
 	m_treeFilter.Expand(htRoot);
 
-	// ˆÊ’u‚ğ•œŒ³
+	// ä½ç½®ã‚’å¾©å…ƒ
 	using namespace boost::property_tree;
 	std::string settingsPath = CT2A(Misc::GetExeDirectory() + _T("settings.ini"));
 	ptree pt;
@@ -404,12 +404,12 @@ void CFilterManageWindow::OnCancel(UINT uNotifyCode, int nID, CWindow wndCtl)
 LRESULT CFilterManageWindow::OnTreeFilterBeginLabelEdit(LPNMHDR pnmh)
 {
 	auto ptvdi = (LPNMTVDISPINFO)pnmh;
-	if (ptvdi->item.hItem == m_treeFilter.GetRootItem())	// Root ‚Í•ÒW‚ğ‹Ö~‚É
+	if (ptvdi->item.hItem == m_treeFilter.GetRootItem())	// Root ã¯ç·¨é›†ã‚’ç¦æ­¢ã«
 		return 1;	// Cancel
 	return 0;
 }
 
-/// ƒGƒfƒBƒbƒgƒ‰ƒxƒ‹‚ª•ÒW‚³‚ê‚½
+/// ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒ©ãƒ™ãƒ«ãŒç·¨é›†ã•ã‚ŒãŸ
 LRESULT CFilterManageWindow::OnTreeFilterEndLabelEdit(LPNMHDR pnmh)
 {
 	auto ptvdi = (LPNMTVDISPINFO)pnmh;
@@ -426,7 +426,7 @@ LRESULT CFilterManageWindow::OnTreeFilterEndLabelEdit(LPNMHDR pnmh)
 	return 0;
 }
 
-// ƒ`ƒFƒbƒN‚ğ”½“]‚³‚¹‚é
+// ãƒã‚§ãƒƒã‚¯ã‚’åè»¢ã•ã›ã‚‹
 LRESULT CFilterManageWindow::OnTreeFilterClick(LPNMHDR pnmh)
 {
 	CPoint pt(::GetMessagePos());
@@ -452,7 +452,7 @@ void CFilterManageWindow::OnTreeFilterKeyUp(UINT nChar, UINT nRepCnt, UINT nFlag
 	}
 }
 
-// ‰EƒNƒŠƒbƒNƒƒjƒ…[‚ğ•\¦
+// å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º
 LRESULT CFilterManageWindow::OnTreeFilterRClick(LPNMHDR pnmh)
 {
 	CPoint pt(::GetMessagePos());
@@ -589,8 +589,8 @@ LRESULT CFilterManageWindow::OnCheckStateChanged(UINT uMsg, WPARAM wParam, LPARA
 	return 0;
 }
 
-/// ƒAƒCƒeƒ€‚ªƒ_ƒuƒ‹ƒNƒŠƒbƒN‚³‚ê‚½
-/// ƒtƒBƒ‹ƒ^[•ÒWƒEƒBƒ“ƒhƒE‚ğŠJ‚­
+/// ã‚¢ã‚¤ãƒ†ãƒ ãŒãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸ
+/// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç·¨é›†ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 LRESULT CFilterManageWindow::OnTreeFilterDblClk(LPNMHDR pnmh)
 {
 	HTREEITEM htHit = m_treeFilter.GetSelectedItem();
@@ -601,7 +601,7 @@ LRESULT CFilterManageWindow::OnTreeFilterDblClk(LPNMHDR pnmh)
 	if (filterItem == nullptr || filterItem->pFilter == nullptr)
 		return 0;
 
-	// ƒtƒBƒ‹ƒ^[•ÒWƒ_ƒCƒAƒƒO‚ğŠJ‚­
+	// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç·¨é›†ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã
 	CFilterEditWindow filterEdit(filterItem->pFilter.get());
 	if (filterEdit.DoModal(m_hWnd) == IDCANCEL || IsWindow() == false)
 		return 0;
@@ -616,7 +616,7 @@ LRESULT CFilterManageWindow::OnTreeFilterDblClk(LPNMHDR pnmh)
 	return 0;
 }
 
-/// htItem ‚ªŠ‘®‚·‚éeƒtƒHƒ‹ƒ_‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+/// htItem ãŒæ‰€å±ã™ã‚‹è¦ªãƒ•ã‚©ãƒ«ãƒ€ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
 std::vector<std::unique_ptr<FilterItem>>* CFilterManageWindow::_GetParentFilterFolder(HTREEITEM htItem)
 {
 	htItem = m_treeFilter.GetParentItem(htItem);
@@ -631,7 +631,7 @@ std::vector<std::unique_ptr<FilterItem>>* CFilterManageWindow::_GetParentFilterF
 	return pfolder;
 }
 
-/// ƒhƒ‰ƒbƒO‚ğŠJn‚·‚é
+/// ãƒ‰ãƒ©ãƒƒã‚°ã‚’é–‹å§‹ã™ã‚‹
 LRESULT CFilterManageWindow::OnTreeFilterBeginDrag(LPNMHDR pnmh)
 {
 	LPNMTREEVIEW pnmtv = (LPNMTREEVIEW)pnmh;
@@ -646,7 +646,7 @@ LRESULT CFilterManageWindow::OnTreeFilterBeginDrag(LPNMHDR pnmh)
 	m_pvecBeginDragParent = _GetParentFilterFolder(htDrag);
 
 #if 0
-	// ƒhƒ‰ƒbƒOƒCƒ[ƒW‚ğì¬
+	// ãƒ‰ãƒ©ãƒƒã‚°ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½œæˆ
 	enum { kIconWidth = 20 };
 	CRect rcItem;
 	m_treeFilter.GetItemRect(htDrag, &rcItem, TRUE);
@@ -738,7 +738,7 @@ void CFilterManageWindow::OnMouseMove(UINT nFlags, CPoint point)
 		} else if (rcItemBottom.PtInRect(point)) {
 			m_treeFilter.SetInsertMark(htHit, TRUE);
 
-		} else if (bFolder) {	// ƒtƒHƒ‹ƒ_[
+		} else if (bFolder) {	// ãƒ•ã‚©ãƒ«ãƒ€ãƒ¼
 			SetCursor(LoadCursor(0, IDC_CROSS));
 			//m_treeFilter.Expand(htHit);
 			m_treeFilter.RemoveInsertMark();
@@ -778,7 +778,7 @@ void CFilterManageWindow::OnTimer(UINT_PTR nIDEvent)
 }
 
 
-/// ƒhƒƒbƒv‚³‚ê‚½
+/// ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸ
 void CFilterManageWindow::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if (GetCapture() != m_hWnd)
@@ -822,14 +822,14 @@ void CFilterManageWindow::OnLButtonUp(UINT nFlags, CPoint point)
 				active = dragFilterItem->pFilter->Active;					
 				icon = dragFilterItem->pFilter->filterType == CFilterDescriptor::kFilterText ? kIconWebFilter : kIconHeaderFilter;
 			}
-			// ’Ç‰Á
+			// è¿½åŠ 
 			HTREEITEM htInsert = m_treeFilter.InsertItem(name, icon, icon, htParent, htInsertAfter);
 			m_treeFilter.SetCheckState(htInsert, active);
 			return htInsert;
 		};
 
 		auto funcDropFolder = [&]() {
-			// DragŒ³‚©‚çÁ‚·
+			// Dragå…ƒã‹ã‚‰æ¶ˆã™
 			for (auto it = m_pvecBeginDragParent->begin(); it != m_pvecBeginDragParent->end(); ++it) {
 				if (it->get() == dragFilterItem) {
 					it->release();
@@ -843,7 +843,7 @@ void CFilterManageWindow::OnLButtonUp(UINT nFlags, CPoint point)
 			}
 			ATLASSERT(m_htBeginDrag == NULL);
 
-			// eƒtƒHƒ‹ƒ_‚ğŒ©‚Â‚¯‚é
+			// è¦ªãƒ•ã‚©ãƒ«ãƒ€ã‚’è¦‹ã¤ã‘ã‚‹
 			std::vector<std::unique_ptr<FilterItem>>* pvecFilter = nullptr;
 			if (filterItem == nullptr) {
 				pvecFilter = &CSettings::s_vecpFilters;
@@ -851,12 +851,12 @@ void CFilterManageWindow::OnLButtonUp(UINT nFlags, CPoint point)
 				pvecFilter = filterItem->pvecpChildFolder.get();
 			}
 
-			// ’Ç‰Á
+			// è¿½åŠ 
 			HTREEITEM htInsert = funcInsertTreeItem(htHit, TVI_LAST);
 			m_treeFilter.SetItemData(htInsert, (DWORD_PTR)dragFilterItem);
 			pvecFilter->push_back(std::unique_ptr<FilterItem>(std::move(dragFilterItem)));
 
-			// qƒAƒCƒeƒ€‚Í“o˜^‚µ’¼‚µ
+			// å­ã‚¢ã‚¤ãƒ†ãƒ ã¯ç™»éŒ²ã—ç›´ã—
 			if (dragFilterItem->pvecpChildFolder)
 				_AddTreeItem(htInsert, *dragFilterItem->pvecpChildFolder);
 
@@ -866,7 +866,7 @@ void CFilterManageWindow::OnLButtonUp(UINT nFlags, CPoint point)
 			CSettings::SaveFilter();
 		};
 
-		// ‘}“üƒ|ƒCƒ“ƒg‚ğŒ©‚Â‚¯‚é
+		// æŒ¿å…¥ãƒã‚¤ãƒ³ãƒˆã‚’è¦‹ã¤ã‘ã‚‹
 		int nInsertPos = 0;
 		HTREEITEM htParent = m_treeFilter.GetParentItem(htHit);
 		HTREEITEM htItem = m_treeFilter.GetChildItem(htParent);
@@ -904,7 +904,7 @@ void CFilterManageWindow::OnLButtonUp(UINT nFlags, CPoint point)
 
 				} else if (bFolder) {
 					funcDropFolder();
-					return;	// ƒtƒHƒ‹ƒ_‚Éƒhƒƒbƒv‚³‚ê‚½
+					return;	// ãƒ•ã‚©ãƒ«ãƒ€ã«ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸ
 				}
 				break;
 			}
@@ -912,18 +912,18 @@ void CFilterManageWindow::OnLButtonUp(UINT nFlags, CPoint point)
 		} while (htItem = m_treeFilter.GetNextSiblingItem(htItem));
 	
 		ATLASSERT(htInsert);
-		// ’Ç‰Á
+		// è¿½åŠ 
 		std::vector<std::unique_ptr<FilterItem>>* pvecFilter = _GetParentFilterFolder(htHit);
 		pvecFilter->insert(pvecFilter->begin() + nInsertPos, std::unique_ptr<FilterItem>(std::move(dragFilterItem)));
 			
-		// DragŒ³‚©‚çÁ‚·
+		// Dragå…ƒã‹ã‚‰æ¶ˆã™
 		int i = 0;
 		for (auto it = m_pvecBeginDragParent->begin(); it != m_pvecBeginDragParent->end(); ++it, ++i) {
 			if (pvecFilter == m_pvecBeginDragParent && i == nInsertPos)
-				continue;	// ƒtƒHƒ‹ƒ_“àˆÚ“®‚ÅˆÚ“®æ‚ªæ‚Éƒqƒbƒg‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+				continue;	// ãƒ•ã‚©ãƒ«ãƒ€å†…ç§»å‹•ã§ç§»å‹•å…ˆãŒå…ˆã«ãƒ’ãƒƒãƒˆã—ãªã„ã‚ˆã†ã«ã™ã‚‹
 
 			if (it->get() == dragFilterItem) {
-				it->release();	// ‰ğ•ú‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+				it->release();	// è§£æ”¾ã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 				m_pvecBeginDragParent->erase(it);
 
 				m_treeFilter.DeleteItem(m_htBeginDrag);
@@ -935,7 +935,7 @@ void CFilterManageWindow::OnLButtonUp(UINT nFlags, CPoint point)
 		ATLASSERT(m_htBeginDrag == NULL);
 		m_treeFilter.SetItemData(htInsert, (DWORD_PTR)dragFilterItem);
 
-		// qƒAƒCƒeƒ€‚Í“o˜^‚µ’¼‚µ
+		// å­ã‚¢ã‚¤ãƒ†ãƒ ã¯ç™»éŒ²ã—ç›´ã—
 		if (dragFilterItem->pvecpChildFolder) 
 			_AddTreeItem(htInsert, *dragFilterItem->pvecpChildFolder);
 
@@ -945,7 +945,7 @@ void CFilterManageWindow::OnLButtonUp(UINT nFlags, CPoint point)
 	}
 }
 
-/// ƒhƒ‰ƒbƒO’†‚È‚çƒLƒƒƒ“ƒZƒ‹‚·‚é
+/// ãƒ‰ãƒ©ãƒƒã‚°ä¸­ãªã‚‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
 void CFilterManageWindow::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	if (GetCapture() != m_hWnd)
@@ -964,7 +964,7 @@ void CFilterManageWindow::OnRButtonDown(UINT nFlags, CPoint point)
 	m_pvecBeginDragParent = nullptr;
 }
 
-/// V‚µ‚¢ƒtƒBƒ‹ƒ^[‚ğ’Ç‰Á‚·‚é
+/// æ–°ã—ã„ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’è¿½åŠ ã™ã‚‹
 void CFilterManageWindow::OnAddFilter(UINT uNotifyCode, int nID, CWindow wndCtl)
 {
 	std::unique_ptr<CFilterDescriptor>	filter(new CFilterDescriptor());
@@ -978,7 +978,7 @@ void CFilterManageWindow::OnAddFilter(UINT uNotifyCode, int nID, CWindow wndCtl)
 	CSettings::SaveFilter();
 }
 
-/// ‘I‘ğ‚³‚ê‚½ƒtƒBƒ‹ƒ^[‚ğíœ‚·‚é
+/// é¸æŠã•ã‚ŒãŸãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
 void CFilterManageWindow::OnDeleteFilter(UINT uNotifyCode, int nID, CWindow wndCtl)
 {
 	HTREEITEM htSel = m_treeFilter.GetSelectedItem();
@@ -994,7 +994,7 @@ void CFilterManageWindow::OnDeleteFilter(UINT uNotifyCode, int nID, CWindow wndC
 	if (htSel == NULL || htSel == m_treeFilter.GetRootItem())
 		return ;
 
-	// –œ‚ªˆê‚É”õ‚¦‚ÄƒNƒŠƒbƒvƒ{[ƒh‚É‘Ş”ğ‚³‚¹‚Ä‚¨‚­
+	// ä¸‡ãŒä¸€ã«å‚™ãˆã¦ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«é€€é¿ã•ã›ã¦ãŠã
 	OnExportToProxomitron(0, 0, NULL);
 
 	CCritSecLock	lock(CSettings::s_csFilters);
@@ -1021,7 +1021,7 @@ void CFilterManageWindow::OnDeleteFilter(UINT uNotifyCode, int nID, CWindow wndC
 	CSettings::SaveFilter();
 }
 
-/// ƒtƒHƒ‹ƒ_‚ğì¬‚·‚é
+/// ãƒ•ã‚©ãƒ«ãƒ€ã‚’ä½œæˆã™ã‚‹
 void CFilterManageWindow::OnCreateFolder(UINT uNotifyCode, int nID, CWindow wndCtl)
 {
 	std::unique_ptr<FilterItem> pfolder(new FilterItem);
@@ -1043,7 +1043,7 @@ void CFilterManageWindow::OnCreateFolder(UINT uNotifyCode, int nID, CWindow wndC
 	CSettings::SaveFilter();
 }
 
-/// ƒNƒŠƒbƒvƒ{[ƒh‚©‚çƒtƒBƒ‹ƒ^[‚ğƒCƒ“ƒ|[ƒg
+/// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‹ã‚‰ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’ã‚¤ãƒ³ãƒãƒ¼ãƒˆ
 void CFilterManageWindow::OnImportFromProxomitron(UINT uNotifyCode, int nID, CWindow wndCtl)
 {
 	auto vecFilterDescriptor = GetFilterDescriptorFromClipboard();
@@ -1055,7 +1055,7 @@ void CFilterManageWindow::OnImportFromProxomitron(UINT uNotifyCode, int nID, CWi
 	}
 }
 
-/// ƒNƒŠƒbƒvƒ{[ƒh‚ÖƒtƒBƒ‹ƒ^[‚ğƒGƒNƒXƒ|[ƒg
+/// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã¸ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆ
 void CFilterManageWindow::OnExportToProxomitron(UINT uNotifyCode, int nID, CWindow wndCtl)
 {
 	HTREEITEM htSel = m_treeFilter.GetSelectedItem();
@@ -1099,9 +1099,9 @@ void CFilterManageWindow::OnExportToProxomitron(UINT uNotifyCode, int nID, CWind
 	}
 }
 
-// ƒtƒBƒ‹ƒ^[‚ğ’Ç‰Á‚·‚é
-// Œ»İ‚Ì‘I‘ğƒAƒCƒeƒ€‚ªƒtƒHƒ‹ƒ_‚È‚ç‚»‚ÌƒtƒHƒ‹ƒ_‚Ì––”ö‚É’Ç‰Á‚·‚é
-// ‚»‚êˆÈŠO‚È‚ç‘I‘ğƒAƒCƒeƒ€‚Ìe‚ÌƒtƒHƒ‹ƒ_‚Ì––”ö‚É’Ç‰Á‚·‚é
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’è¿½åŠ ã™ã‚‹
+// ç¾åœ¨ã®é¸æŠã‚¢ã‚¤ãƒ†ãƒ ãŒãƒ•ã‚©ãƒ«ãƒ€ãªã‚‰ãã®ãƒ•ã‚©ãƒ«ãƒ€ã®æœ«å°¾ã«è¿½åŠ ã™ã‚‹
+// ãã‚Œä»¥å¤–ãªã‚‰é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã®è¦ªã®ãƒ•ã‚©ãƒ«ãƒ€ã®æœ«å°¾ã«è¿½åŠ ã™ã‚‹
 void CFilterManageWindow::_AddFilterDescriptor(std::unique_ptr<CFilterDescriptor>&& filter)
 {
 	auto filterItem = std::make_unique<FilterItem>(std::move(filter));
@@ -1111,10 +1111,10 @@ void CFilterManageWindow::_AddFilterDescriptor(std::unique_ptr<CFilterDescriptor
 	} else {
 		FilterItem*	pFilterItem = (FilterItem*)m_treeFilter.GetItemData(htSel);
 		if (pFilterItem->pvecpChildFolder) {
-			// ‘I‘ğƒAƒCƒeƒ€‚ÍƒtƒHƒ‹ƒ_
+			// é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ãƒ•ã‚©ãƒ«ãƒ€
 			_InsertFilterItem(std::move(filterItem), htSel);
 		} else {
-			// ‘I‘ğƒAƒCƒeƒ€‚ÍƒtƒBƒ‹ƒ^‚È‚Ì‚Åe‚ğŒ©‚é
+			// é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ãƒ•ã‚£ãƒ«ã‚¿ãªã®ã§è¦ªã‚’è¦‹ã‚‹
 			HTREEITEM htParent = m_treeFilter.GetParentItem(htSel);
 			pFilterItem = (FilterItem*)m_treeFilter.GetItemData(htParent);
 			ATLASSERT(pFilterItem == nullptr || pFilterItem->pvecpChildFolder);
@@ -1128,19 +1128,19 @@ void CFilterManageWindow::_InsertFilterItem(std::unique_ptr<FilterItem>&& filter
 {
 	ATLASSERT(filterItem->name.GetLength());
 
-	// ‘}“üæ‚ÌƒtƒHƒ‹ƒ_‚ğŒ©‚Â‚¯‚é
+	// æŒ¿å…¥å…ˆã®ãƒ•ã‚©ãƒ«ãƒ€ã‚’è¦‹ã¤ã‘ã‚‹
 	std::vector<std::unique_ptr<FilterItem>>* pvecpFilter = nullptr;
 	FilterItem*	pParentFilterItem = (FilterItem*)m_treeFilter.GetItemData(htParentFolder);
 	if (pParentFilterItem == nullptr) {
-		// root ƒtƒHƒ‹ƒ_
+		// root ãƒ•ã‚©ãƒ«ãƒ€
 		pvecpFilter = &CSettings::s_vecpFilters;
 	} else {
-		// ‘I‘ğƒAƒCƒeƒ€‚ÍƒtƒHƒ‹ƒ_
+		// é¸æŠã‚¢ã‚¤ãƒ†ãƒ ã¯ãƒ•ã‚©ãƒ«ãƒ€
 		pvecpFilter = pParentFilterItem->pvecpChildFolder.get();
 	}
 	ATLASSERT(pvecpFilter);
 
-	// ƒcƒŠ[‚É’Ç‰Á
+	// ãƒ„ãƒªãƒ¼ã«è¿½åŠ 
 	const int iconIndex = filterItem->pvecpChildFolder ? kIconFolder :
 	filterItem->pFilter->filterType == CFilterDescriptor::kFilterText ? kIconWebFilter : kIconHeaderFilter;
 
@@ -1149,7 +1149,7 @@ void CFilterManageWindow::_InsertFilterItem(std::unique_ptr<FilterItem>&& filter
 	m_treeFilter.SetItemData(htNew, (DWORD_PTR)filterItem.get());
 	m_treeFilter.SetCheckState(htNew, filterItem->active);
 
-	// “à•”ƒf[ƒ^‚É’Ç‰Á
+	// å†…éƒ¨ãƒ‡ãƒ¼ã‚¿ã«è¿½åŠ 
 	if (htInsertAfter != TVI_LAST) {
 		FilterItem* pSelectFilterItem = (FilterItem*)m_treeFilter.GetItemData(htInsertAfter);
 		ATLASSERT(pSelectFilterItem);
@@ -1169,14 +1169,14 @@ void CFilterManageWindow::_InsertFilterItem(std::unique_ptr<FilterItem>&& filter
 	}
 	m_treeFilter.SelectItem(htNew);
 
-	// CSettings::SaveFilter(); // è“®‚Å‚â‚Á‚Ä
+	// CSettings::SaveFilter(); // æ‰‹å‹•ã§ã‚„ã£ã¦
 }
 
 void CFilterManageWindow::OnEditFilterEnChange(UINT uNotifyCode, int nID, CWindow wndCtl)
 {
 	WCHAR temp[128] = L"";
 	m_editFilter.GetWindowText(temp, 128);
-	if (temp[0] != L'\0') {	// i‚è‚İ
+	if (temp[0] != L'\0') {	// çµã‚Šè¾¼ã¿
 		m_listFilter.DeleteAllItems();
 
 		m_treeFilter.ShowWindow(SW_HIDE);
@@ -1187,7 +1187,7 @@ void CFilterManageWindow::OnEditFilterEnChange(UINT uNotifyCode, int nID, CWindo
 		m_toolBar.EnableButton(IDC_BUTTON_IMPORTFROMPROXOMITRON, FALSE);
 		m_toolBar.EnableButton(IDC_BUTTON_EXPORTTOPROXOMITRON, FALSE);
 
-	} else {				// i‚è‚İ‰ğœ
+	} else {				// çµã‚Šè¾¼ã¿è§£é™¤
 		m_listFilter.ShowWindow(SW_HIDE);
 		m_treeFilter.ShowWindow(SW_NORMAL);
 
@@ -1207,7 +1207,7 @@ void CFilterManageWindow::OnEditFilterEnChange(UINT uNotifyCode, int nID, CWindo
 		while (htChild) {
 			FilterItem*	pFilterItem = (FilterItem*)m_treeFilter.GetItemData(htChild);
 			ATLASSERT(pFilterItem);
-			if (pFilterItem && pFilterItem->pvecpChildFolder) {	// ƒtƒHƒ‹ƒ_
+			if (pFilterItem && pFilterItem->pvecpChildFolder) {	// ãƒ•ã‚©ãƒ«ãƒ€
 				funcEnumChildTree(m_treeFilter.GetChildItem(htChild));
 			} else {
 				WCHAR filterName[512] = L"";
@@ -1288,7 +1288,7 @@ void	CFilterManageWindow::_ListOpenFilterEditWindow(int nIndex)
 	FilterItem*	pFilterItem = (FilterItem*)m_treeFilter.GetItemData(htHit);
 	ATLASSERT(pFilterItem);
 
-	// ƒtƒBƒ‹ƒ^[•ÒWƒ_ƒCƒAƒƒO‚ğŠJ‚­
+	// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç·¨é›†ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã
 	CFilterEditWindow filterEdit(pFilterItem->pFilter.get());
 	if (filterEdit.DoModal(m_hWnd) == IDCANCEL || IsWindow() == false)
 		return ;
@@ -1328,7 +1328,7 @@ LRESULT CFilterManageWindow::OnLButtonDblClk(UINT /*uMsg*/, WPARAM /*wParam*/, L
 		_CheckChangeListFilter(lvh.iItem);
 
 	} else if (hitIndex != -1 && lvh.flags == LVHT_ONITEMLABEL) {
-		// ƒtƒBƒ‹ƒ^[•ÒWƒ_ƒCƒAƒƒO‚ğŠJ‚­
+		// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç·¨é›†ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã
 		_ListOpenFilterEditWindow(hitIndex);
 	}
 	return ret;

@@ -1,4 +1,4 @@
-//------------------------------------------------------------------
+ï»¿//------------------------------------------------------------------
 //
 //this file is part of Proximodo
 //Copyright (C) 2004 Antony BOUCHER ( kuruden@users.sourceforge.net )
@@ -107,7 +107,7 @@ bool CZlibBuffer::reset(bool shrink, bool modeGzip) {
 void CZlibBuffer::feed(const std::string& data)
 {
     if (freed)	
-		return;		// reset‚ªŒÄ‚Î‚ê‚Ä‚¢‚È‚¯‚ê‚Î‹A‚é
+		return;		// resetãŒå‘¼ã°ã‚Œã¦ã„ãªã‘ã‚Œã°å¸°ã‚‹
 
     buffer += data;
     size_t size = buffer.size();
@@ -133,7 +133,7 @@ void CZlibBuffer::feed(const std::string& data)
 
             output << string(buf2.get(), ZLIB_BLOCK - stream.avail_out);
         } while (err == Z_OK && stream.avail_out < ZLIB_BLOCK / 10);
-		// “ü—Í‚ªÁ”ï‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çI—¹
+		// å…¥åŠ›ãŒæ¶ˆè²»ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰çµ‚äº†
         if (stream.next_in == (Byte*)buf1.get()) 
 			break;
         remaining -= ((char*)stream.next_in - buf1.get());
@@ -162,7 +162,7 @@ void CZlibBuffer::dump() {
         } while (err == Z_OK);
 		freemem();
     } else {
-		// ƒfƒoƒbƒO—˜—p
+		// ãƒ‡ãƒãƒƒã‚°æ™‚åˆ©ç”¨
 		assert( err == Z_OK || err == Z_STREAM_END );
 #if 0
 		if (!(err == Z_OK || err == Z_STREAM_END)) {

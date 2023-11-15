@@ -1,4 +1,4 @@
-//------------------------------------------------------------------
+ï»¿//------------------------------------------------------------------
 //
 //this file is part of Proximodo
 //Copyright (C) 2004-2005 Antony BOUCHER ( kuruden@users.sourceforge.net )
@@ -53,7 +53,7 @@ inline void UpdateReached(const UChar* p, MatchData* pMatch)
 const UChar* CNode_Star::match(const UChar* start, const UChar* stop, MatchData* pMatch)
 {
     //  if desired, try first by consuming everything
-    if (m_maxFirst) {	// Œã‚ë‚Éƒ}ƒbƒ`ƒ“ƒOƒpƒ^[ƒ“‚ª‚È‚¢‚Ì‚Å‘S•”Á”ï‚µ‚Ä‚µ‚Ü‚¤
+    if (m_maxFirst) {	// å¾Œã‚ã«ãƒãƒƒãƒãƒ³ã‚°ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒãªã„ã®ã§å…¨éƒ¨æ¶ˆè²»ã—ã¦ã—ã¾ã†
         if (m_nextNode == nullptr || m_nextNode->match(stop, stop, pMatch)) {
 			UpdateReached(stop, pMatch);
 			return stop;
@@ -62,7 +62,7 @@ const UChar* CNode_Star::match(const UChar* start, const UChar* stop, MatchData*
 
     // try positions one by one (use hint if available)
     do {
-#if 0	// g‚í‚ê‚Ä‚¢‚È‚¢
+#if 0	// ä½¿ã‚ã‚Œã¦ã„ãªã„
         if (m_useTab) {	
             while (start < stop && m_tab[(unsigned char)(*start)] == false) ++start;
         }
@@ -117,7 +117,7 @@ const UChar* CNode_MemStar::match(const UChar* start, const UChar* stop, MatchDa
     }
 
     //  if desired, try first by consuming everything
-    if (m_maxFirst) {	// Œã‚ë‚Éƒ}ƒbƒ`ƒ“ƒOƒpƒ^[ƒ“‚ª‚È‚¢‚Ì‚Å‘S•”Á”ï‚µ‚Ä‚µ‚Ü‚¤
+    if (m_maxFirst) {	// å¾Œã‚ã«ãƒãƒƒãƒãƒ³ã‚°ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒãªã„ã®ã§å…¨éƒ¨æ¶ˆè²»ã—ã¦ã—ã¾ã†
         if (m_nextNode == nullptr || m_nextNode->match(stop, stop, pMatch)) {
 			UpdateReached(stop, pMatch);
 			return stop;
@@ -126,7 +126,7 @@ const UChar* CNode_MemStar::match(const UChar* start, const UChar* stop, MatchDa
 
     // try positions one by one (use hint if available)
     do {
-#if 0	// g‚í‚ê‚Ä‚¢‚È‚¢
+#if 0	// ä½¿ã‚ã‚Œã¦ã„ãªã„
         if (m_useTab) {
             while (start < stop && m_tab[(unsigned char)(*start)] == false) ++start;
         }
@@ -206,7 +206,7 @@ bool CNode_Space::mayMatch(bool* tab)
 /* class CNode_Equal
  * Matches an Equal sign surrounded by spaces.
  */
-/// '=' ‘OŒã‚ÌƒXƒy[ƒX‚ğŠÜ‚ß‚ÄÁ”ï‚·‚é
+/// '=' å‰å¾Œã®ã‚¹ãƒšãƒ¼ã‚¹ã‚’å«ã‚ã¦æ¶ˆè²»ã™ã‚‹
 const UChar* CNode_Equal::match(const UChar* start, const UChar* stop, MatchData* pMatch)
 {
     // Rule: =
@@ -233,7 +233,7 @@ bool CNode_Equal::mayMatch(bool* tab)
         tab['\r'] = true;
         tab['\n'] = true;
     }
-    return false;	// •K‚¸ '=' ‚ğÁ”ï‚·‚é‚Ì‚Åfalse‚ğ•Ô‚·H
+    return false;	// å¿…ãš '=' ã‚’æ¶ˆè²»ã™ã‚‹ã®ã§falseã‚’è¿”ã™ï¼Ÿ
 }
 
 
@@ -273,10 +273,10 @@ const UChar* CNode_Quote::match(const UChar* start, const UChar* stop, MatchData
 	// Rule: '
 	} else if (m_quote == L'\'') {
 		if (matched == L'\'') {
-			if (m_openingQuote == nullptr) {	// ©•ª‚Í ' ‘O‚ÌQuote‚Í‚È‚¢‚Ì‚Åƒ}ƒbƒ`
+			if (m_openingQuote == nullptr) {	// è‡ªåˆ†ã¯ ' å‰ã®Quoteã¯ãªã„ã®ã§ãƒãƒƒãƒ
 				return funcNextNodeMatch();
 
-			} else {	// ‘O‚ÌQuote‚ğŒ©‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+			} else {	// å‰ã®Quoteã‚’è¦‹ãªã‘ã‚Œã°ãªã‚‰ãªã„
 				auto it = pMatch->mapQuote.find(m_openingQuote);
 				ATLASSERT(it != pMatch->mapQuote.end());
 				if (it->second == L'\'') {
@@ -284,7 +284,7 @@ const UChar* CNode_Quote::match(const UChar* start, const UChar* stop, MatchData
 				}
 			}
 		} else if (matched == L'\"') {	
-			if (m_openingQuote) {		// â‘Î‚É‘O‚ÌQuote‚ğŒ©‚È‚¯‚ê‚Î‚È‚ç‚È‚¢ ‘O‚ÌQuote‚ª‚È‚¯‚ê‚Îƒ}ƒbƒ`‚µ‚È‚¢
+			if (m_openingQuote) {		// çµ¶å¯¾ã«å‰ã®Quoteã‚’è¦‹ãªã‘ã‚Œã°ãªã‚‰ãªã„ å‰ã®QuoteãŒãªã‘ã‚Œã°ãƒãƒƒãƒã—ãªã„
 				auto it = pMatch->mapQuote.find(m_openingQuote);
 				ATLASSERT(it != pMatch->mapQuote.end());
 				if (it->second == L'\"') {
@@ -314,7 +314,7 @@ const UChar* CNode_Char::match(const UChar* start, const UChar* stop, MatchData*
 {
     // The test is case insensitive
 	if (start >= stop || towlower(*start) != m_char)
-		return nullptr;		// ƒ}ƒbƒ`‚µ‚È‚©‚Á‚½
+		return nullptr;		// ãƒãƒƒãƒã—ãªã‹ã£ãŸ
 
     start++;
 
@@ -329,7 +329,7 @@ bool CNode_Char::mayMatch(bool* tab)
 		tab[(unsigned char)m_char] = true;
 		tab[(unsigned char)towupper(m_char)] = true;
     }
-    return false;	// •K‚¸•¶š‚ğÁ”ï‚·‚é‚Ì‚Åfalse‚ğ•Ô‚·H
+    return false;	// å¿…ãšæ–‡å­—ã‚’æ¶ˆè²»ã™ã‚‹ã®ã§falseã‚’è¿”ã™ï¼Ÿ
 }
 
 
@@ -400,7 +400,7 @@ const UChar* CNode_String::match(const UChar* start, const UChar* stop, MatchDat
 
     while (start < max && *ptr == towlower(*start)) { ptr++; start++; }
 
-	// ‘S•”Á”ï‚³‚ê‚È‚©‚Á‚½
+	// å…¨éƒ¨æ¶ˆè²»ã•ã‚Œãªã‹ã£ãŸ
     if (ptr < m_str.c_str() + m_str.length()) {
 		UpdateReached(start, pMatch);
         return nullptr;
@@ -450,7 +450,7 @@ const UChar* CNode_Chars::match(const UChar* start, const UChar* stop, MatchData
 		return nullptr;
 
 	bool bFound = m_setChars.find(*start) != m_setChars.end();
-	if ( (m_allow == bFound) == false )	// (m_allow && bFound) or (m_allow == false && bFound == false) ‚¾‚Æƒ}ƒbƒ`‚·‚é
+	if ( (m_allow == bFound) == false )	// (m_allow && bFound) or (m_allow == false && bFound == false) ã ã¨ãƒãƒƒãƒã™ã‚‹
 		return nullptr;
 
     start++;
@@ -710,7 +710,7 @@ const UChar* CNode_AndAnd::match(const UChar* start, const UChar* stop, MatchDat
 	}
 
 	const UChar* posR = m_nodeR->match(start, reachedL, pMatch);
-	// && ‚Ì‰E‘¤‚Ìƒpƒ^[ƒ“‚ªƒ}ƒbƒ`‚È‚µA‚à‚µ‚­‚Íƒpƒ^[ƒ“‚ªreachedL‚Ü‚ÅÁ”ï‚µ‚È‚©‚Á‚½‚çƒ}ƒbƒ`‚È‚µ
+	// && ã®å³å´ã®ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒãƒãƒƒãƒãªã—ã€ã‚‚ã—ãã¯ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒreachedLã¾ã§æ¶ˆè²»ã—ãªã‹ã£ãŸã‚‰ãƒãƒƒãƒãªã—
 	if (posR == nullptr || posR != reachedL) {
 		return nullptr;
 	}
@@ -758,7 +758,7 @@ const UChar* CNode_Repeat::match(const UChar* start, const UChar* stop, MatchDat
     int rcount = 0;
     bool checked = false;
     while (rcount < m_rmax) {
-        if (m_iterate && m_nextNode && rcount >= m_rmin) {	// Œã‚ë‚ğŒ©‚éŒŸõ : ++
+        if (m_iterate && m_nextNode && rcount >= m_rmin) {	// å¾Œã‚ã‚’è¦‹ã‚‹æ¤œç´¢ : ++
             const UChar* ret = m_nextNode->match(start, stop, pMatch);
             if (ret) {
                 return ret;
@@ -821,14 +821,14 @@ CNode_Memory::~CNode_Memory()
 
 const UChar* CNode_Memory::match(const UChar* start, const UChar* stop, MatchData* pMatch)
 {
-    if (m_memorizer) {	// // eMemory‚Ì‚É’Ê‚éBqMemory(memorizer)‚Ì‚½‚ß‚ÉŒ»İ‚ÌˆÊ’u‚ğ‹L‰¯‚µ‚Ä‚¨‚­
+    if (m_memorizer) {	// // è¦ªMemoryã®æ™‚ã«é€šã‚‹ã€‚å­Memory(memorizer)ã®ãŸã‚ã«ç¾åœ¨ã®ä½ç½®ã‚’è¨˜æ†¶ã—ã¦ãŠã
         //m_memorizer->m_recordPos = start;
 		auto insertResult = pMatch->mapRecordPos.insert({ m_memorizer, start });
         const UChar* ret = m_node->match(start, stop, pMatch);
 		pMatch->mapRecordPos.erase(insertResult.first);
         return ret;
 
-    } else {	// setNextNode‚ÅŸ‚Ìƒ}ƒbƒ`‚Ì‘O‚Émemorizer(this)‚ª‚æ‚Î‚ê‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚é
+    } else {	// setNextNodeã§æ¬¡ã®ãƒãƒƒãƒã®å‰ã«memorizer(this)ãŒã‚ˆã°ã‚Œã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã‚‹
 		ATLASSERT(pMatch->mapRecordPos.size() > 0);
 
 		auto itfound = pMatch->mapRecordPos.find(this);
@@ -839,7 +839,7 @@ const UChar* CNode_Memory::match(const UChar* start, const UChar* stop, MatchDat
         if (m_memoryPos != -1) {
 			backup = pMatch->pFilter->memoryTable[m_memoryPos];
 
-			// (a&b)\0-9 ‚Å b‚Ìƒ}ƒbƒ`Œã‚É‹­§“I‚Éã‘‚«‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+			// (a&b)\0-9 ã§ bã®ãƒãƒƒãƒå¾Œã«å¼·åˆ¶çš„ã«ä¸Šæ›¸ãã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 			if (m_contentNodeIsAnd && backup.posStart() == begin) {
 				if (backup.posEnd() < start) {
 					ATLASSERT(pMatch->IsSaveMemory() == false);
@@ -996,7 +996,7 @@ const UChar* CNode_Url::match(const UChar* start, const UChar* stop, MatchData* 
     while (start < stop && *ptr != L'\0' && towlower(*ptr) == towlower(*start)) {
         ptr++; start++;
     }
-	// ‘S•”Á”ï‚µ‚È‚©‚Á‚½
+	// å…¨éƒ¨æ¶ˆè²»ã—ãªã‹ã£ãŸ
     if (*ptr != L'\0') {
 		UpdateReached(start, pMatch);
         return nullptr;
@@ -1029,10 +1029,10 @@ CNode_List::CNode_List(const std::string& name, bool top /*= true*/) :
 {
 	std::lock_guard<std::recursive_mutex> lock(CSettings::s_mutexHashedLists);
 	auto& hashedLists = CSettings::s_mapHashedLists[m_name];
-	if (hashedLists == nullptr)	// ƒŠƒXƒg‚ª‚È‚¢‚Ì‚Å“K“–‚É¶¬‚µ‚Æ‚­
+	if (hashedLists == nullptr)	// ãƒªã‚¹ãƒˆãŒãªã„ã®ã§é©å½“ã«ç”Ÿæˆã—ã¨ã
 		hashedLists.reset(new HashedListCollection);
 
-	m_phashedCollection = hashedLists.get();	// ‚±‚±‚Åæ“¾‚µ‚½ƒ|ƒCƒ“ƒ^‚ÍƒvƒƒOƒ‰ƒ€I—¹‚Ü‚Å—LŒø
+	m_phashedCollection = hashedLists.get();	// ã“ã“ã§å–å¾—ã—ãŸãƒã‚¤ãƒ³ã‚¿ã¯ãƒ—ãƒ­ã‚°ãƒ©ãƒ çµ‚äº†ã¾ã§æœ‰åŠ¹
 
 	if (top) {
 		m_whiteList.reset(new CNode_List("*" + m_name, false));
@@ -1059,7 +1059,7 @@ const UChar* CNode_List::match(const UChar* start, const UChar* stop, MatchData*
 			return ptr;
 		}
 
-		// ŒÅ’èƒvƒŒƒtƒBƒbƒNƒX
+		// å›ºå®šãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹
 		auto pmapPreHashWord = &m_phashedCollection->PreHashWordList;
 		while (start < stop) {
 			auto itfound = pmapPreHashWord->find(towlower(*start));
@@ -1086,7 +1086,7 @@ const UChar* CNode_List::match(const UChar* start, const UChar* stop, MatchData*
 		UpdateReached(start, pMatch);
 
 		start = startOrigin;
-		// URLƒnƒbƒVƒ…
+		// URLãƒãƒƒã‚·ãƒ¥
 		enum { kMaxDomainLength = 255 };
 		const UChar* slashPos = start;
 		for (int i = 0; start < stop && i < kMaxDomainLength; ++i, ++start) {
@@ -1225,7 +1225,7 @@ const UChar* CNode_Command::match(const UChar* start, const UChar* stop, MatchDa
 		break;
 
     case CMD_TSTEXPAND:	// $TST((expand text)=Matching expression)
-						// ƒJƒbƒR“à‚ª“WŠJ‚³‚ê‚½Œã‚ÉA•]‰¿‚³‚ê‚é (modo‚¾‚¯‚Ì“Æ©Šg’£H)
+						// ã‚«ãƒƒã‚³å†…ãŒå±•é–‹ã•ã‚ŒãŸå¾Œã«ã€è©•ä¾¡ã•ã‚Œã‚‹ (modoã ã‘ã®ç‹¬è‡ªæ‹¡å¼µï¼Ÿ)
 		pMatch->stackSaveMemory.push(true);
 		toMatch = CExpander::expand(m_name, filter);
         tStart = toMatch.c_str();
@@ -1404,7 +1404,7 @@ const UChar* CNode_Command::match(const UChar* start, const UChar* stop, MatchDa
 			auto it = CSettings::s_setRemoteProxy.find(UTF8fromUTF16(m_content));
 			if (it != CSettings::s_setRemoteProxy.end()) {
 				owner.contactHost = UTF16fromUTF8(*it);
-				owner.useSettingsProxy = false;	// ƒfƒtƒHƒ‹ƒg‚ÌƒŠƒ‚[ƒgƒvƒƒNƒV‚ªg‚í‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+				owner.useSettingsProxy = false;	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒªãƒ¢ãƒ¼ãƒˆãƒ—ãƒ­ã‚¯ã‚·ãŒä½¿ã‚ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 			}
 		}
         break;
@@ -1558,8 +1558,8 @@ const UChar* CNode_Nest::match(const UChar* start, const UChar* stop, MatchData*
         pos++;
     }
     if (level > 0) {
-		UpdateReached(pos, pMatch);	// Á”ï‚µ‚½‚Ì‚ÅXV‚µ‚Æ‚©‚È‚¢‚Æ‚Ü‚¸‚¢H
-		return NULL;	// Nest‚ªû‘©‚µ‚È‚¢‚Ì‚Åƒ}ƒbƒ`‚µ‚È‚¢
+		UpdateReached(pos, pMatch);	// æ¶ˆè²»ã—ãŸã®ã§æ›´æ–°ã—ã¨ã‹ãªã„ã¨ã¾ãšã„ï¼Ÿ
+		return NULL;	// NestãŒåæŸã—ãªã„ã®ã§ãƒãƒƒãƒã—ãªã„
 	}
 
     if (m_middle) {

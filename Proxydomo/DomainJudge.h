@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 bool	Load_public_suffix_list();
 

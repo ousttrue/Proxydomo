@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	Settings.cpp
-*	@brief	‘SƒtƒBƒ‹ƒ^[‚Æ‘SƒŠƒXƒg‚ğ‚Á‚Ä‚¢‚é
+*	@brief	å…¨ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã¨å…¨ãƒªã‚¹ãƒˆã‚’æŒã£ã¦ã„ã‚‹
 */
 /**
 	this file is part of Proxydomo
@@ -161,7 +161,7 @@ void	CSettings::LoadSettings()
 
 	UITranslator::LoadUILanguage();
 
-	// prefix‚ğİ’è
+	// prefixã‚’è¨­å®š
 	enum { kPrefixSize = 8 };
 	const wchar_t charactorSelection[] = L"abcdefghijklmnopqrstuvqxyz0123456789";
 	std::random_device	randEngine;
@@ -178,7 +178,7 @@ void	CSettings::LoadSettings()
 	s_urlCommandPrefix[kPrefixSize] = L'_';
 	s_urlCommandPrefix[kPrefixSize + 1] = L'\0';
 
-	// Bypass matcher‚ğì¬
+	// Bypass matcherã‚’ä½œæˆ
 	s_pBypassMatcher = Proxydomo::CMatcher::CreateMatcher(L"$LST(Bypass)");
 
 	s_pPriorityCharsetMatcher = Proxydomo::CMatcher::CreateMatcher(L"$LST(PriorityCharset)");
@@ -195,7 +195,7 @@ void	CSettings::LoadSettings()
 		if (blockListDB) {
 			lockdb = std::unique_lock<CBlockListDatabase>(*blockListDB);
 		}
-		// lists ƒtƒHƒ‹ƒ_‚©‚çƒuƒƒbƒNƒŠƒXƒg‚ğ“Ç‚İ‚Ş
+		// lists ãƒ•ã‚©ãƒ«ãƒ€ã‹ã‚‰ãƒ–ãƒ­ãƒƒã‚¯ãƒªã‚¹ãƒˆã‚’èª­ã¿è¾¼ã‚€
 		std::function<void(const CString&, bool)> funcForEach;
 		funcForEach = [&funcForEach](const CString& path, bool bFolder) {
 			if (bFolder) {
@@ -245,7 +245,7 @@ void	CSettings::SaveSettings()
 	try {
 		read_ini(settingsPath, pt);
 	} catch (...) {
-		ERROR_LOG << L"CSettings::SaveSettings : settings.ini‚Ì“Ç‚İ‚İ‚É¸”s";
+		ERROR_LOG << L"CSettings::SaveSettings : settings.iniã®èª­ã¿è¾¼ã¿ã«å¤±æ•—";
 		pt.clear();
 	}
 
@@ -421,7 +421,7 @@ void CSettings::SaveFilter()
 
 					std::wofstream	fs(tempPath);
 					if (!fs) {
-						//MessageBox(NULL, _T("filter.temp.xml‚ÌƒI[ƒvƒ“‚É¸”s"), NULL, MB_ICONERROR);
+						//MessageBox(NULL, _T("filter.temp.xmlã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—"), NULL, MB_ICONERROR);
 						s_cs.Leave();
 						s_bCancel.store(false);
 						delete pFilter;
@@ -445,7 +445,7 @@ void CSettings::SaveFilter()
 				break;
 
 			} else {
-				// ‘¼‚ÌƒXƒŒƒbƒh‚ª•Û‘¶ˆ—‚ğÀs’†...
+				// ä»–ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒä¿å­˜å‡¦ç†ã‚’å®Ÿè¡Œä¸­...
 				ATLTRACE(_T("SaveFilter : TryEnter failed\n"));
 				s_bCancel.store(true);
 				::Sleep(100);
@@ -480,7 +480,7 @@ std::chrono::steady_clock::time_point CSettings::EnumActiveFilter(std::function<
 	return s_lastFiltersSaveTime;
 }
 
-/// ÅI‘‚«‚İ‚ğæ“¾
+/// æœ€çµ‚æ›¸ãè¾¼ã¿æ™‚åˆ»ã‚’å–å¾—
 static uint64_t GetFileLastWriteTime(const CString& filePath)
 {
 	HANDLE hFile = CreateFile(filePath, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -520,15 +520,15 @@ void CSettings::LoadList(const CString& filePath)
 		hashedLists->filePath = (LPCWSTR)filePath;
 	} else {
 		if (hashedLists->filePath != (LPCWSTR)filePath) {
-			return;		// “¯‚¶ƒtƒ@ƒCƒ‹–¼‚Å‚Í“o˜^‚Å‚«‚È‚¢‚Ì‚Å
+			return;		// åŒã˜ãƒ•ã‚¡ã‚¤ãƒ«åã§ã¯ç™»éŒ²ã§ããªã„ã®ã§
 
 		} else if (hashedLists->bLogFile)
-			return;		// ƒƒOƒtƒ@ƒCƒ‹‚Í‰½‚à‚µ‚È‚¢
+			return;		// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã¯ä½•ã‚‚ã—ãªã„
 	}
 
 	uint64_t lastWriteTime = GetFileLastWriteTime(filePath);
 	if (hashedLists->prevLastWriteTime == lastWriteTime)
-		return ;	// XV‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‹A‚é
+		return ;	// æ›´æ–°ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰å¸°ã‚‹
 	hashedLists->prevLastWriteTime = lastWriteTime;
 
 	std::wifstream fs(filePath, std::ios::in);
@@ -604,7 +604,7 @@ void CSettings::LoadList(const CString& filePath)
 			if (fs.eof())
 				break;
 		}
-		funcCreatePattern();	// ÅŒã‚Ìs
+		funcCreatePattern();	// æœ€å¾Œã®è¡Œ
 
 		hashedLists->lineCount = nLineCount;
 	}
@@ -666,11 +666,11 @@ static inline bool isNonWildWord(wchar_t c) {
 
 bool CSettings::_CreatePattern(std::wstring& pattern, HashedListCollection& listCollection, int listLine)
 {
-	// ŒÅ’èƒvƒŒƒtƒBƒbƒNƒX
+	// å›ºå®šãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹
 	enum { kMaxPreHashWordLength = 7 };
 	bool	bPreHash = true;
 	std::size_t length = pattern.length();
-	// (kMaxPreHashWordLength + 1)•¶š–Ú‚É '+'‚ª‚ ‚é‚±‚Æ‚ğl—¶‚·‚é
+	// (kMaxPreHashWordLength + 1)æ–‡å­—ç›®ã« '+'ãŒã‚ã‚‹ã“ã¨ã‚’è€ƒæ…®ã™ã‚‹
 	for (std::size_t i = 0; i < length && i < (kMaxPreHashWordLength + 1); ++i) {		
 		if (isNonWildWord(pattern[i]) == false) {
 			bPreHash = false;
@@ -680,7 +680,7 @@ bool CSettings::_CreatePattern(std::wstring& pattern, HashedListCollection& list
 	if (bPreHash) {
 		auto pmapPreHashWord = &listCollection.PreHashWordList;
 
-		// Å‰‚Éƒpƒ^[ƒ“‚ª³í‚©ƒeƒXƒg
+		// æœ€åˆã«ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒæ­£å¸¸ã‹ãƒ†ã‚¹ãƒˆ
 		if (Proxydomo::CMatcher::CreateMatcher(pattern) == nullptr)
 			return false;
 
@@ -708,7 +708,7 @@ bool CSettings::_CreatePattern(std::wstring& pattern, HashedListCollection& list
 
 	}
 
-	// URLƒnƒbƒVƒ…
+	// URLãƒãƒƒã‚·ãƒ¥
 	std::size_t slashPos = pattern.find(L'/');
 	if (slashPos != std::wstring::npos && slashPos != 0) {
 		std::wstring urlHost = pattern.substr(0, slashPos);
@@ -723,9 +723,9 @@ bool CSettings::_CreatePattern(std::wstring& pattern, HashedListCollection& list
 						break;
 					}
 					if (*it == L'.') {
-						if (std::next(urlHost.cbegin()) == it)	// *.‚Ìê‡–³‹‚·‚é
+						if (std::next(urlHost.cbegin()) == it)	// *.ã®å ´åˆç„¡è¦–ã™ã‚‹
 							continue;
-						if (it != itbegin && domain.empty()) {	// ..‚ª‘±‚­ê‡
+						if (it != itbegin && domain.empty()) {	// ..ãŒç¶šãå ´åˆ
 							ATLASSERT(FALSE);
 							deqDomain.clear();	// fail
 							break;
@@ -796,7 +796,7 @@ bool CSettings::_CreatePattern(std::wstring& pattern, HashedListCollection& list
 				{
 					for (auto it = std::next(urlHost.cbegin()); it != urlHost.cend(); ++it) {
 						if (*it == L']') {
-							if (*std::prev(it) == L'\\')	// \]‚Í–³‹
+							if (*std::prev(it) == L'\\')	// \]ã¯ç„¡è¦–
 								continue;
 							auto next1 = std::next(it);
 							if (next1 != urlHost.cend() && *next1 == L'+') {	// ]+
@@ -833,7 +833,7 @@ bool CSettings::_CreatePattern(std::wstring& pattern, HashedListCollection& list
 				break;
 			}
 			if (firstWildcard.length() > 0 && deqDomain.size() > 0) {
-				// Å‰‚Éƒpƒ^[ƒ“‚ª³í‚©ƒeƒXƒg
+				// æœ€åˆã«ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒæ­£å¸¸ã‹ãƒ†ã‚¹ãƒˆ
 				if (Proxydomo::CMatcher::CreateMatcher(pattern) == nullptr)
 					return false;
 

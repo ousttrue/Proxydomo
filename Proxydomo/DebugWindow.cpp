@@ -1,6 +1,6 @@
-/**
+ï»¿/**
  *	@file	DebugWindow.cpp
- *	@brief	‚Æ‚è‚ ‚¦‚¸“I‚È“K“–ƒfƒoƒbƒO—pƒ_ƒCƒAƒƒO‚ð¶¬‚·‚éƒNƒ‰ƒX
+ *	@brief	ã¨ã‚Šã‚ãˆãšçš„ãªé©å½“ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ç”Ÿæˆã™ã‚‹ã‚¯ãƒ©ã‚¹
  */
 /**
 	this file is part of Proxydomo
@@ -59,7 +59,7 @@ public:
 //------------------------------------
 CDebugUtility::Impl::Impl()  : m_hOut(NULL)
 {
-	// ƒƒOƒtƒ@ƒCƒ‹ì¬
+	// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
 	FILE* fp = nullptr;
 	_wfopen_s(&fp, Misc::GetExeDirectory() + _T("log.txt"), L"w");
 	fclose(fp);
@@ -284,8 +284,8 @@ void CDebugWindow::OutPutMenu(CMenuHandle menu)
 		CString strText;
 		menu.GetMenuString(i, strText, MF_BYPOSITION);
 		UINT uCmdID = menu.GetMenuItemID(i);
-		if (uCmdID == 0) { strText = _T("\\\\\\"); }
-		if (uCmdID == -1) {	// ƒTƒuƒƒjƒ…[H
+		if (uCmdID == 0) { strText = _T("â€”â€”â€”â€”â€”â€”"); }
+		if (uCmdID == -1) {	// ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼Ÿ
 			OutPutString(_T("           : > %s\n"), strText);
 		} else {
 			OutPutString(_T("%05d : %s\n"), uCmdID, strText);
@@ -307,7 +307,7 @@ BOOL	CDebugWindow::OnInitDialog(CWindow wndFocus, LPARAM lInitParam)
 	m_wndEdit = GetDlgItem(IDC_EDIT1);
 	//m_wndEdit.Create(m_hWnd, rc, NULL, ES_MULTILINE | WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL);
 
-	// ƒƒbƒZ[ƒWƒ‹[ƒv‚ÉƒƒbƒZ[ƒWƒtƒBƒ‹ƒ^‚ÆƒAƒCƒhƒ‹ƒnƒ“ƒhƒ‰‚ð’Ç‰Á
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ«ãƒ¼ãƒ—ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚£ãƒ«ã‚¿ã¨ã‚¢ã‚¤ãƒ‰ãƒ«ãƒãƒ³ãƒ‰ãƒ©ã‚’è¿½åŠ 
 	CMessageLoop* pLoop = _Module.GetMessageLoop();
 	pLoop->AddMessageFilter(this);
 //	pLoop->AddIdleHandler(this);
@@ -320,7 +320,7 @@ BOOL	CDebugWindow::OnInitDialog(CWindow wndFocus, LPARAM lInitParam)
 
 void	CDebugWindow::OnDestroy()
 {
-	// ƒƒbƒZ[ƒWƒ‹[ƒv‚©‚çƒƒbƒZ[ƒWƒtƒBƒ‹ƒ^‚ÆƒAƒCƒhƒ‹ƒnƒ“ƒhƒ‰‚ðíœ
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ«ãƒ¼ãƒ—ã‹ã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚£ãƒ«ã‚¿ã¨ã‚¢ã‚¤ãƒ‰ãƒ«ãƒãƒ³ãƒ‰ãƒ©ã‚’å‰Šé™¤
 	CMessageLoop* pLoop = _Module.GetMessageLoop();
 	pLoop->RemoveMessageFilter(this);
 	//pLoop->RemoveIdleHandler(this);

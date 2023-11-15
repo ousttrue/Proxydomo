@@ -1,4 +1,4 @@
-//------------------------------------------------------------------
+ï»¿//------------------------------------------------------------------
 //
 //this file is part of Proximodo
 //Copyright (C) 2004 Antony BOUCHER ( kuruden@users.sourceforge.net )
@@ -61,7 +61,7 @@ size_t findParamEnd(const string& str, char c) {
  * a search tree. An exception is returned if the pattern is
  * malformed.
  */
-/// pattern ‚ğŒŸõ–Ø‚É•ÏŠ·‚µ‚Ü‚·B pattern‚ª–³Œø‚È‚ç—áŠO‚ª”ò‚Ñ‚Ü‚·B
+/// pattern ã‚’æ¤œç´¢æœ¨ã«å¤‰æ›ã—ã¾ã™ã€‚ patternãŒç„¡åŠ¹ãªã‚‰ä¾‹å¤–ãŒé£›ã³ã¾ã™ã€‚
 CMatcher::CMatcher(const string& pattern, CFilter& filter) :
                     filter(filter) {
 
@@ -81,7 +81,7 @@ CMatcher::CMatcher(const string& pattern, CFilter& filter) :
 
     // another reason to throw : the pattern was not completely
     // consumed, i.e there was an unpaired )
-	/// ƒpƒ^[ƒ“‚ªŠ®‘S‚ÉÁ”ï‚³‚ê‚Ä‚¢‚È‚¢B¦—á: ()‚ªƒyƒA‚É‚È‚Á‚Ä‚¢‚È‚¢
+	/// ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒå®Œå…¨ã«æ¶ˆè²»ã•ã‚Œã¦ã„ãªã„ã€‚â€»ä¾‹: ()ãŒãƒšã‚¢ã«ãªã£ã¦ã„ãªã„
     if ((size_t)pos != pattern.size()) {
         throw parsing_exception("PARSING_INCOMPLETE", pos);
     }
@@ -389,7 +389,7 @@ CNode* CMatcher::run(const string& pattern, int& pos, int stop) {
 CNode* CMatcher::code(const string& pattern, int& pos, int stop) {
 
     // CR and LF are only for user convenience, they have no meaning whatsoever
-	// CR ‚â LF ‚Íƒ†[ƒU[‚É‚Æ‚Á‚Ä•Ö—˜‚È‚¾‚¯‚ÅA\•¶“I‚É‚Í‰½‚ÌˆÓ–¡‚à‚½‚È‚¢‚Ì‚Å”ò‚Î‚·
+	// CR ã‚„ LF ã¯ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«ã¨ã£ã¦ä¾¿åˆ©ãªã ã‘ã§ã€æ§‹æ–‡çš„ã«ã¯ä½•ã®æ„å‘³ã‚‚æŒãŸãªã„ã®ã§é£›ã°ã™
     while (pos < stop && (pattern[pos] == '\r' || pattern[pos] == '\n')) pos++;
 
     // This NULL will be interpreted by run() as end of expression
@@ -403,7 +403,7 @@ CNode* CMatcher::code(const string& pattern, int& pos, int stop) {
     if (token == '\\') {
 
         // it should not be at the end of the pattern
-		// '\'‚Åƒpƒ^[ƒ“‚ªI‚í‚Á‚Ä‚¢‚ê‚Î‚¨‚©‚µ‚¢‚Ì‚Å—áŠO‚ğ”ò‚Î‚·
+		// '\'ã§ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒçµ‚ã‚ã£ã¦ã„ã‚Œã°ãŠã‹ã—ã„ã®ã§ä¾‹å¤–ã‚’é£›ã°ã™
         if (pos+1 == stop) 
 			throw parsing_exception("ESCAPE_AT_END", pos);
 
@@ -558,7 +558,7 @@ CNode* CMatcher::code(const string& pattern, int& pos, int stop) {
                 }
             }
             // Check if the [] is closed
-			// ']'‚ª—ˆ‚é‘O‚Éƒpƒ^[ƒ“‚ªI‚í‚Á‚½‚Ì‚Å—áŠO‚ğ”ò‚Î‚·
+			// ']'ãŒæ¥ã‚‹å‰ã«ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒçµ‚ã‚ã£ãŸã®ã§ä¾‹å¤–ã‚’é£›ã°ã™
             if (pos == stop) {
                 delete node;
                 throw parsing_exception("MISSING_CROCHET", pos);
@@ -957,7 +957,7 @@ CNode* CMatcher::code(const string& pattern, int& pos, int stop) {
         CNode *node = expr(pattern, pos, stop);
         
         // It must be followed by the closing )
-		// ')'‚ª‚±‚È‚¢A‚à‚µ‚­‚Í Ÿ‚Ìƒg[ƒNƒ“‚É')'‚ª—ˆ‚È‚¢‚Æ—áŠO‚ğ”ò‚Î‚·
+		// ')'ãŒã“ãªã„ã€ã‚‚ã—ãã¯ æ¬¡ã®ãƒˆãƒ¼ã‚¯ãƒ³ã«')'ãŒæ¥ãªã„ã¨ä¾‹å¤–ã‚’é£›ã°ã™
         if (pos == stop || pattern[pos] != ')') {
             delete node;
             throw parsing_exception("MISSING_PARENTHESE", pos);

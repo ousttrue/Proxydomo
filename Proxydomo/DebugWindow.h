@@ -1,6 +1,6 @@
-/**
+﻿/**
  *	@file	DebugWindow.h
- *	@brief	�Ƃ肠�����I�ȓK���f�o�b�O�p�_�C�A���O�𐶐�����N���X
+ *	@brief	とりあえず的な適当デバッグ用ダイアログを生成するクラス
  */
 /**
 	this file is part of Proxydomo
@@ -107,10 +107,10 @@ const bool	g_cnt_b_use_debug_window	=	false;
 
 
 /**
-	�Ƃ肠�����I�ȓK���f�o�b�O�p�_�C�A���O�𐶐�����N���X
+	とりあえず的な適当デバッグ用ダイアログを生成するクラス
 
-	�����[�X�r���h���ɂ̓R���p�C�����炳��Ȃ��悤�ɂ��ׂ��ł͂��邪�A���޸�('A`)
-	�g������Create()��Destroy()�̌Ăяo���̊Ԃ�OutPutString���Ăяo������
+	リリースビルド時にはコンパイルすらされないようにすべきではあるが、マンドクセ('A`)
+	使い方はCreate()とDestroy()の呼び出しの間にOutPutStringを呼び出すだけ
  */
 
 class CDebugWindow 

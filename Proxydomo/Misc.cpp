@@ -1,6 +1,6 @@
-/**
+ï»¿/**
  *	@file	Misc.cpp
- *	@biref	‚í‚è‚Æ”Ä—p“I‚ÈG‘½‚Èƒ‹[ƒ`ƒ“ŒQ
+ *	@biref	ã‚ã‚Šã¨æ±ç”¨çš„ãªé›‘å¤šãªãƒ«ãƒ¼ãƒãƒ³ç¾¤
  *	@note
  *
  */
@@ -54,7 +54,7 @@ CString GetClipboardText(bool bUseOLE /*= false*/)
 			HGLOBAL hText = ::GetClipboardData(CF_TEXT);
 			if (hText) {
 				LPSTR text = reinterpret_cast<LPSTR>(::GlobalLock(hText));
-				strText = reinterpret_cast<LPSTR>(text);		//+++ UNICODEC³
+				strText = reinterpret_cast<LPSTR>(text);		//+++ UNICODEä¿®æ­£
 				::GlobalUnlock(hText);
 			}
 			::CloseClipboard();
@@ -72,7 +72,7 @@ CString GetClipboardText(bool bUseOLE /*= false*/)
 		if ( SUCCEEDED(hr) ) {
 			if (stgmedium.hGlobal != NULL) {
 				HGLOBAL hText = stgmedium.hGlobal;
-				strText = reinterpret_cast<LPTSTR>( ::GlobalLock(hText) );		//+++ UNICODE C³
+				strText = reinterpret_cast<LPTSTR>( ::GlobalLock(hText) );		//+++ UNICODE ä¿®æ­£
 				::GlobalUnlock(hText);
 			}
 			::ReleaseStgMedium(&stgmedium);
@@ -111,7 +111,7 @@ bool SetClipboardText(const CString& str)
 
 // ==========================================================================
 
-//+++ ƒtƒ@ƒCƒ‹ƒpƒX–¼‚æ‚èAƒtƒ@ƒCƒ‹–¼‚ğæ“¾
+//+++ ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹åã‚ˆã‚Šã€ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—
 TCHAR *GetFileBaseName(const TCHAR* adr)
 {
 	const TCHAR *p;
@@ -128,7 +128,7 @@ TCHAR *GetFileBaseName(const TCHAR* adr)
 }
 
 
-//+++ ƒtƒ@ƒCƒ‹ƒpƒX–¼‚æ‚èAƒtƒ@ƒCƒ‹–¼‚ğæ“¾
+//+++ ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹åã‚ˆã‚Šã€ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—
 const CString	GetFileBaseName(const CString& strFileName)
 {
   #if 1
@@ -145,7 +145,7 @@ const CString	GetFileBaseName(const CString& strFileName)
 }
 
 
-//+++ ƒtƒ@ƒCƒ‹ƒpƒX–¼‚æ‚èAƒfƒBƒŒƒNƒgƒŠ–¼‚ğæ“¾. ÅŒã‚Ì'\\'‚ÍŠÜ‚Ü‚È‚¢.
+//+++ ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹åã‚ˆã‚Šã€ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåã‚’å–å¾—. æœ€å¾Œã®'\\'ã¯å«ã¾ãªã„.
 const CString	GetDirName(const CString& strFileName)
 {
 	int 	n	= strFileName.ReverseFind( _T('\\') );
@@ -156,7 +156,7 @@ const CString	GetDirName(const CString& strFileName)
 
 
 
-///+++ ƒtƒ@ƒCƒ‹–¼‚ÌŠg’£q‚Ìæ“¾. ¦ Œ‹‰Ê‚Ì•¶š—ñ‚É‚Í'.'‚ÍŠÜ‚Ü‚ê‚È‚¢.
+///+++ ãƒ•ã‚¡ã‚¤ãƒ«åã®æ‹¡å¼µå­ã®å–å¾—. â€» çµæœã®æ–‡å­—åˆ—ã«ã¯'.'ã¯å«ã¾ã‚Œãªã„.
 TCHAR *GetFileExt(const TCHAR *name)
 {
 	name			= GetFileBaseName(name);
@@ -169,7 +169,7 @@ TCHAR *GetFileExt(const TCHAR *name)
 
 
 
-///+++ ƒtƒ@ƒCƒ‹–¼‚ÌŠg’£q‚Ìæ“¾. ¦ Œ‹‰Ê‚Ì•¶š—ñ‚É‚Í'.'‚ÍŠÜ‚Ü‚ê‚È‚¢.
+///+++ ãƒ•ã‚¡ã‚¤ãƒ«åã®æ‹¡å¼µå­ã®å–å¾—. â€» çµæœã®æ–‡å­—åˆ—ã«ã¯'.'ã¯å«ã¾ã‚Œãªã„.
 const CString	GetFileExt(const CString& strFileName)
 {
   #if 1
@@ -184,7 +184,7 @@ const CString	GetFileExt(const CString& strFileName)
 }
 
 
-///+++ ƒtƒHƒ‹ƒ_•Šg’£q–³‚µ‚Ìƒtƒ@ƒCƒ‹–¼‚Ìæ“¾. ¦ Œ‹‰Ê‚Ì•¶š—ñ‚É‚Í'.'‚ÍŠÜ‚Ü‚ê‚È‚¢.
+///+++ ãƒ•ã‚©ãƒ«ãƒ€ï¼†æ‹¡å¼µå­ç„¡ã—ã®ãƒ•ã‚¡ã‚¤ãƒ«åã®å–å¾—. â€» çµæœã®æ–‡å­—åˆ—ã«ã¯'.'ã¯å«ã¾ã‚Œãªã„.
 const CString	GetFileBaseNoExt(const CString& strFileName)
 {
 	const CString strBaseName = GetFileBaseName(strFileName);
@@ -196,7 +196,7 @@ const CString	GetFileBaseNoExt(const CString& strFileName)
 
 
 
-///+++ Šg’£q–³‚µ‚Ìƒtƒ@ƒCƒ‹–¼‚Ìæ“¾. ¦ Œ‹‰Ê‚Ì•¶š—ñ‚É‚Í'.'‚ÍŠÜ‚Ü‚ê‚È‚¢.
+///+++ æ‹¡å¼µå­ç„¡ã—ã®ãƒ•ã‚¡ã‚¤ãƒ«åã®å–å¾—. â€» çµæœã®æ–‡å­—åˆ—ã«ã¯'.'ã¯å«ã¾ã‚Œãªã„.
 const CString	GetFileNameNoExt(const CString& strFileName)
 {
   #if 1
@@ -222,7 +222,7 @@ const CString	GetFileNameNoExt(const CString& strFileName)
   #endif
 }
 
-/// ”í‚ç‚È‚¢ƒtƒ@ƒCƒ‹ƒpƒX‚É‚µ‚Ä•Ô‚·
+/// è¢«ã‚‰ãªã„ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã«ã—ã¦è¿”ã™
 int	GetUniqueFilePath(CString& filepath, int nStart /*= 1*/)
 {
 	if (::PathFileExists(filepath) == FALSE)
@@ -248,7 +248,7 @@ int	GetUniqueFilePath(CString& filepath, int nStart /*= 1*/)
 
 // ==========================================================================
 
-///+++ undonut.exe‚Ìƒtƒ‹ƒpƒX–¼‚ğ•Ô‚·.  (MtlGetModuleFileName‚Æˆê‚¾‚Á‚½...)
+///+++ undonut.exeã®ãƒ•ãƒ«ãƒ‘ã‚¹åã‚’è¿”ã™.  (MtlGetModuleFileNameã¨ä¸€ç·’ã ã£ãŸ...)
 const CString 	GetExeFileName()
 {
 	TCHAR	buf[MAX_PATH];
@@ -258,7 +258,7 @@ const CString 	GetExeFileName()
 }
 
 
-///+++ exe(dll)‚Ì‚ ‚éƒtƒHƒ‹ƒ_‚ğ•Ô‚·. ÅŒã‚É'\\'‚ª•t‚­
+///+++ exe(dll)ã®ã‚ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ã‚’è¿”ã™. æœ€å¾Œã«'\\'ãŒä»˜ã
 const CString GetExeDirectory()
 {
 	CString str = GetExeFileName();
@@ -267,7 +267,7 @@ const CString GetExeDirectory()
 }
 
 
-///+++ exe(dll)‚Ì‚ ‚éƒtƒHƒ‹ƒ_‚ğ•Ô‚·. ÅŒã‚É'\\'‚ª•t‚©‚È‚¢
+///+++ exe(dll)ã®ã‚ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ã‚’è¿”ã™. æœ€å¾Œã«'\\'ãŒä»˜ã‹ãªã„
 const CString GetExeDirName()
 {
 	CString str = GetExeFileName();
@@ -275,17 +275,17 @@ const CString GetExeDirName()
 	return	str.Left(n);
 }
 
-//	strFile‚ğ .bak ‚ğ‚Â‚¯‚½ƒtƒ@ƒCƒ‹‚ÉƒRƒs[. ŒÃ‚¢ .bak ‚ª‚ ‚ê‚Î‚»‚ê‚Ííœ.
+//	strFileã‚’ .bak ã‚’ã¤ã‘ãŸãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚³ãƒ”ãƒ¼. å¤ã„ .bak ãŒã‚ã‚Œã°ãã‚Œã¯å‰Šé™¤.
 void	CopyToBackupFile(const CString& strFileName)
 {
 	CString 	strBakName = strFileName + _T(".bak");
 	if (::PathFileExists(strFileName))
-		::CopyFile(strFileName, strBakName, FALSE);		// Šù‘¶‚Ìƒtƒ@ƒCƒ‹‚ğƒoƒbƒNƒAƒbƒvƒtƒ@ƒCƒ‹‚É‚·‚é.
+		::CopyFile(strFileName, strBakName, FALSE);		// æ—¢å­˜ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã«ã™ã‚‹.
 }
 
 
-/// .exe‚Ì‚ ‚éƒfƒBƒŒƒNƒgƒŠ‚Ìƒtƒ‹ƒpƒX‚ğ•Ô‚·. ÅŒã‚É'\\'‚ğŠÜ‚Ş.
-//   ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚Ìæ“¾.
+/// .exeã®ã‚ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’è¿”ã™. æœ€å¾Œã«'\\'ã‚’å«ã‚€.
+//   ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å–å¾—.
 const CString GetCurDirectory()
 {
 	TCHAR dir[MAX_PATH + 2];
@@ -301,7 +301,7 @@ int SetCurDirectory(const CString& strDir)
 	return ::SetCurrentDirectory(LPCTSTR(strDir));
 }
 
-///+++ è”²‚«‚Èƒtƒ‹ƒpƒX‰». ƒfƒBƒŒƒNƒgƒŠ‚Ìw’è‚ª‚È‚¯‚ê‚ÎAundonutƒtƒHƒ‹ƒ_‰º‚Æ‚È‚é.
+///+++ æ‰‹æŠœããªãƒ•ãƒ«ãƒ‘ã‚¹åŒ–. ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®æŒ‡å®šãŒãªã‘ã‚Œã°ã€undonutãƒ•ã‚©ãƒ«ãƒ€ä¸‹ã¨ãªã‚‹.
 const CString GetFullPath_ForExe(const CString& strFileName)
 {
 	const TCHAR* p = LPCTSTR(strFileName);
@@ -312,9 +312,9 @@ const CString GetFullPath_ForExe(const CString& strFileName)
 	unsigned	c1 = p[1];
 	unsigned	c2 = 0;
 	if (c == '\\' || c == '/' || (c1 == ':' && ((c2 = p[2]) == '\\' || c2 == '/'))) {
-		return strFileName; // ƒtƒ‹ƒpƒX‚¾‚ë‚¤‚Å‚»‚Ì‚Ü‚Ü•Ô‚·.
+		return strFileName; // ãƒ•ãƒ«ãƒ‘ã‚¹ã ã‚ã†ã§ãã®ã¾ã¾è¿”ã™.
 	} else if (c1 == ':' || (c == '.' && (c1 == '\\' || c1 == '/' || (c1 == '.' && ((c2 = p[2]) == '\\' || c2 == '/'))))) {
-		// ‘Š‘ÎƒpƒX‚Û‚©‚Á‚½‚çA’Êí‚Ìƒtƒ‹ƒpƒXˆ—‚ğŒÄ‚Ô... è”²‚«‚ÅƒJƒŒƒ“ƒg‚ğ’²®.
+		// ç›¸å¯¾ãƒ‘ã‚¹ã½ã‹ã£ãŸã‚‰ã€é€šå¸¸ã®ãƒ•ãƒ«ãƒ‘ã‚¹å‡¦ç†ã‚’å‘¼ã¶... æ‰‹æŠœãã§ã‚«ãƒ¬ãƒ³ãƒˆã‚’èª¿æ•´.
 		CString sav = GetCurDirectory();
 		SetCurDirectory(GetExeDirectory());
 		TCHAR	buf[MAX_PATH + 4];
@@ -322,7 +322,7 @@ const CString GetFullPath_ForExe(const CString& strFileName)
 		::_tfullpath(buf, strFileName, MAX_PATH);
 		SetCurDirectory(sav);
 		return CString(buf);
-	} else {	// ‚»‚¤‚Å‚È‚¢ê‡‚Íundonut‚ÌƒtƒHƒ‹ƒ_‰º‚Ìw’è‚Æ‚µ‚Äˆµ‚¤.
+	} else {	// ãã†ã§ãªã„å ´åˆã¯undonutã®ãƒ•ã‚©ãƒ«ãƒ€ä¸‹ã®æŒ‡å®šã¨ã—ã¦æ‰±ã†.
 		return GetExeDirectory() + strFileName;
 	}
 }

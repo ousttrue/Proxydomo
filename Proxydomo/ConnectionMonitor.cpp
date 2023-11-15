@@ -1,4 +1,4 @@
-/**
+ï»¿/**
 *	@file	ConnectionMonitor.cpp
 */
 
@@ -147,7 +147,7 @@ void	CConnectionMonitorWindow::ShowWindow()
 							&& conDataOperation.updateCategory == updateCategory)
 						{
 							conDataOperation.conData = *conData;
-							return;	// ‚Qd‚É‚Í“o˜^‚µ‚È‚¢
+							return;	// ï¼’é‡ã«ã¯ç™»éŒ²ã—ãªã„
 						}
 					}
 				} else {
@@ -209,7 +209,7 @@ BOOL CConnectionMonitorWindow::OnInitDialog(CWindow wndFocus, LPARAM lInitParam)
 			read_ini(fs, pt);
 		}
 		catch (...) {
-			ERROR_LOG << L"CConnectionMonitorWindow::OnInitDialog : settings.ini‚Ì“Ç‚İ‚İ‚É¸”s";
+			ERROR_LOG << L"CConnectionMonitorWindow::OnInitDialog : settings.iniã®èª­ã¿è¾¼ã¿ã«å¤±æ•—";
 			pt.clear();
 		}
 		CRect rcWindow;
@@ -256,7 +256,7 @@ void CConnectionMonitorWindow::OnDestroy()
 		read_ini(settingsPath, pt);
 	}
 	catch (...) {
-		ERROR_LOG << L"CConnectionMonitorWindow::OnDestroy : settings.ini‚Ì“Ç‚İ‚İ‚É¸”s";
+		ERROR_LOG << L"CConnectionMonitorWindow::OnDestroy : settings.iniã®èª­ã¿è¾¼ã¿ã«å¤±æ•—";
 		pt.clear();
 	}
 
@@ -392,7 +392,7 @@ LRESULT CConnectionMonitorWindow::OnUpdateNotify(UINT uMsg, WPARAM wParam, LPARA
 				RECT rcItem;
 				m_connectionListView.GetItemRect(i, &rcItem, LVIR_BOUNDS);
 				m_connectionListView.InvalidateRect(&rcItem);
-				SetTimer(conData->uniqueId, 1500);	// ’x‰„‚³‚¹‚Ä‚©‚çÁ‚·
+				SetTimer(conData->uniqueId, 1500);	// é…å»¶ã•ã›ã¦ã‹ã‚‰æ¶ˆã™
 			}
 		}
 		break;

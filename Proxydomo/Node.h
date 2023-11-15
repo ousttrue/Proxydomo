@@ -1,4 +1,4 @@
-//------------------------------------------------------------------
+ï»¿//------------------------------------------------------------------
 //
 //this file is part of Proximodo
 //Copyright (C) 2004 Antony BOUCHER ( kuruden@users.sourceforge.net )
@@ -109,8 +109,8 @@ public:
     // match at start, _even_ if the buffer is smaller than the window
     // size.
     // The function returns true if the node may consume nothing yet match.
-	// •¶š‚ğÁ”ï‚µ‚È‚­‚Ä‚àƒ}ƒbƒ`‚·‚é‚±‚Æ‚ª‚ ‚é‚È‚çtrue‚ª•Ô‚éH
-	// •K‚¸•¶š‚ğÁ”ï‚·‚é‚È‚çfalse‚ğ•Ô‚·H
+	// æ–‡å­—ã‚’æ¶ˆè²»ã—ãªãã¦ã‚‚ãƒãƒƒãƒã™ã‚‹ã“ã¨ãŒã‚ã‚‹ãªã‚‰trueãŒè¿”ã‚‹ï¼Ÿ
+	// å¿…ãšæ–‡å­—ã‚’æ¶ˆè²»ã™ã‚‹ãªã‚‰falseã‚’è¿”ã™ï¼Ÿ
     virtual bool mayMatch(bool* tab) =0;
 
     // Match function.

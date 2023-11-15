@@ -1,4 +1,4 @@
-//------------------------------------------------------------------
+ï»¿//------------------------------------------------------------------
 //
 //this file is part of Proximodo
 //Copyright (C) 2004-2005 Antony BOUCHER ( kuruden@users.sourceforge.net )
@@ -119,7 +119,7 @@ void CUrl::parseUrl(const wstring& str) {
 			hostport += L':' + protocol;
 		}
 	}
-	// host‚Éƒ|[ƒg”Ô†‚ª‘‚©‚ê‚Ä‚éê‡AƒvƒƒgƒRƒ‹ƒfƒtƒHƒ‹ƒg‚Ìƒ|[ƒg‚È‚çÈ—ª‚·‚é
+	// hostã«ãƒãƒ¼ãƒˆç•ªå·ãŒæ›¸ã‹ã‚Œã¦ã‚‹å ´åˆã€ãƒ—ãƒ­ãƒˆã‚³ãƒ«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒãƒ¼ãƒˆãªã‚‰çœç•¥ã™ã‚‹
 	size_t pos5 = host.find(L':');
 	if (pos5 != string::npos) {
 		wstring port = host.substr(pos5 + 1);

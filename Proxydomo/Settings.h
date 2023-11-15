@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	Settings.h
-*	@brief	‘SƒtƒBƒ‹ƒ^[‚Æ‘SƒŠƒXƒg‚ğ‚Á‚Ä‚¢‚é
+*	@brief	å…¨ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã¨å…¨ãƒªã‚¹ãƒˆã‚’æŒã£ã¦ã„ã‚‹
 */
 /**
 	this file is part of Proxydomo
@@ -43,7 +43,7 @@ namespace Proxydomo {
 	class CMatcher;
 }
 
-/// ‚P‚Â‚ÌƒŠƒXƒg‚É‚ ‚é‚·‚×‚Ä‚Ìƒpƒ^[ƒ“‚ğ‚Á‚Ä‚¢‚é
+/// ï¼‘ã¤ã®ãƒªã‚¹ãƒˆã«ã‚ã‚‹ã™ã¹ã¦ã®ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’æŒã£ã¦ã„ã‚‹
 struct HashedListCollection {
 	boost::shared_mutex	mutex;
 	std::wstring	filePath;
@@ -67,21 +67,21 @@ struct HashedListCollection {
 			: nodeFirst(nodeFirst), nodeLast(nodeLast), listLine(listLine) {}
 	};
 
-	// ŒÅ’èƒvƒŒƒtƒBƒbƒNƒXƒŠƒXƒg
+	// å›ºå®šãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆ
 	struct PreHashWord {
 		std::unordered_map<wchar_t, std::unique_ptr<PreHashWord>>	mapChildPreHashWord;
 		std::vector<NodeData>	vecNode;
 	};
 	std::unordered_map<wchar_t, std::unique_ptr<PreHashWord>>	PreHashWordList;
 
-	// URLƒnƒbƒVƒ…ƒŠƒXƒg
+	// URLãƒãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆ
 	struct URLHash {
 		std::unordered_map<std::wstring, std::unique_ptr<URLHash>>	mapChildURLHash;
 		std::vector<NodePairData>	vecpairNode;
 	};
 	std::unordered_map<std::wstring, std::unique_ptr<URLHash>>	URLHashList;
 
-	// NormalƒŠƒXƒg
+	// Normalãƒªã‚¹ãƒˆ
 	std::deque<NodeData>	deqNormalNode;
 
 	// adblockfilter
@@ -154,17 +154,17 @@ public:
 
 	// CCritSecLock	lock(CSettings::s_csFilters);
 	static CCriticalSection		s_csFilters;
-	// ‘SŠ—LƒtƒBƒ‹ƒ^[
+	// å…¨æ‰€æœ‰ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 	static std::vector<std::unique_ptr<FilterItem>>	s_vecpFilters;
 	static std::chrono::steady_clock::time_point s_lastFiltersSaveTime;
 
-	// Bypass ƒtƒBƒ‹ƒ^[
+	// Bypass ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 	static std::shared_ptr<Proxydomo::CMatcher>	s_pBypassMatcher;
 
-	// —Dæ•¶šƒR[ƒh
+	// å„ªå…ˆæ–‡å­—ã‚³ãƒ¼ãƒ‰
 	static std::shared_ptr<Proxydomo::CMatcher> s_pPriorityCharsetMatcher;
 
-	/// ƒAƒNƒeƒBƒu‚ÈƒtƒBƒ‹ƒ^[‚ğ•Ô‚· (¦ lock‚Í•K—v‚È‚¢)
+	/// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’è¿”ã™ (â€» lockã¯å¿…è¦ãªã„)
 	static std::chrono::steady_clock::time_point 
 				EnumActiveFilter(std::function<void (CFilterDescriptor*)> func);
 

@@ -53,3 +53,5 @@ wolfssl-*/
 !/subprojects/openssl.wrap
 !/subprojects/zlib.wrap
 
+/builddir/
+/prefix/

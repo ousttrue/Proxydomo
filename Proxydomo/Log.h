@@ -1,6 +1,6 @@
-/**
+﻿/**
 *	@file	Log.h
-*	@brief	���O�N���X
+*	@brief	ログクラス
 */
 /**
 	this file is part of Proxydomo
@@ -30,18 +30,18 @@
 
 enum LogProxyEvent
 {
-	kLogProxyNewRequest,	// �u���E�U�\�P�b�g���J����܂���
-	kLogProxyEndRequest,	// �u���E�U�\�P�b�g�������܂���
+	kLogProxyNewRequest,	// ブラウザソケットが開かれました
+	kLogProxyEndRequest,	// ブラウザソケットが閉じられました
 };
 
 enum LogHttpEvent
 {
 	kLogHttpNewRequest,
-	kLogHttpRecvOut,	// Browser����f�[�^����M
-	kLogHttpSendOut,	// Website�փf�[�^�𑗐M
+	kLogHttpRecvOut,	// Browserからデータを受信
+	kLogHttpSendOut,	// Websiteへデータを送信
 	kLogHttpPostOut,
-	kLogHttpRecvIn,		// Website����f�[�^����M
-	kLogHttpSendIn,		// Browser�փf�[�^�𑗐M
+	kLogHttpRecvIn,		// Websiteからデータを受信
+	kLogHttpSendIn,		// Browserへデータを送信
 
 };
 

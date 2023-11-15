@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 *	@file	TextBuffer.cpp
-*	@brief	ƒf[ƒ^‚ğó‚¯æ‚Á‚ÄƒeƒLƒXƒgƒtƒBƒ‹ƒ^[‚Åˆ—‚µ‚ÄRequestManager‚É•Ô‚·ƒNƒ‰ƒX
+*	@brief	ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã£ã¦ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã§å‡¦ç†ã—ã¦RequestManagerã«è¿”ã™ã‚¯ãƒ©ã‚¹
 */
 /**
 	this file is part of Proxydomo
@@ -98,7 +98,7 @@ void CTextBuffer::DataReset()
 	m_bBinary = false;
 }
 
-/// EUC-JP, Shift-JIS, UTF-8, JIS ‚Ì––”ö‚ğ’²‚×‚é
+/// EUC-JP, Shift-JIS, UTF-8, JIS ã®æœ«å°¾ã‚’èª¿ã¹ã‚‹
 int CTextBuffer::_findEndPoint(const char* start, const char*& end)
 {
 	enum { kMaxDecriment = 512 };
@@ -127,7 +127,7 @@ int CTextBuffer::_findEndPoint(const char* start, const char*& end)
 			++decrimentCount, --end )
 		{
 			unsigned char code = *end;
-			if (/*0x20*/0 < code && code <= 0x7E) {	// acii	// Shift-JIS‚¾‚Æ2byte–Ú‚Ì‰Â”\«‚à‚ ‚é‚ª‘åä•v
+			if (/*0x20*/0 < code && code <= 0x7E) {	// acii	// Shift-JISã ã¨2byteç›®ã®å¯èƒ½æ€§ã‚‚ã‚ã‚‹ãŒå¤§ä¸ˆå¤«
 				++end;
 				return decrimentCount;
 			}
@@ -287,10 +287,10 @@ void	CTextBuffer::_decideCharset()
 		return charaCode;
 	};
 
-	// 1:ƒy[ƒW‚©‚ç•¶šƒR[ƒh‚ğ„’è‚·‚é
+	// 1:ãƒšãƒ¼ã‚¸ã‹ã‚‰æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’æ¨å®šã™ã‚‹
 	enum { kThreshold = 70 };
 	auto supposeCharaCode = GetCharaCode(m_buffer);
-	if (kThreshold <= supposeCharaCode.first) {	// „’è‚ªè‡’l‚ğ’´‚¦‚Ä‚¢‚ê‚Î”»’è‚ğ—Dæ‚·‚é
+	if (kThreshold <= supposeCharaCode.first) {	// æ¨å®šãŒé–¾å€¤ã‚’è¶…ãˆã¦ã„ã‚Œã°åˆ¤å®šã‚’å„ªå…ˆã™ã‚‹
 		charaCode = supposeCharaCode.second;
 	}
 
@@ -327,20 +327,20 @@ void	CTextBuffer::_decideCharset()
 		}
 	}
 
-	// 2:ƒy[ƒW“à‚Ì•¶šƒR[ƒhw’è
+	// 2:ãƒšãƒ¼ã‚¸å†…ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æŒ‡å®š
 	if (charaCode.empty()) {
 		charaCode = funcPageCharset();
 	}
 
-	// 3:ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_‚ÌContent-Type‚É‘‚¢‚Ä‚ ‚écharset
+	// 3:ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€ã®Content-Typeã«æ›¸ã„ã¦ã‚ã‚‹charset
 	if (charaCode.empty()) {
 		charaCode = funcInHeaderCharset();
 	}
 
 	if (charaCode.empty()) {
-		charaCode = supposeCharaCode.second;	// ƒy[ƒW„’è‚Ìcharaset
+		charaCode = supposeCharaCode.second;	// ãƒšãƒ¼ã‚¸æ¨å®šã®charaset
 		if (charaCode.empty()) {
-			charaCode = "UTF-8";	// ‚±‚±‚Ü‚Å‰½‚à‚È‚©‚Á‚½‚çUTF-8‚Æ‚µ‚Ä‰ğß‚·‚é
+			charaCode = "UTF-8";	// ã“ã“ã¾ã§ä½•ã‚‚ãªã‹ã£ãŸã‚‰UTF-8ã¨ã—ã¦è§£é‡ˆã™ã‚‹
 		}
 	}
 
@@ -352,7 +352,7 @@ void	CTextBuffer::_decideCharset()
 		UErrorCode err = UErrorCode::U_ZERO_ERROR;
 		pConverter = ucnv_open(charaCode.c_str(), &err);
 
-		// Converter‚ªæ‚ê‚È‚©‚Á‚½‚Ì‚Å supposeCharaCode.second ‚©‚çæ“¾‚·‚é
+		// ConverterãŒå–ã‚Œãªã‹ã£ãŸã®ã§ supposeCharaCode.second ã‹ã‚‰å–å¾—ã™ã‚‹
 		if (pConverter == nullptr && supposeCharaCode.second.length()) {
 			charaCode = supposeCharaCode.second;
 			auto& pConverter2 = g_mapConverter[charaCode];
@@ -382,15 +382,15 @@ void CTextBuffer::DataFeed(const std::string& data)
 	if (m_owner.killed)
 		return ;
 
-	/// •¶šƒR[ƒh‚ğ”»•Ê‚·‚é
+	/// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’åˆ¤åˆ¥ã™ã‚‹
 	if (m_bCharaCodeDectated == false) {
 		m_buffer += data;
 		enum { kMaxBufferForCharaCodeSearch = 5000 };
 		if (m_buffer.size() < kMaxBufferForCharaCodeSearch) {
 			if (m_bDataDump == false)
-				return ;	// ƒoƒbƒtƒ@‚ª‚½‚Ü‚é‚Ü‚Å‘Ò‚Â
+				return ;	// ãƒãƒƒãƒ•ã‚¡ãŒãŸã¾ã‚‹ã¾ã§å¾…ã¤
 		}
-		// WebFont‚©”»’è
+		// WebFontã‹åˆ¤å®š
 		if (m_buffer.size() > 4) {	
 			// 'wOFF'
 			if (m_buffer[0] == 'w' && m_buffer[1] == 'O' && m_buffer[2] == 'F' && m_buffer[3] == 'F') {
@@ -415,25 +415,25 @@ void CTextBuffer::DataFeed(const std::string& data)
 		return;
 	}
 
-	if (m_bDataDump == false) {		// ’Êí
+	if (m_bDataDump == false) {		// é€šå¸¸æ™‚
 		const char* endPoint = m_buffer.c_str() + m_buffer.size();
 		int decrimentCount = _findEndPoint(m_buffer.c_str(), endPoint);
 		if (decrimentCount == -1) {
 			if (data.size() > 0)
-				return ;	// ––”ö‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚çŠë‚È‚¢‚Ì‚Å‹A‚é
+				return ;	// æœ«å°¾ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰å±ãªã„ã®ã§å¸°ã‚‹
 			decrimentCount = 0;
 		}
-		// ‚ ‚Ü‚è‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+		// ã‚ã¾ã‚Šã‚’ä¿å­˜ã—ã¦ãŠã
 		m_tailBuffer.assign(endPoint, decrimentCount);
 		auto validBufferSize = endPoint - m_buffer.c_str();
 		if (validBufferSize > 0) {
 			UErrorCode	err = U_ZERO_ERROR;
 			UnicodeString	appendBuff(m_buffer.c_str(), (int32_t)validBufferSize, m_pConverter, err);
 			ATLASSERT( U_SUCCESS(err) );
-			m_buffer.clear();	 // ‚ ‚Ü‚è‚Í•Û‘¶‚µ‚½‚Ì‚Åclear‚µ‚Ä‘åä•v
+			m_buffer.clear();	 // ã‚ã¾ã‚Šã¯ä¿å­˜ã—ãŸã®ã§clearã—ã¦å¤§ä¸ˆå¤«
 			m_unicodeBuffer.append(appendBuff);
 		}
-	} else {	// DataDump
+	} else {	// DataDumpæ™‚
 		UErrorCode	err = U_ZERO_ERROR;
 		UnicodeString	appendBuff(m_buffer.c_str(), (int32_t)m_buffer.length(), m_pConverter, err);
 		ATLASSERT( U_SUCCESS(err) );
@@ -447,7 +447,7 @@ void CTextBuffer::DataFeed(const std::string& data)
     const UChar* done     = bufStart;
 
 	std::stringstream out;
-	if (m_owner.bypassBody == false) {	// Debug + BypassBody‚Ì‚à‚ ‚é‚Ì‚Å
+	if (m_owner.bypassBody == false) {	// Debug + BypassBodyã®æ™‚ã‚‚ã‚ã‚‹ã®ã§
 
 		// test every filter at every position
 		for (; index <= bufEnd; m_currentFilter = m_vecpTextfilters.begin(), ++index) {
@@ -484,7 +484,7 @@ void CTextBuffer::DataFeed(const std::string& data)
 					std::wstring replaceText = (*m_currentFilter)->getReplaceText();
 
 					// log match events                
-					// ƒtƒBƒ‹ƒ^‚ªƒ}ƒbƒ`‚µ‚½
+					// ãƒ•ã‚£ãƒ«ã‚¿ãŒãƒãƒƒãƒã—ãŸ
 					CLog::FilterEvent(kLogFilterTextMatch, m_owner.requestNumber,
 						UTF8fromUTF16((*m_currentFilter)->title), ""/*occurrence*/);
 					//CLog::FilterEvent(kLogFilterTextReplace, m_owner.requestNumber, (*m_currentFilter)->title, replaceText);

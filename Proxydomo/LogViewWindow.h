@@ -1,6 +1,6 @@
-/**
+Ôªø/**
 *	@file	LogViewWindow.h
-*	@brief	ÉçÉOï\é¶ÉNÉâÉX
+*	@brief	„É≠„Ç∞Ë°®Á§∫„ÇØ„É©„Çπ
 */
 /**
 	this file is part of Proxydomo

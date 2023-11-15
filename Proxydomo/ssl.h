@@ -1,4 +1,4 @@
-/**
+ï»¿/**
 *	@file	ssl.h
 *	@brief	ssl misc
 */
@@ -12,14 +12,14 @@
 bool	InitSSL();
 void	TermSSL();
 
-// CAØ–¾‘‚ğ¶¬‚·‚é
+// CAè¨¼æ˜æ›¸ã‚’ç”Ÿæˆã™ã‚‹
 void	GenerateCACertificate();
 
 class CSSLSession;
 
 bool	ManageCertificateAPI(const std::string& url, SocketIF* sockBrowser);
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 typedef struct ssl_ctx_st SSL_CTX;
 typedef struct ssl_st SSL;
 
