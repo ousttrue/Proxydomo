@@ -6,3 +6,4 @@ libs += cc.find_library('sqlite3', dirs: lib_dir)
 sqlite3_dep = declare_dependency(
   dependencies: libs,
   )
+install_data('Win64/sqlite3.dll', install_dir: 'bin')
