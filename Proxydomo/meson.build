@@ -10,12 +10,11 @@ boost_dep = dependency(
     ],
 )
 
-icuuc_dep = dependency('icu-uc', default_options: ['default_library=static'])
-icui18n_dep = dependency(
-    'icu-i18n',
-    default_options: ['default_library=static'],
-)
-icuio_dep = dependency('icu-io', default_options: ['default_library=static'])
+icuuc_dep = dependency('icu-uc')
+icui18n_dep = dependency('icu-i18n')
+icuio_dep = dependency('icu-io')
+icudata_dep = subproject('icu').get_variable('icudata_dep')
+
 zlib_dep = dependency('zlib')
 openssl_dep = dependency('openssl', default_options: ['default_library=static'])
 
@@ -154,6 +153,7 @@ executable(
         icui18n_dep,
         icuuc_dep,
         icuio_dep,
+        icudata_dep,
         openssl_dep,
         # libcrypto_dep,
         # libssl_dep,
@@ -165,8 +165,11 @@ executable(
 
 install_subdir(
     'proximodo/distrib',
+    strip_directory: true,
     install_dir: 'bin',
     exclude_directories: 'lists/CVS',
-    strip_directory: true,
 )
-
+install_subdir(
+    'lang',
+    install_dir: 'bin',
+)
